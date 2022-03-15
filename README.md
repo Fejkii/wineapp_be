@@ -73,3 +73,12 @@ For all tests run command:
 ```
 php artisan test
 ```
+
+## IDE Helper
+https://github.com/barryvdh/laravel-ide-helper
+
+- ```php artisan ide-helper:generate``` - PHPDoc generation for Laravel Facades
+
+- ```php artisan ide-helper:models``` - PHPDocs for models
+
+- ```php artisan ide-helper:meta``` - PhpStorm Meta file
