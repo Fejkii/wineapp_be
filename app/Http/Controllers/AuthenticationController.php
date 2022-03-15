@@ -16,9 +16,10 @@ class AuthenticationController extends BaseController
     /**
      * Register api
      *
+     * @param Request $request
      * @return JsonResponse
      */
-    public function register(Request $request)
+    public function register(Request $request): JsonResponse
     {
         $validator = Validator::make($request->all(), [
             User::EMAIL => 'required|string|email|max:255|unique:users',
@@ -50,9 +51,10 @@ class AuthenticationController extends BaseController
     /**
      * Login api
      *
+     * @param Request $request
      * @return JsonResponse
      */
-    public function login(Request $request)
+    public function login(Request $request): JsonResponse
     {
         $validator = Validator::make($request->all(), [
             User::EMAIL => 'required|string|email|max:255',
@@ -85,38 +87,15 @@ class AuthenticationController extends BaseController
     /**
      * Logout api
      *
+     * @param Request $request
      * @return JsonResponse
      */
-    public function logout (Request $request) {
-        $token = $request->user()->remember_token();
-        $token->revoke();
-        return $this->sendResponse($token, 'User successfully logged out.');
-    }
-
-    /**
-     * @return JsonResponse
-     */
-    protected function sendResetLinkResponse(Request $request): JsonResponse
-    {
-        return $this->sendResponse(null,"Password reset email sent");
-
-    }
-
-    protected function sendResetLinkFailedResponse(Request $request)
-    {
-        return $this->sendError("Email could not be sent to this email address", 500);
-    }
-
-    public function removeToken(Request $request): JsonResponse
+    public function logout (Request $request): JsonResponse
     {
         $user = $request->user();
-        if ($user->tokens()) {
-
-            $user->tokens()->delete();
-            return $this->sendResponse(null, "Tokens are deleted");
-        } else {
-            return $this->sendError("User has not tokens");
-        }
-
+        $user->tokens()->delete();
+        $user->remember_token = null;
+        $user->save();
+        return $this->sendResponse(null, 'User successfully logged out.');
     }
 }

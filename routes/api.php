@@ -23,5 +23,5 @@ Route::post('/login', [AuthenticationController::class, 'login']);
 Route::post('/register', [AuthenticationController::class, 'register']);
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/user/removeToken', [AuthenticationController::class, 'removeToken']);
+    Route::get('/logout', [AuthenticationController::class, 'logout']);
 });
