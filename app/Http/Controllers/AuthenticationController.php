@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Validator;
 /**
  * @author Petr Šťastný <petrstastny09@gmail.com>
  */
-class AuthenticationController extends BaseController
+class AuthenticationController extends Controller
 {
     /**
      * Register api
@@ -73,11 +73,10 @@ class AuthenticationController extends BaseController
         if(Auth::attempt([User::EMAIL => $request->email, User::PASSWORD => $request->password])){
             $user = Auth::user();
             $token = $user->createToken($deviceName)->plainTextToken;
-            $rememberToken[User::REMEMBER_TOKEN] = $token;
             $user->remember_token = $token;
             $user->save();
 
-            return $this->sendResponse($rememberToken, 'User login successfully.');
+            return $this->sendResponse($token, 'User login successfully.');
         }
         else{
             return $this->sendError('Email or password is wrong.');

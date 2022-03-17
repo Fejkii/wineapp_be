@@ -19,8 +19,8 @@ class CreateAccountingDocumentsTable extends Migration
             $table->unsignedBigInteger(AccountingDocument::COMPANY_ID);
             $table->unsignedBigInteger(AccountingDocument::PAYMENT_TYPE_ID);
             $table->unsignedBigInteger(AccountingDocument::USER_ID);
-            $table->unsignedBigInteger(AccountingDocument::DOCUMENT_PAYMENT_STATE_ID);
-            $table->string(AccountingDocument::DOCUMENT_TYPE);
+            $table->unsignedBigInteger(AccountingDocument::DOCUMENT_PAYMENT_STATE_ID)->default(1);
+            $table->unsignedBigInteger(AccountingDocument::DOCUMENT_TYPE_ID);
             $table->string(AccountingDocument::DOCUMENT_NUMBER)->nullable();
             $table->string(AccountingDocument::VARIABLE_SYMBOL)->nullable();
             $table->date(AccountingDocument::SUPPLY_DATE)->nullable();
@@ -33,6 +33,7 @@ class CreateAccountingDocumentsTable extends Migration
             $table->foreign(AccountingDocument::PAYMENT_TYPE_ID)->references('id')->on('accounting_payment_types');
             $table->foreign(AccountingDocument::USER_ID)->references('id')->on('users');
             $table->foreign(AccountingDocument::DOCUMENT_PAYMENT_STATE_ID)->references('id')->on('accounting_document_payment_states');
+            $table->foreign(AccountingDocument::DOCUMENT_TYPE_ID)->references('id')->on('accounting_document_types');
         });
     }
 

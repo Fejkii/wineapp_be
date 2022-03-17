@@ -17,7 +17,7 @@ class CreateAccountingCompaniesTable extends Migration
         Schema::create('accounting_companies', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger(AccountingCompany::COUNTRY_ID);
-            $table->string(AccountingCompany::TITLE);
+            $table->string(AccountingCompany::TITLE)->unique();
             $table->string(AccountingCompany::CIN)->nullable();
             $table->string(AccountingCompany::VAT)->nullable();
             $table->string(AccountingCompany::IBAN)->nullable();

@@ -2,7 +2,12 @@
 
 namespace App\Exceptions;
 
+use App\Http\Controllers\BaseController;
+use Illuminate\Auth\AuthenticationException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Validation\ValidationException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -37,5 +42,31 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
+    }
+
+//    public function render($request, Throwable $e)
+//    {
+//        if ($e instanceof ModelNotFoundException) {
+//            return $this->responseError("Data not found", 404);
+//        }
+//
+//        if ($e instanceof AuthenticationException) {
+//            return $this->responseError("User not Authorized", 401);
+//        }
+//
+//        if ($e instanceof ValidationException) {
+//            return $this->responseError("Data not valid", 422);
+//        }
+//
+//        return $this->responseError("Something wrong", 404);
+//    }
+
+    private function responseError(string $message, int $code): JsonResponse
+    {
+        return response()->json([
+            'status' => 1,
+            'message' => $message,
+            'code' => $code
+        ]);
     }
 }

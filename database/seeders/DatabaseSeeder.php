@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             CountrySeeder::class,
             AccountingDocumentPaymentStateSeeder::class,
             AccountingPaymentTypeSeeder::class,
+            AccountingDocumentTypeSeeder::class,
         ]);
     }
 }
