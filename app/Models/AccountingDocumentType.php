@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Database\Factories\AccountingDocumentTypeFactory;
+use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -25,7 +26,7 @@ use Illuminate\Support\Carbon;
  * @method static Builder|AccountingDocumentType whereId($value)
  * @method static Builder|AccountingDocumentType whereTitle($value)
  * @method static Builder|AccountingDocumentType whereUpdatedAt($value)
- * @mixin \Eloquent
+ * @mixin Eloquent
  */
 class AccountingDocumentType extends Model
 {

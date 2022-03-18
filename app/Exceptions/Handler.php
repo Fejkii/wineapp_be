@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Validation\ValidationException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -50,12 +51,19 @@ class Handler extends ExceptionHandler
 //            return $this->responseError("Data not found", 404);
 //        }
 //
+//        // not work
 //        if ($e instanceof AuthenticationException) {
 //            return $this->responseError("User not Authorized", 401);
 //        }
 //
+//        // not work
 //        if ($e instanceof ValidationException) {
 //            return $this->responseError("Data not valid", 422);
+//        }
+//
+//        // not work
+//        if ($e instanceof NotFoundHttpException) {
+//            return $this->responseError("Route not found", 500);
 //        }
 //
 //        return $this->responseError("Something wrong", 404);

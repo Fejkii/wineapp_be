@@ -9,6 +9,8 @@ use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\VatController;
 use App\Http\Controllers\WineClassificationController;
+use App\Http\Controllers\WineController;
+use App\Http\Controllers\WineEvidenceController;
 use App\Http\Controllers\WineVarietyController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -33,6 +35,8 @@ Route::post('/register', [AuthenticationController::class, 'register']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/logout', [AuthenticationController::class, 'logout']);
+
+    // Purchase
     Route::get('/vat', [VatController::class, 'index']);
     Route::get('/country', [CountryController::class, 'index']);
     Route::get('/paymentType', [AccountingPaymentTypeController::class, 'index']);
@@ -53,4 +57,14 @@ Route::middleware('auth:sanctum')->group(function () {
     // Wine
     Route::get('/wineVariety', [WineVarietyController::class, 'index']);
     Route::get('/wineClassification', [WineClassificationController::class, 'index']);
+
+    Route::get('/wine', [WineController::class, 'index']);
+    Route::get('/wine/{id}', [WineController::class, 'show']);
+    Route::post('/wine', [WineController::class, 'create']);
+    Route::put('/wine/{id}', [WineController::class, 'update']);
+
+    Route::get('/wineEvidence', [WineEvidenceController::class, 'index']);
+    Route::get('/wineEvidence/{id}', [WineEvidenceController::class, 'show']);
+    Route::post('/wineEvidence', [WineEvidenceController::class, 'create']);
+    Route::put('/wineEvidence/{id}', [WineEvidenceController::class, 'update']);
 });
