@@ -8,6 +8,7 @@ use App\Http\Controllers\AccountingPaymentTypeController;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\VatController;
+use App\Http\Controllers\WineClassificationController;
 use App\Http\Controllers\WineVarietyController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -51,4 +52,5 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // Wine
     Route::get('/wineVariety', [WineVarietyController::class, 'index']);
+    Route::get('/wineClassification', [WineClassificationController::class, 'index']);
 });

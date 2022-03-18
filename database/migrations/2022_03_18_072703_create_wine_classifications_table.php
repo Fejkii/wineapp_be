@@ -1,11 +1,11 @@
 <?php
 
-use App\Models\WineVariety;
+use App\Models\WineClassification;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateWineVarietiesTable extends Migration
+class CreateWineClassificationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,10 +14,11 @@ class CreateWineVarietiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('wine_varieties', function (Blueprint $table) {
+        Schema::create('wine_classifications', function (Blueprint $table) {
             $table->id();
-            $table->string(WineVariety::TITLE);
-            $table->string(WineVariety::CODE);
+            $table->string(WineClassification::TITLE);
+            $table->string(WineClassification::CODE);
+            $table->string(WineClassification::PARAMS)->nullable();
         });
     }
 
@@ -28,6 +29,6 @@ class CreateWineVarietiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('wine_varieties');
+        Schema::dropIfExists('wine_classifications');
     }
 }

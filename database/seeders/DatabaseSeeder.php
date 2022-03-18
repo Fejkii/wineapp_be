@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             AccountingPaymentTypeSeeder::class,
             AccountingDocumentTypeSeeder::class,
             WineVarietySeeder::class,
+            WineClassificationSeeder::class,
         ]);
     }
 }
