@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             AccountingDocumentPaymentStateSeeder::class,
             AccountingPaymentTypeSeeder::class,
             AccountingDocumentTypeSeeder::class,
+            WineVarietySeeder::class,
         ]);
     }
 }
