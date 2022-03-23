@@ -13,6 +13,7 @@ use Illuminate\Support\Carbon;
  * App\Models\Wine
  *
  * @property int $id
+ * @property int $project_id
  * @property int $wine_variety_id
  * @property int $wine_classification_id
  * @property string $title
@@ -37,11 +38,13 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Wine whereWineVarietyId($value)
  * @method static Builder|Wine whereYear($value)
  * @mixin Eloquent
+ * @method static Builder|Wine whereProjectId($value)
  */
 class Wine extends Model
 {
     use HasFactory;
 
+    public const PROJECT_ID = "project_id";
     public const WINE_VARIETY_ID = "wine_variety_id";
     public const WINE_CLASSIFICATION_ID = "wine_classification_id";
     public const TITLE = "title";
@@ -51,6 +54,7 @@ class Wine extends Model
     public const SUGAR = "sugar";
 
     protected $fillable = [
+        self::PROJECT_ID,
         self::WINE_VARIETY_ID,
         self::WINE_CLASSIFICATION_ID,
         self::TITLE,

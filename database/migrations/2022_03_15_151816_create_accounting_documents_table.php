@@ -16,6 +16,7 @@ class CreateAccountingDocumentsTable extends Migration
     {
         Schema::create('accounting_documents', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger(AccountingDocument::PROJECT_ID);
             $table->unsignedBigInteger(AccountingDocument::COMPANY_ID);
             $table->unsignedBigInteger(AccountingDocument::PAYMENT_TYPE_ID);
             $table->unsignedBigInteger(AccountingDocument::USER_ID);
@@ -29,6 +30,7 @@ class CreateAccountingDocumentsTable extends Migration
             $table->date(AccountingDocument::PAID_DATE)->nullable();
             $table->timestamps();
 
+            $table->foreign(AccountingDocument::PROJECT_ID)->references('id')->on('projects');
             $table->foreign(AccountingDocument::COMPANY_ID)->references('id')->on('accounting_companies');
             $table->foreign(AccountingDocument::PAYMENT_TYPE_ID)->references('id')->on('accounting_payment_types');
             $table->foreign(AccountingDocument::USER_ID)->references('id')->on('users');

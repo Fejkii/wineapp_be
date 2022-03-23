@@ -29,16 +29,20 @@ use Illuminate\Support\Carbon;
  * @method static Builder|WineEvidence whereVolume($value)
  * @method static Builder|WineEvidence whereWineId($value)
  * @mixin Eloquent
+ * @property int $project_id
+ * @method static Builder|WineEvidence whereProjectId($value)
  */
 class WineEvidence extends Model
 {
     use HasFactory;
 
+    public const PROJECT_ID = "project_id";
     public const WINE_ID = "wine_id";
     public const TITLE = "title";
     public const VOLUME = "volume"; // objem / množství
 
     protected $fillable = [
+        self::PROJECT_ID,
         self::WINE_ID,
         self::TITLE,
         self::VOLUME,

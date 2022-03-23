@@ -16,6 +16,7 @@ class CreateAccountingCompaniesTable extends Migration
     {
         Schema::create('accounting_companies', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger(AccountingCompany::PROJECT_ID);
             $table->unsignedBigInteger(AccountingCompany::COUNTRY_ID);
             $table->string(AccountingCompany::TITLE)->unique();
             $table->string(AccountingCompany::CIN)->nullable();
@@ -26,6 +27,7 @@ class CreateAccountingCompaniesTable extends Migration
             $table->string(AccountingCompany::BANK_CODE)->nullable();
             $table->timestamps();
 
+            $table->foreign(AccountingCompany::PROJECT_ID)->references('id')->on('projects');
             $table->foreign(AccountingCompany::COUNTRY_ID)->references('id')->on('countries');
         });
     }

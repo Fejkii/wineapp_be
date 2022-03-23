@@ -53,7 +53,6 @@ class User extends Authenticatable
     public const PASSWORD = "password";
     public const REMEMBER_TOKEN = "remember_token";
     public const EMAIL_VERIFIED_AT = "email_verified_at";
-    public const CREATED_AT = "created_at";
 
     /**
      * The attributes that are mass assignable.

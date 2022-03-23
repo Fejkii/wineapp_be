@@ -74,7 +74,7 @@ class Controller extends BaseController
      *
      * @throws TransactionException
      */
-    public function handleTransaction(Closure $callback)
+    public function handleTransaction(Closure $callback): mixed
     {
         try {
             $this->connection->beginTransaction();

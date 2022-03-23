@@ -13,6 +13,7 @@ use Illuminate\Support\Carbon;
  * App\Models\AccountingDocument
  *
  * @property int $id
+ * @property int $project_id
  * @property int $company_id
  * @property int $payment_type_id
  * @property int $user_id
@@ -45,11 +46,13 @@ use Illuminate\Support\Carbon;
  * @method static Builder|AccountingDocument whereUserId($value)
  * @method static Builder|AccountingDocument whereVariableSymbol($value)
  * @mixin Eloquent
+ * @method static Builder|AccountingDocument whereProjectId($value)
  */
 class AccountingDocument extends Model
 {
     use HasFactory;
 
+    public const PROJECT_ID = "project_id";
     public const COMPANY_ID = "company_id";
     public const PAYMENT_TYPE_ID = "payment_type_id";
     public const USER_ID = "user_id";
@@ -63,6 +66,7 @@ class AccountingDocument extends Model
     public const DOCUMENT_TYPE_ID = "document_type_id";
 
     protected $fillable = [
+        self::PROJECT_ID,
         self::COMPANY_ID,
         self::PAYMENT_TYPE_ID,
         self::USER_ID,

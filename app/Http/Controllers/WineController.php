@@ -17,6 +17,7 @@ class WineController extends Controller
     public function create(Request $request): JsonResponse
     {
         $validator = Validator::make($request->all(), [
+            Wine::PROJECT_ID => 'required|exists:App\Models\Project,id',
             Wine::WINE_VARIETY_ID => 'required|exists:App\Models\WineVariety,id',
             Wine::WINE_CLASSIFICATION_ID => 'required|exists:App\Models\WineClassification,id',
             Wine::TITLE => 'required|string',

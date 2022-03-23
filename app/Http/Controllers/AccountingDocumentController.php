@@ -19,6 +19,7 @@ class AccountingDocumentController extends Controller
     public function create(Request $request): JsonResponse
     {
         $validator = Validator::make($request->all(), [
+            AccountingDocument::PROJECT_ID => 'required|exists:App\Models\Project,id',
             AccountingDocument::COMPANY_ID => 'required|exists:App\Models\AccountingCompany,id',
             AccountingDocument::PAYMENT_TYPE_ID => 'required|exists:App\Models\AccountingPaymentType,id',
             AccountingDocument::USER_ID => 'required|exists:App\Models\User,id',

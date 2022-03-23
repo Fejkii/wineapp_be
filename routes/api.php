@@ -7,6 +7,8 @@ use App\Http\Controllers\AccountingDocumentPaymentStateController;
 use App\Http\Controllers\AccountingPaymentTypeController;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\CountryController;
+use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\UserProjectController;
 use App\Http\Controllers\VatController;
 use App\Http\Controllers\WineClassificationController;
 use App\Http\Controllers\WineController;
@@ -35,6 +37,14 @@ Route::post('/register', [AuthenticationController::class, 'register']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/logout', [AuthenticationController::class, 'logout']);
+
+    // Project
+    Route::post('/project', [ProjectController::class, 'create']);
+    Route::get('/project/{id}', [ProjectController::class, 'show']);
+
+    Route::post('/userProject', [UserProjectController::class, 'create']);
+    Route::get('/userProject/user/{userId}', [UserProjectController::class, 'showByUserId']);
+    Route::get('/userProject/project/{projectId}', [UserProjectController::class, 'showByProjectId']);
 
     // Purchase
     Route::get('/vat', [VatController::class, 'index']);

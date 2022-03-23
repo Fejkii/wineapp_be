@@ -13,6 +13,7 @@ use Illuminate\Support\Carbon;
  * App\Models\AccountingCompany
  *
  * @property int $id
+ * @property int $project_id
  * @property int $country_id
  * @property string $title
  * @property string|null $cin
@@ -39,11 +40,13 @@ use Illuminate\Support\Carbon;
  * @method static Builder|AccountingCompany whereUpdatedAt($value)
  * @method static Builder|AccountingCompany whereVat($value)
  * @mixin Eloquent
+ * @method static Builder|AccountingCompany whereProjectId($value)
  */
 class AccountingCompany extends Model
 {
     use HasFactory;
 
+    public const PROJECT_ID = "project_id";
     public const COUNTRY_ID = "country_id";
     public const TITLE = "title";
     public const CIN = "cin";
@@ -54,6 +57,7 @@ class AccountingCompany extends Model
     public const BANK_CODE = "bank_code";
 
     protected $fillable = [
+        self::PROJECT_ID,
         self::COUNTRY_ID,
         self::TITLE,
         self::CIN,

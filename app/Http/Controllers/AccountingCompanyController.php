@@ -19,6 +19,7 @@ class AccountingCompanyController extends Controller
     public function create(Request $request): JsonResponse
     {
         $validator = Validator::make($request->all(), [
+            AccountingCompany::PROJECT_ID => 'required|integer|exists:App\Models\Project,id',
             AccountingCompany::COUNTRY_ID => 'required|integer|exists:App\Models\Country,id',
             AccountingCompany::TITLE => 'required|string|unique:accounting_companies',
         ]);

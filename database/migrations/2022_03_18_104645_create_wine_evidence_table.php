@@ -16,11 +16,13 @@ class CreateWineEvidenceTable extends Migration
     {
         Schema::create('wine_evidence', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger(WineEvidence::PROJECT_ID);
             $table->unsignedBigInteger(WineEvidence::WINE_ID);
             $table->string(WineEvidence::TITLE);
             $table->float(WineEvidence::VOLUME);
             $table->timestamps();
 
+            $table->foreign(WineEvidence::PROJECT_ID)->references('id')->on('projects');
             $table->foreign(WineEvidence::WINE_ID)->references('id')->on('wines');
         });
     }
