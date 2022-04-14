@@ -40,8 +40,11 @@ class Controller extends BaseController
         $response = [
             'status' => 0,
             'message' => $message,
-            'data' => $result,
         ];
+
+        if ($result !== null) {
+            $response += $result;
+        }
 
         return response()->json($response, 200);
     }

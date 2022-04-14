@@ -65,7 +65,8 @@ class AuthenticationController extends Controller
             return $this->sendError('Email or password is not valid.', 422);
         }
 
-        $deviceName = "MyApp";
+        $deviceName = "No device name";
+
         if ($request->device_name !== null) {
             $deviceName = $request->device_name;
         }
@@ -76,7 +77,12 @@ class AuthenticationController extends Controller
             $user->remember_token = $token;
             $user->save();
 
-            return $this->sendResponse($token, 'User login successfully.');
+            $result = [
+                User::REMEMBER_TOKEN => $token,
+                "user" => $user,
+            ];
+
+            return $this->sendResponse($result, 'User login successfully.');
         }
         else{
             return $this->sendError('Email or password is wrong.');
