@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Validator;
  */
 class AuthenticationController extends Controller
 {
+    private string $deviceName = "No device name";
     /**
      * Register api
      *
@@ -35,17 +36,20 @@ class AuthenticationController extends Controller
 
         $user = User::create($input);
 
-        $deviceName = "MyApp";
         if ($request->device_name !== null) {
-            $deviceName = $request->device_name;
+            $this->deviceName = $request->device_name;
         }
 
-        $token = $user->createToken($deviceName)->plainTextToken;
-        $rememberToken[User::REMEMBER_TOKEN] = $token;
+        $token = $user->createToken($this->deviceName)->plainTextToken;
         $user->remember_token = $token;
         $user->save();
 
-        return $this->sendResponse($rememberToken, 'User register successfully.');
+        $result = [
+            User::REMEMBER_TOKEN => $token,
+            "user" => $user,
+        ];
+
+        return $this->sendResponse($result, 'User register successfully.');
     }
 
     /**
@@ -65,15 +69,13 @@ class AuthenticationController extends Controller
             return $this->sendError('Email or password is not valid.', 422);
         }
 
-        $deviceName = "No device name";
-
         if ($request->device_name !== null) {
-            $deviceName = $request->device_name;
+            $this->deviceName = $request->device_name;
         }
 
         if(Auth::attempt([User::EMAIL => $request->email, User::PASSWORD => $request->password])){
             $user = Auth::user();
-            $token = $user->createToken($deviceName)->plainTextToken;
+            $token = $user->createToken($this->deviceName)->plainTextToken;
             $user->remember_token = $token;
             $user->save();
 
