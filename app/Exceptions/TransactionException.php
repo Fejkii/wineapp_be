@@ -15,7 +15,7 @@ class TransactionException extends Exception
      * Throws in case error in chat service.
      *
      * @param string $message Error message
-     * @param Throwable $previous Previous error
+     * @param Throwable|null $previous Previous error
      */
     public function __construct(string $message, Throwable $previous = null)
     {

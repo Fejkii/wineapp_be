@@ -16,6 +16,7 @@ class ProjectController extends Controller
         return $this->handleTransaction(function () use ($request) {
             $validator = Validator::make($request->all(), [
                 Project::TITLE => 'required|string',
+                UserProject::IS_DEFAULT => 'boolean',
             ]);
 
             if($validator->fails()){
@@ -25,12 +26,37 @@ class ProjectController extends Controller
             $input = $request->all();
             $project = Project::create($input);
 
-            UserProject::create([
-                UserProject::USER_ID => Auth::user()->id,
+            $userId = Auth::user()->id;
+
+            $userProjects = UserProject::whereUserId($userId)->get();
+
+            if ($input[UserProject::IS_DEFAULT] == true) {
+                if ($userProjects->isNotEmpty()) {
+                    foreach ($userProjects as $userProject) {
+                        $userProject->is_default = false;
+                        $userProject->save();
+                    }
+                }
+            } else {
+                if ($userProjects->isEmpty()) {
+                    $input[UserProject::IS_DEFAULT] = true;
+                }
+            }
+
+            //TODO: on delete, set another default project
+
+            $userProject = UserProject::create([
+                UserProject::USER_ID => $userId,
                 UserProject::PROJECT_ID => $project->id,
+                UserProject::IS_DEFAULT => $input[UserProject::IS_DEFAULT],
             ]);
 
-            return $this->sendResponse($project, "Project created");
+            $result = [
+                "project" => $project,
+                "user_project" => $userProject,
+            ];
+
+            return $this->sendResponse($result, "Project created");
         });
     }
 
@@ -38,6 +64,10 @@ class ProjectController extends Controller
     {
         $project = Project::findOrFail($projectId);
 
-        return $this->sendResponse($project, "Show detail");
+        $result = [
+            "project" => $project,
+        ];
+
+        return $this->sendResponse($result, "Show detail");
     }
 }

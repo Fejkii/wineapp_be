@@ -43,8 +43,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/project/{id}', [ProjectController::class, 'show']);
 
     Route::post('/userProject', [UserProjectController::class, 'create']);
-    Route::get('/userProject/user/{userId}', [UserProjectController::class, 'showByUserId']);
-    Route::get('/userProject/project/{projectId}', [UserProjectController::class, 'showByProjectId']);
+    Route::get('/userProject', [UserProjectController::class, 'show']);
 
     // Purchase
     Route::get('/vat', [VatController::class, 'index']);

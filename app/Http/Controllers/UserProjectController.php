@@ -21,22 +21,50 @@ class UserProjectController extends Controller
         }
 
         $input = $request->all();
-        $wine = UserProject::create($input);
+        $userProject = UserProject::create($input);
 
-        return $this->sendResponse($wine, "Project created");
+        $result = [
+            "user_project" => $userProject,
+        ];
+
+        return $this->sendResponse($result, "Project created");
     }
 
-    public function showByUserId(int $userId): JsonResponse
+    public function show(Request $request): JsonResponse
     {
-        $userProjects = UserProject::whereUserId($userId)->get();
+        $input = $request->all();
 
-        return $this->sendResponse($userProjects, "Show user projects by userId");
-    }
+        $validator = Validator::make($input, [
+            UserProject::ID => 'nullable|integer|exists:user_projects,id',
+            UserProject::PROJECT_ID => 'nullable|integer|exists:projects,id',
+            UserProject::USER_ID => 'nullable|integer|exists:users,id',
+            UserProject::IS_DEFAULT => 'nullable|boolean',
+        ]);
 
-    public function showByProjectId(int $projectId): JsonResponse
-    {
-        $userProjects = UserProject::whereProjectId($projectId)->get();
+        if($validator->fails()){
+            return $this->sendError('Inputs are not valid.', 422);
+        }
 
-        return $this->sendResponse($userProjects, "Show user projects by projectId");
+
+        $userProjects = UserProject::select();
+
+        if ($input[UserProject::ID] !== null) {
+            $userProjects->where(UserProject::ID, "=", $input[UserProject::ID]);
+        }
+        if ($input[UserProject::USER_ID] !== null) {
+            $userProjects->where(UserProject::USER_ID, "=", $input[UserProject::USER_ID]);
+        }
+        if ($input[UserProject::PROJECT_ID] !== null) {
+            $userProjects->where(UserProject::PROJECT_ID, "=", $input[UserProject::PROJECT_ID]);
+        }
+        if ($input[UserProject::IS_DEFAULT] !== null) {
+            $userProjects->where(UserProject::IS_DEFAULT, "=", $input[UserProject::IS_DEFAULT]);
+        }
+
+        $result = [
+            "user_projects" => $userProjects->get(),
+        ];
+
+        return $this->sendResponse($result, "Show user projects");
     }
 }
