@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Project;
 use App\Models\User;
+use App\Models\UserProject;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -79,9 +81,16 @@ class AuthenticationController extends Controller
             $user->remember_token = $token;
             $user->save();
 
+            $userProject = UserProject::where(UserProject::USER_ID, "=", $user->id)
+                ->where(UserProject::IS_DEFAULT, "=", true)
+                ->first();
+
+            $project = Project::whereId($userProject->project_id)->first();
+
             $result = [
                 User::REMEMBER_TOKEN => $token,
                 "user" => $user,
+                "project" => $project,
             ];
 
             return $this->sendResponse($result, 'User login successfully.');

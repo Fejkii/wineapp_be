@@ -48,6 +48,7 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    public const ID = "id";
     public const NAME = "name";
     public const EMAIL = "email";
     public const PASSWORD = "password";
