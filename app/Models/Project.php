@@ -31,6 +31,7 @@ class Project extends Model
 {
     use HasFactory;
 
+    public const ID = "id";
     public const TITLE = "title";
 
     protected $fillable = [

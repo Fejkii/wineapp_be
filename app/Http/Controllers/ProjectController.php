@@ -43,8 +43,6 @@ class ProjectController extends Controller
                 }
             }
 
-            //TODO: on delete, set another default project
-
             $userProject = UserProject::create([
                 UserProject::USER_ID => $userId,
                 UserProject::PROJECT_ID => $project->id,
@@ -57,6 +55,35 @@ class ProjectController extends Controller
             ];
 
             return $this->sendResponse($result, "Project created");
+        });
+    }
+
+    public function update(Request $request): JsonResponse
+    {
+        return $this->handleTransaction(function () use ($request) {
+            $validator = Validator::make($request->all(), [
+                Project::ID => 'required|integer|exists:projects,id',
+                Project::TITLE => 'nullable|string',
+            ]);
+
+            if($validator->fails()){
+                return $this->sendError('Inputs are not valid.', 422);
+            }
+
+            $input = $request->all();
+            $project = Project::find($input[Project::ID]);
+
+            if ($request->has(Project::TITLE)) {
+                $project->title = $input[Project::TITLE];
+            }
+
+            $project->save();
+
+            $result = [
+                "project" => $project,
+            ];
+
+            return $this->sendResponse($result, "Project updated");
         });
     }
 
