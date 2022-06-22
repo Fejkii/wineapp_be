@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\UserProjectResource;
 use App\Models\Project;
 use App\Models\UserProject;
 use Illuminate\Http\JsonResponse;
@@ -12,7 +13,9 @@ class UserProjectController extends Controller
 {
     public function create(Request $request): JsonResponse
     {
-        $validator = Validator::make($request->all(), [
+        $input = $request->all();
+
+        $validator = Validator::make($input, [
             UserProject::PROJECT_ID => 'required|integer|exists:user_projects,id',
             UserProject::USER_ID => 'required|integer|exists:users,id',
         ]);
@@ -21,14 +24,13 @@ class UserProjectController extends Controller
             return $this->sendError('Inputs are not valid.', 422);
         }
 
-        $input = $request->all();
         $userProject = UserProject::create($input);
 
         $result = [
             "user_project" => $userProject,
         ];
 
-        return $this->sendResponse($result, "Project created");
+        return $this->sendResponse($result, "UserProject created");
     }
 
     public function show(Request $request): JsonResponse
@@ -103,7 +105,7 @@ class UserProjectController extends Controller
         }
 
         $result = [
-            "user_projects" => $userProjects->get(),
+            'user_projects' => UserProjectResource::collection($userProjects->orderBy(UserProject::IS_DEFAULT, "desc")->get()),
         ];
 
         return $this->sendResponse($result, "Show UserProject list");

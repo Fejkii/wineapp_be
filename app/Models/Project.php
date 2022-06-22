@@ -7,6 +7,7 @@ use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Carbon;
 
 /**
@@ -37,4 +38,9 @@ class Project extends Model
     protected $fillable = [
         self::TITLE,
     ];
+
+    public function userProject(): BelongsTo
+    {
+        return $this->belongsTo(UserProject::class);
+    }
 }

@@ -44,4 +44,14 @@ class UserProject extends Model
         self::USER_ID,
         self::IS_DEFAULT,
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function project()
+    {
+        return $this->belongsTo(Project::class);
+    }
 }

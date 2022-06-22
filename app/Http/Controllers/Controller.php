@@ -49,7 +49,6 @@ class Controller extends BaseController
         return response()->json($response, 200);
     }
 
-
     /**
      * return error response.
      *
@@ -61,6 +60,25 @@ class Controller extends BaseController
     {
         $response = [
             'status' => 1,
+            'message' => $error,
+            'code' => $code
+        ];
+
+        return response()->json($response, $code);
+    }
+
+    /**
+     * return already exists response.
+     *
+     * @param string $error
+     * @return JsonResponse
+     */
+    public function sendAlreadyExist(string $error): JsonResponse
+    {
+        $code = 409;
+
+        $response = [
+            'status' => 2,
             'message' => $error,
             'code' => $code
         ];
