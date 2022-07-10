@@ -8,6 +8,7 @@ use App\Http\Controllers\AccountingPaymentTypeController;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserProjectController;
 use App\Http\Controllers\VatController;
 use App\Http\Controllers\WineClassificationController;
@@ -46,6 +47,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/createUserProject', [UserProjectController::class, 'create']);
     Route::post('/userProject', [UserProjectController::class, 'show']);
     Route::post('/userProjectList', [UserProjectController::class, 'showList']);
+
+    Route::post('/userList', [UserController::class, 'showList']);
+    Route::post('/addUserToProject', [UserController::class, 'addUserToProject']);
 
     // Purchase
     Route::get('/vat', [VatController::class, 'index']);
