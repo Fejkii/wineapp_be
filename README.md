@@ -4,6 +4,8 @@ Backend sourcecode: https://gitlab.com/w1149/wine-app-backend
 
 Mobile application: https://gitlab.com/w1149/wine-app
 
+API Documentation: http://127.0.0.1:8000/api/swagger
+
 ## Authentication - Laravel Sanctum
 <p>
 <a href="https://laravel.com/docs/9.x/sanctum">Sanctum</a>
@@ -82,3 +84,13 @@ https://github.com/barryvdh/laravel-ide-helper
 - ```php artisan ide-helper:models``` - PHPDocs for models
 
 - ```php artisan ide-helper:meta``` - PhpStorm Meta file
+
+## API Documentation
+Swagger configuration in `config/l5-swagger.php`
+
+1) Add annotation to Controller
+2) Run command 
+```
+php artisan l5-swagger:generate
+```
+

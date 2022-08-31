@@ -19,6 +19,35 @@ class AuthenticationController extends Controller
     /**
      * Register api
      *
+     * @OA\Post(
+     * path="/api/v1/register",
+     * operationId="register",
+     * tags={"Authentication"},
+     * summary="User Registration",
+     * description="Registration User Here",
+     *     @OA\RequestBody(
+     *         @OA\JsonContent(
+     *             type="object",
+     *             required={"email", "password"},
+     *             @OA\Property(property="email", type="email", example="petr@test.cz"),
+     *             @OA\Property(property="password", type="string", example="password"),
+     *             @OA\Property(property="device_name", type="string"),
+     *         ),
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Registration Successfully",
+     *          @OA\JsonContent()
+     *       ),
+     *      @OA\Response(
+     *          response=422,
+     *          description="Unprocessable Entity",
+     *          @OA\JsonContent()
+     *       ),
+     *      @OA\Response(response=400, description="Bad request"),
+     *      @OA\Response(response=404, description="Resource Not Found"),
+     * )
+     *
      * @param Request $request
      * @return JsonResponse
      */
@@ -56,6 +85,40 @@ class AuthenticationController extends Controller
 
     /**
      * Login api
+     *
+     * @OA\Post(
+     * path="/api/v1/login",
+     * operationId="login",
+     * tags={"Authentication"},
+     * summary="User Login",
+     * description="Login User Here",
+     *     @OA\RequestBody(
+     *         @OA\JsonContent(
+     *             type="object",
+     *             required={"email", "password"},
+     *             @OA\Property(property="email", type="email", example="petr@test.cz"),
+     *             @OA\Property(property="password", type="string", example="password"),
+     *             @OA\Property(property="device_name", type="string"),
+     *          ),
+     *      ),
+     *      @OA\Response(
+     *         response=201,
+     *         description="Login Successfully",
+     *         @OA\JsonContent()
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Login Successfully",
+     *          @OA\JsonContent()
+     *       ),
+     *      @OA\Response(
+     *          response=422,
+     *          description="Unprocessable Entity",
+     *          @OA\JsonContent()
+     *       ),
+     *      @OA\Response(response=400, description="Bad request"),
+     *      @OA\Response(response=404, description="Resource Not Found"),
+     * )
      *
      * @param Request $request
      * @return JsonResponse
@@ -102,6 +165,26 @@ class AuthenticationController extends Controller
 
     /**
      * Logout api
+     *
+     * @OA\Get(
+     * path="/api/v1/logout",
+     * operationId="logout",
+     * tags={"Authentication"},
+     * summary="User Logout",
+     * description="Logout User Here",
+     *      @OA\Response(
+     *          response=201,
+     *          description="Logout Successfully",
+     *          @OA\JsonContent()
+     *       ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Logout Successfully",
+     *          @OA\JsonContent()
+     *       ),
+     *      @OA\Response(response=400, description="Bad request"),
+     *      @OA\Response(response=404, description="Resource Not Found"),
+     * )
      *
      * @param Request $request
      * @return JsonResponse

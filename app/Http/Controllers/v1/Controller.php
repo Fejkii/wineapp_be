@@ -13,6 +13,14 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Routing\Controller as BaseController;
 use Throwable;
 
+/**
+ * @OA\Info(
+ *    title="Application API for project WineApp",
+ *    version="0.1.0",
+ * )
+ *
+ * @author Petr Šťastný <petrstastny09@gmail.com>
+ */
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
@@ -43,47 +51,26 @@ class Controller extends BaseController
             'status' => HttpStatusTitle::OK,
             'code' => $code,
             'message' => $message,
+            "data" => $result,
         ];
-
-        if ($result !== null) {
-            $response += $result;
-        }
 
         return response()->json($response, $code);
     }
 
     /**
      * return error response.
+     * code 409 - entity already exist
      *
-     * @param string $error
+     * @param string $errorMessage
      * @param int $code
      * @return JsonResponse
      */
-    public function sendError(string $error, int $code = 404): JsonResponse
+    public function sendError(string $errorMessage, int $code = 404): JsonResponse
     {
         $response = [
             'status' => HttpStatusTitle::ERROR,
             'code' => $code,
-            'message' => $error
-        ];
-
-        return response()->json($response, $code);
-    }
-
-    /**
-     * return already exists response.
-     *
-     * @param string $error
-     * @return JsonResponse
-     */
-    public function sendAlreadyExist(string $error): JsonResponse
-    {
-        $code = 409;
-
-        $response = [
-            'status' => HttpStatusTitle::CONFLICT,
-            'message' => $error,
-            'code' => $code
+            'message' => $errorMessage
         ];
 
         return response()->json($response, $code);
