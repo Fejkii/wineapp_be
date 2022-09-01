@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\UserProject;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -20,11 +21,12 @@ class UserProjectSeeder extends Seeder
                 UserProject::USER_ID => 1,
                 UserProject::PROJECT_ID => 1,
                 UserProject::IS_DEFAULT => true,
+                Model::CREATED_AT => now(),
             ),
             array(
                 UserProject::USER_ID => 1,
                 UserProject::PROJECT_ID => 2,
-                UserProject::IS_DEFAULT => false,
+                Model::CREATED_AT => now(),
             ),
         ));
     }
