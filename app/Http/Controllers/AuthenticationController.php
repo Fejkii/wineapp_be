@@ -85,7 +85,10 @@ class AuthenticationController extends Controller
                 ->where(UserProject::IS_DEFAULT, "=", true)
                 ->first();
 
-            $project = Project::whereId($userProject->project_id)->first();
+            $project = null;
+            if ($userProject !== null) {
+                $project = Project::whereId($userProject->project_id)->first();
+            }
 
             $result = [
                 User::REMEMBER_TOKEN => $token,

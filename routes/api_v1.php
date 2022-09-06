@@ -13,7 +13,8 @@ use Illuminate\Support\Facades\Route;
 Route::post('/login', [AuthenticationController::class, 'login']);
 Route::post('/register', [AuthenticationController::class, 'register']);
 
-Route::middleware('auth:sanctum')->group(function () {
+// TODO - uncomment after finish API
+//Route::middleware('auth:sanctum')->group(function () {
     Route::get('/logout', [AuthenticationController::class, 'logout']);
 
     // Project
@@ -21,13 +22,14 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/project/{projectId}', [ProjectController::class, 'update']);
     Route::get('/project/{projectId}', [ProjectController::class, 'show']);
 
+    // UserProject
     Route::post('/userProject', [UserProjectController::class, 'create']);
     Route::get('/userProject/{userProjectId}', [UserProjectController::class, 'show']);
-    Route::post('/userProjectList', [UserProjectController::class, 'showList']);
+    Route::get('/userProject', [UserProjectController::class, 'showByParams']);
+    Route::get('/userProjectList', [UserProjectController::class, 'showListByParams']);
+    Route::get('/userProjects', [UserProjectController::class, 'showUserProjects']);
+    Route::get('/projectUsers/{projectId}', [UserProjectController::class, 'showProjectUsers']);
 
+    // User
     Route::get('/user', [UserController::class, 'show']);
-    Route::get('/userProjects', [UserController::class, 'showUserProjects']);
-    Route::get('/projectUsers/{projectId}', [UserController::class, 'showProjectUsers']);
-
-
-});
+//});

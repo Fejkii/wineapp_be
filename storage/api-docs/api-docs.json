@@ -218,6 +218,14 @@
                 "summary": "Show Project",
                 "description": "Show Project",
                 "operationId": "showProject",
+                "parameters": [
+                    {
+                        "name": "projectId",
+                        "in": "path",
+                        "description": "Project ID",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Response Successfull",
@@ -271,52 +279,6 @@
                 }
             }
         },
-        "/api/v1/userProjects": {
-            "get": {
-                "tags": [
-                    "User"
-                ],
-                "summary": "Show user projects",
-                "description": "Show projects for logged in user",
-                "operationId": "userProjects",
-                "responses": {
-                    "200": {
-                        "description": "Response Successfull",
-                        "content": {
-                            "application/json": {
-                                "schema": {}
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "Resource Not Found"
-                    }
-                }
-            }
-        },
-        "/api/v1/projectUsers/{projectId}": {
-            "get": {
-                "tags": [
-                    "User"
-                ],
-                "summary": "Show project users",
-                "description": "Show users for selected project",
-                "operationId": "projectUsers",
-                "responses": {
-                    "200": {
-                        "description": "Response Successfull",
-                        "content": {
-                            "application/json": {
-                                "schema": {}
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "Resource Not Found"
-                    }
-                }
-            }
-        },
         "/api/v1/user": {
             "get": {
                 "tags": [
@@ -340,7 +302,54 @@
                 }
             }
         },
-        "/api/v1/createUserProject": {
+        "/api/v1/userProject": {
+            "get": {
+                "tags": [
+                    "UserProject"
+                ],
+                "summary": "Show UserProject by parameters",
+                "description": "Show UserProject",
+                "operationId": "showUserProjectByParams",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "UserProject ID",
+                        "required": false
+                    },
+                    {
+                        "name": "user_id",
+                        "in": "query",
+                        "description": "Users ID",
+                        "required": false
+                    },
+                    {
+                        "name": "project_id",
+                        "in": "query",
+                        "description": "Project ID",
+                        "required": false
+                    },
+                    {
+                        "name": "is_default",
+                        "in": "query",
+                        "description": "isDefault Project",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Response Successfull",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            },
             "post": {
                 "tags": [
                     "UserProject"
@@ -371,6 +380,140 @@
                         }
                     }
                 },
+                "responses": {
+                    "200": {
+                        "description": "Response Successfull",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "/api/v1/userProject/{userProjectId}": {
+            "get": {
+                "tags": [
+                    "UserProject"
+                ],
+                "summary": "Show UserProject by userProjectId",
+                "description": "Show UserProject",
+                "operationId": "showUserProjectById",
+                "parameters": [
+                    {
+                        "name": "userProjectId",
+                        "in": "path",
+                        "description": "UserProject ID",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Response Successfull",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "/api/v1/userProjectList": {
+            "get": {
+                "tags": [
+                    "UserProject"
+                ],
+                "summary": "Show UserProject list by parameters",
+                "description": "Show UserProject list",
+                "operationId": "showListByParams",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "UserProject ID",
+                        "required": false
+                    },
+                    {
+                        "name": "user_id",
+                        "in": "query",
+                        "description": "Users ID",
+                        "required": false
+                    },
+                    {
+                        "name": "project_id",
+                        "in": "query",
+                        "description": "Project ID",
+                        "required": false
+                    },
+                    {
+                        "name": "is_default",
+                        "in": "query",
+                        "description": "isDefault Project",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Response Successfull",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "/api/v1/userProjects": {
+            "get": {
+                "tags": [
+                    "UserProject"
+                ],
+                "summary": "Show user projects",
+                "description": "Show projects for logged in user",
+                "operationId": "userProjects",
+                "responses": {
+                    "200": {
+                        "description": "Response Successfull",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "/api/v1/projectUsers/{projectId}": {
+            "get": {
+                "tags": [
+                    "UserProject"
+                ],
+                "summary": "Show project users",
+                "description": "Show users for selected project by projectId",
+                "operationId": "projectUsers",
+                "parameters": [
+                    {
+                        "name": "projectId",
+                        "in": "path",
+                        "description": "Project ID",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Response Successfull",

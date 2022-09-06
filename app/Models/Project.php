@@ -27,6 +27,7 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Project whereTitle($value)
  * @method static Builder|Project whereUpdatedAt($value)
  * @method static Builder|Project whereUsers($value)
+ * @property-read UserProject|null $userProject
  */
 class Project extends Model
 {

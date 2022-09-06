@@ -9,6 +9,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use OpenApi\Annotations as OA;
 
 /**
  * @author Petr Šťastný <petrstastny09@gmail.com>
@@ -148,7 +149,11 @@ class AuthenticationController extends Controller
                 ->where(UserProject::IS_DEFAULT, "=", true)
                 ->first();
 
-            $project = Project::whereId($userProject->project_id)->first();
+            // If the user is logged in for the first time and has no project attached
+            $project = null;
+            if ($userProject !== null) {
+                $project = Project::whereId($userProject->project_id)->first();
+            }
 
             $result = [
                 User::REMEMBER_TOKEN => $token,

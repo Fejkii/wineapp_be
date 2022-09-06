@@ -29,6 +29,8 @@ use Illuminate\Support\Carbon;
  * @method static Builder|UserProject whereUpdatedAt($value)
  * @method static Builder|UserProject whereUserId($value)
  * @mixin Eloquent
+ * @property-read Project $project
+ * @property-read User $user
  */
 class UserProject extends Model
 {

@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\v1;
 
+use App\Exceptions\TransactionException;
+use App\Http\Resources\UserProjectResource;
 use App\Models\Project;
 use App\Models\UserProject;
 use Auth;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use OpenApi\Annotations as OA;
 
 /**
  * @author Petr Šťastný <petrstastny09@gmail.com>
@@ -36,6 +39,9 @@ class ProjectController extends Controller
      *       ),
      *      @OA\Response(response=404, description="Resource Not Found"),
      * )
+     * @param Request $request
+     * @return JsonResponse
+     * @throws TransactionException
      */
     public function create(Request $request): JsonResponse
     {
@@ -76,10 +82,7 @@ class ProjectController extends Controller
                 UserProject::IS_DEFAULT => $input[UserProject::IS_DEFAULT],
             ]);
 
-            $result = [
-                "project" => $project,
-                "user_project" => $userProject,
-            ];
+            $result = UserProjectResource::make($userProject);
 
             return $this->sendResponse($result, "Project created");
         });
@@ -106,6 +109,10 @@ class ProjectController extends Controller
      *       ),
      *      @OA\Response(response=404, description="Resource Not Found"),
      * )
+     * @param Request $request
+     * @param int $projectId
+     * @return JsonResponse
+     * @throws TransactionException
      */
     public function update(Request $request, int $projectId): JsonResponse
     {
@@ -139,6 +146,12 @@ class ProjectController extends Controller
      * tags={"Project"},
      * summary="Show Project",
      * description="Show Project",
+     *     @OA\Parameter(
+     *         name="projectId",
+     *         in="path",
+     *         description="Project ID",
+     *         required=true,
+     *      ),
      *      @OA\Response(
      *          response=200,
      *          description="Response Successfull",
@@ -146,15 +159,13 @@ class ProjectController extends Controller
      *       ),
      *      @OA\Response(response=404, description="Resource Not Found"),
      * )
+     * @param int $projectId
+     * @return JsonResponse
      */
     public function show(int $projectId): JsonResponse
     {
         $project = Project::findOrFail($projectId);
 
-        $result = [
-            "project" => $project,
-        ];
-
-        return $this->sendResponse($result, "Show detail");
+        return $this->sendResponse($project, "Show detail of Project");
     }
 }

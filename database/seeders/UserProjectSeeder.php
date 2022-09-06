@@ -26,6 +26,7 @@ class UserProjectSeeder extends Seeder
             array(
                 UserProject::USER_ID => 1,
                 UserProject::PROJECT_ID => 2,
+                UserProject::IS_DEFAULT => false,
                 Model::CREATED_AT => now(),
             ),
         ));

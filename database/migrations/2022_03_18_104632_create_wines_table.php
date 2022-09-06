@@ -18,17 +18,11 @@ class CreateWinesTable extends Migration
             $table->id();
             $table->unsignedBigInteger(Wine::PROJECT_ID);
             $table->unsignedBigInteger(Wine::WINE_VARIETY_ID);
-            $table->unsignedBigInteger(Wine::WINE_CLASSIFICATION_ID);
             $table->string(Wine::TITLE);
-            $table->string(Wine::YEAR);
-            $table->float(Wine::ALCOHOL)->nullable();
-            $table->float(Wine::ACID)->nullable();
-            $table->float(Wine::SUGAR)->nullable();
             $table->timestamps();
 
             $table->foreign(WINE::PROJECT_ID)->references('id')->on('projects');
             $table->foreign(WINE::WINE_VARIETY_ID)->references('id')->on('wine_varieties');
-            $table->foreign(WINE::WINE_CLASSIFICATION_ID)->references('id')->on('wine_classifications');
         });
     }
 

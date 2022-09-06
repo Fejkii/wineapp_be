@@ -43,6 +43,11 @@ use Laravel\Sanctum\PersonalAccessToken;
  * @method static Builder|User whereRememberToken($value)
  * @method static Builder|User whereUpdatedAt($value)
  * @mixin Eloquent
+ * @property-read Project|null $projects
+ * @property-read Collection|UserProject[] $userProjectList
+ * @property-read int|null $user_project_list_count
+ * @property-read Collection|UserProject[] $userProjects
+ * @property-read int|null $user_projects_count
  */
 class User extends Authenticatable
 {
