@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\UserProject;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -25,6 +24,8 @@ class DatabaseSeeder extends Seeder
             AccountingDocumentTypeSeeder::class,
             WineVarietySeeder::class,
             WineClassificationSeeder::class,
+            WineSeeder::class,
+            WineEvidenceSeeder::class,
         ]);
     }
 }

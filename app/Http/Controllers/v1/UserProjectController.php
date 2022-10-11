@@ -10,6 +10,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use OpenApi\Annotations as OA;
 
+/**
+ * @author Petr Šťastný <petrstastny09@gmail.com>
+ */
 class UserProjectController extends Controller
 {
     /**

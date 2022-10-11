@@ -4,6 +4,8 @@ use App\Http\Controllers\v1\AuthenticationController;
 use App\Http\Controllers\v1\ProjectController;
 use App\Http\Controllers\v1\UserController;
 use App\Http\Controllers\v1\UserProjectController;
+use App\Http\Controllers\v1\WineController;
+use App\Http\Controllers\v1\WineEvidenceController;
 use Illuminate\Support\Facades\Route;
 
 /**
@@ -29,6 +31,16 @@ Route::post('/register', [AuthenticationController::class, 'register']);
     Route::get('/userProjectList', [UserProjectController::class, 'showListByParams']);
     Route::get('/userProjects', [UserProjectController::class, 'showUserProjects']);
     Route::get('/projectUsers/{projectId}', [UserProjectController::class, 'showProjectUsers']);
+
+    Route::get('/wine', [WineController::class, 'index']);
+    Route::get('/wine/{wineId}', [WineController::class, 'show']);
+    Route::post('/wine', [WineController::class, 'create']);
+    Route::put('/wine/{wineId}', [WineController::class, 'update']);
+
+    Route::get('/wineEvidence', [WineEvidenceController::class, 'index']);
+    Route::get('/wineEvidence/{wineEvidenceId}', [WineEvidenceController::class, 'show']);
+    Route::post('/wineEvidence', [WineEvidenceController::class, 'create']);
+    Route::put('/wineEvidence/{wineEvidenceId}', [WineEvidenceController::class, 'update']);
 
     // User
     Route::get('/user', [UserController::class, 'show']);

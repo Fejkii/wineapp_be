@@ -29,6 +29,8 @@ use Illuminate\Support\Carbon;
  * @method static Builder|VineyardRecord whereUpdatedAt($value)
  * @method static Builder|VineyardRecord whereVineyardId($value)
  * @mixin Eloquent
+ * @property string $date
+ * @method static Builder|VineyardRecord whereDate($value)
  */
 class VineyardRecord extends Model
 {

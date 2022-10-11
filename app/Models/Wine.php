@@ -34,6 +34,7 @@ class Wine extends Model
 {
     use HasFactory;
 
+    public const ID = "id";
     public const PROJECT_ID = "project_id";
     public const WINE_VARIETY_ID = "wine_variety_id";
     public const TITLE = "title";
