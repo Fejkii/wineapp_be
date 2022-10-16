@@ -4,6 +4,8 @@ use App\Http\Controllers\v1\AuthenticationController;
 use App\Http\Controllers\v1\ProjectController;
 use App\Http\Controllers\v1\UserController;
 use App\Http\Controllers\v1\UserProjectController;
+use App\Http\Controllers\v1\VineyardController;
+use App\Http\Controllers\v1\VineyardWineController;
 use App\Http\Controllers\v1\WineController;
 use App\Http\Controllers\v1\WineEvidenceController;
 use Illuminate\Support\Facades\Route;
@@ -41,6 +43,15 @@ Route::post('/register', [AuthenticationController::class, 'register']);
     Route::get('/wineEvidence/{wineEvidenceId}', [WineEvidenceController::class, 'show']);
     Route::post('/wineEvidence', [WineEvidenceController::class, 'create']);
     Route::put('/wineEvidence/{wineEvidenceId}', [WineEvidenceController::class, 'update']);
+
+    Route::get("/vineyard/{vineyardId}", [VineyardController::class, 'show']);
+    Route::get("/vineyardList/{projectId}", [VineyardController::class, 'showByProject']);
+    Route::post("/vineyard", [VineyardController::class, 'create']);
+    Route::put("/vineyard/{projectId}", [VineyardController::class, 'update']);
+
+    Route::get("/vineyardWine/{vineyardWineId}", [VineyardWineController::class, "show"]);
+    Route::post("/vineyardWine", [VineyardWineController::class, "create"]);
+    Route::put("/vineyardWine/{vineyardWineId}", [VineyardWineController::class, "update"]);
 
     // User
     Route::get('/user', [UserController::class, 'show']);

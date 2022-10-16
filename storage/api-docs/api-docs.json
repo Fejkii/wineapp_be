@@ -529,6 +529,298 @@
                 }
             }
         },
+        "/api/v1/vineyard/{vineyardId}": {
+            "get": {
+                "tags": [
+                    "Vineyard"
+                ],
+                "summary": "Show vineyard by vineyardId",
+                "description": "Show vineyard by vineyardId",
+                "operationId": "showVineyardById",
+                "parameters": [
+                    {
+                        "name": "vineyardId",
+                        "in": "path",
+                        "description": "Project ID",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Response Successfull",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Vineyard"
+                ],
+                "summary": "Update Vineyard",
+                "description": "Update Vineyard by selected vineyardId",
+                "operationId": "updateVineyard",
+                "parameters": [
+                    {
+                        "name": "vineyardId",
+                        "in": "path",
+                        "description": "Vineyard ID",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [],
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Response Successfull",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "/api/v1/vineyardList/{projectId}": {
+            "get": {
+                "tags": [
+                    "Vineyard"
+                ],
+                "summary": "Show vineyards by projectId",
+                "description": "Show vineyards by projectId",
+                "operationId": "showVineyardsByProjectId",
+                "parameters": [
+                    {
+                        "name": "projectId",
+                        "in": "path",
+                        "description": "Project ID",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Response Successfull",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "/api/v1/vineyard": {
+            "post": {
+                "tags": [
+                    "Vineyard"
+                ],
+                "summary": "Create Vineyard",
+                "description": "Create Vineyard in project",
+                "operationId": "createVineyard",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "project_id",
+                                    "title"
+                                ],
+                                "properties": {
+                                    "project_id": {
+                                        "type": "integer"
+                                    },
+                                    "title": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Response Successfull",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "/api/v1/vineyardWine/{vineyardWineId}": {
+            "get": {
+                "tags": [
+                    "VineyardWine"
+                ],
+                "summary": "Show vineyard by vineyardWineId",
+                "description": "Show vineyard by vineyardWineId",
+                "operationId": "showVineyardWineById",
+                "parameters": [
+                    {
+                        "name": "vineyardWineId",
+                        "in": "path",
+                        "description": "VineyardWine ID",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Response Successfull",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "VineyardWine"
+                ],
+                "summary": "Update VineyardWine",
+                "description": "Update VineyardWine by selected vineyardWineId",
+                "operationId": "updateVineyardWine",
+                "parameters": [
+                    {
+                        "name": "vineyardWineId",
+                        "in": "path",
+                        "description": "Vineyard ID",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [],
+                                "properties": {
+                                    "vineyard_id": {
+                                        "type": "integer"
+                                    },
+                                    "wine_id": {
+                                        "type": "integer"
+                                    },
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "quantity": {
+                                        "type": "integer"
+                                    },
+                                    "note": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Response Successfull",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "/api/v1/vineyardWine": {
+            "post": {
+                "tags": [
+                    "VineyardWine"
+                ],
+                "summary": "Create VineyardWine",
+                "description": "Create VineyardWine",
+                "operationId": "createVineyardWine",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "vineyard_id",
+                                    "wine_id",
+                                    "title",
+                                    "quantity"
+                                ],
+                                "properties": {
+                                    "vineyard_id": {
+                                        "type": "integer"
+                                    },
+                                    "wine_id": {
+                                        "type": "integer"
+                                    },
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "quantity": {
+                                        "type": "integer"
+                                    },
+                                    "note": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Response Successfull",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
         "/api/v1/wine": {
             "get": {
                 "tags": [

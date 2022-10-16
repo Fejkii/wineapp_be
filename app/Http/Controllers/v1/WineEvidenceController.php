@@ -8,6 +8,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use OpenApi\Annotations as OA;
+use Throwable;
 
 /**
  * @author Petr Šťastný <petrstastny09@gmail.com>
@@ -75,9 +76,9 @@ class WineEvidenceController extends Controller
             WineEvidence::TITLE => 'required|string',
             WineEvidence::VOLUME => 'required|numeric',
             WineEvidence::YEAR => 'required|numeric',
-            WineEvidence::ALCOHOL => 'numeric',
-            WineEvidence::ACID => 'numeric',
-            WineEvidence::SUGAR => 'numeric',
+            WineEvidence::ALCOHOL => 'numeric|nullable',
+            WineEvidence::ACID => 'numeric|nullable',
+            WineEvidence::SUGAR => 'numeric|nullable',
         ]);
 
         if($validator->fails()){
@@ -127,20 +128,20 @@ class WineEvidenceController extends Controller
      * @param Request $request
      * @param int $wineEvidenceId
      * @return JsonResponse
+     * @throws Throwable
      */
     public function update(Request $request, int $wineEvidenceId): JsonResponse
     {
         $input = $request->all();
-
-        $validator = Validator::make($request->all(), [
+        $validator = Validator::make($input, [
             WineEvidence::WINE_ID => 'exists:App\Models\Wine,id',
             WineEvidence::WINE_CLASSIFICATION_ID => 'exists:App\Models\WineClassification,id',
             WineEvidence::TITLE => 'string',
             WineEvidence::VOLUME => 'numeric',
             WineEvidence::YEAR => 'numeric',
-            WineEvidence::ALCOHOL => 'numeric',
-            WineEvidence::ACID => 'numeric',
-            WineEvidence::SUGAR => 'numeric',
+            WineEvidence::ALCOHOL => 'numeric|nullable',
+            WineEvidence::ACID => 'numeric|nullable',
+            WineEvidence::SUGAR => 'numeric|nullable',
         ]);
 
         if($validator->fails()){
@@ -150,14 +151,7 @@ class WineEvidenceController extends Controller
         /** @property WineEvidence $wineEvidence */
         $wineEvidence = WineEvidence::findOrFail($wineEvidenceId);
 
-        $wineEvidence->wine_id = $request->wine_id ?? $wineEvidence->wine_id;
-        $wineEvidence->wine_classification_id = $request[WineEvidence::WINE_CLASSIFICATION_ID] ?? $wineEvidence->wine_classification_id;
-        $wineEvidence->title = $request[WineEvidence::TITLE] ?? $wineEvidence->title;
-        $wineEvidence->volume = $request[WineEvidence::VOLUME] ?? $wineEvidence->volume;
-        $wineEvidence->year = $request[WineEvidence::YEAR] ?? $wineEvidence->year;
-        $wineEvidence->alcohol = $request[WineEvidence::ALCOHOL] ?? $wineEvidence->alcohol;
-        $wineEvidence->acid = $request[WineEvidence::ACID] ?? $wineEvidence->acid;
-        $wineEvidence->sugar = $request[WineEvidence::SUGAR] ?? $wineEvidence->sugar;
+        $wineEvidence->updateOrFail($input);
 
         $wineEvidence->save();
         $result = WineEvidenceResource::make($wineEvidence);

@@ -38,6 +38,7 @@ class VineyardWine extends Model
 {
     use HasFactory;
 
+    public const ID = "id";
     public const VINEYARD_ID = "vineyard_id";
     public const WINE_ID = "wine_id";
     public const TITLE = "title";
@@ -46,6 +47,7 @@ class VineyardWine extends Model
 
     protected $fillable = [
         self::VINEYARD_ID,
+        self::WINE_ID,
         self::TITLE,
         self::QUANTITY,
         self::NOTE,
