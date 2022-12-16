@@ -39,7 +39,7 @@
 
             <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
                 <div class="flex justify-center pt-8 sm:justify-between sm:pt-0">
-                    <h1 class="h-16 w-auto text-gray-700 sm:h-20">Wine App - Backend API Yea</h1>
+                    <h1 class="h-16 w-auto text-gray-700 sm:h-20">Wine App - Backend API</h1>
                 </div>
 
                 <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
