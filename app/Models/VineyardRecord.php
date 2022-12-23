@@ -31,18 +31,26 @@ use Illuminate\Support\Carbon;
  * @mixin Eloquent
  * @property string $date
  * @method static Builder|VineyardRecord whereDate($value)
+ * @property int|null $vineyard_wine_id
+ * @property int|null $vineyard_record_type_id
+ * @method static Builder|VineyardRecord whereVineyardRecordTypeId($value)
+ * @method static Builder|VineyardRecord whereVineyardWineId($value)
  */
 class VineyardRecord extends Model
 {
     use HasFactory;
 
     public const VINEYARD_ID = "vineyard_id";
+    public const VINEYARD_WINE_ID = "vineyard_wine_id";
+    public const VINEYARD_RECORD_TYPE_ID = "vineyard_record_type_id";
     public const TITLE = "title";
     public const DATE = "date";
     public const NOTE = "note";
 
     protected $fillable = [
         self::VINEYARD_ID,
+        self::VINEYARD_WINE_ID,
+        self::VINEYARD_RECORD_TYPE_ID,
         self::TITLE,
         self::DATE,
         self::NOTE,

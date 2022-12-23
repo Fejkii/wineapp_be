@@ -12,8 +12,6 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserProjectController;
 use App\Http\Controllers\VatController;
 use App\Http\Controllers\VineyardController;
-use App\Http\Controllers\VineyardRecordController;
-use App\Http\Controllers\VineyardWineController;
 use App\Http\Controllers\WineClassificationController;
 use App\Http\Controllers\WineController;
 use App\Http\Controllers\WineEvidenceController;
@@ -89,7 +87,4 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post("/vineyard", [VineyardController::class, "create"]);
     Route::post("/vineyardList", [VineyardController::class, "index"]);
     Route::put("/vineyard", [VineyardController::class, "update"]);
-
-    Route::get("/vineyardWine", [VineyardWineController::class, "index"]);
-    Route::get("/vineyardRecord", [VineyardRecordController::class, "index"]);
 });
