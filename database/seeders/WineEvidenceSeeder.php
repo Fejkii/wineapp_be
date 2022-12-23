@@ -16,7 +16,7 @@ class WineEvidenceSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('wine_evidence')->insert(array(
+        DB::table('wine_evidences')->insert(array(
             array(
                 WineEvidence::PROJECT_ID => 1,
                 WineEvidence::WINE_ID => 1,

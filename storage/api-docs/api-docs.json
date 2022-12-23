@@ -679,6 +679,209 @@
                 }
             }
         },
+        "/api/v1/vineyardRecord": {
+            "post": {
+                "tags": [
+                    "VineyardRecord"
+                ],
+                "summary": "Create VineyardRecord",
+                "description": "Create VineyardRecord",
+                "operationId": "createVineyardRecord",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "wine_evidence_id",
+                                    "wine_record_type_id",
+                                    "title",
+                                    "date"
+                                ],
+                                "properties": {
+                                    "wine_evidence_id": {
+                                        "type": "integer"
+                                    },
+                                    "wine_record_type_id": {
+                                        "type": "integer"
+                                    },
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "date": {
+                                        "type": "string"
+                                    },
+                                    "note": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Response Successfull",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "/api/v1/wineRecord/{vineyardRecordId}": {
+            "put": {
+                "tags": [
+                    "VineyardRecord"
+                ],
+                "summary": "Update VineyardRecord",
+                "description": "Update VineyardRecord by selected vineyardRecordId",
+                "operationId": "updateVineyardRecord",
+                "parameters": [
+                    {
+                        "name": "vineyardRecordId",
+                        "in": "path",
+                        "description": "VineyardRecord ID",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [],
+                                "properties": {
+                                    "wine_evidence_id": {
+                                        "type": "integer"
+                                    },
+                                    "wine_record_type_id": {
+                                        "type": "integer"
+                                    },
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "date": {
+                                        "type": "string"
+                                    },
+                                    "note": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Response Successfull",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "/api/v1/vineyardRecord/{vineyardRecordId}": {
+            "get": {
+                "tags": [
+                    "VineyardRecord"
+                ],
+                "summary": "Show VineyardRecord by vineyardRecordId",
+                "description": "Show VineyardRecord by vineyardRecordId",
+                "operationId": "showVineyardRecordById",
+                "parameters": [
+                    {
+                        "name": "vineyardRecordId",
+                        "in": "path",
+                        "description": "VineyardRecord ID",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Response Successfull",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "/api/v1/vineyardRecordType": {
+            "get": {
+                "tags": [
+                    "VineyardRecordType"
+                ],
+                "summary": "Show VineyardRecordTypes",
+                "description": "Show all VineyardRecordTypes",
+                "operationId": "showVineyardRecordType",
+                "responses": {
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "VineyardRecordType"
+                ],
+                "summary": "Create VineyardRecordType",
+                "description": "Create VineyardRecordType",
+                "operationId": "createVineyardRecordType",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "title"
+                                ],
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "color": {
+                                        "type": "string"
+                                    },
+                                    "note": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Response Successfull",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
         "/api/v1/vineyardWine/{vineyardWineId}": {
             "get": {
                 "tags": [
@@ -1127,6 +1330,207 @@
                                     "sugar": {
                                         "type": "number",
                                         "format": "float"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Response Successfull",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "/api/v1/wineRecord": {
+            "post": {
+                "tags": [
+                    "WineRecord"
+                ],
+                "summary": "Create WineRecord",
+                "description": "Create WineRecord",
+                "operationId": "createWineRecord",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "wine_evidence_id",
+                                    "wine_record_type_id",
+                                    "title",
+                                    "date"
+                                ],
+                                "properties": {
+                                    "wine_evidence_id": {
+                                        "type": "integer"
+                                    },
+                                    "wine_record_type_id": {
+                                        "type": "integer"
+                                    },
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "date": {
+                                        "type": "string"
+                                    },
+                                    "note": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Response Successfull",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "/api/v1/wineRecord/{wineRecordId}": {
+            "get": {
+                "tags": [
+                    "WineRecord"
+                ],
+                "summary": "Show wineRecord by wineRecordId",
+                "description": "Show wineRecord by wineRecordId",
+                "operationId": "showWineRecordById",
+                "parameters": [
+                    {
+                        "name": "wineRecordId",
+                        "in": "path",
+                        "description": "WineRecord ID",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Response Successfull",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "WineRecord"
+                ],
+                "summary": "Update WineRecord",
+                "description": "Update WineRecord by selected wineRecordId",
+                "operationId": "updateWineRecord",
+                "parameters": [
+                    {
+                        "name": "wineRecordId",
+                        "in": "path",
+                        "description": "WineRecord ID",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [],
+                                "properties": {
+                                    "wine_evidence_id": {
+                                        "type": "integer"
+                                    },
+                                    "wine_record_type_id": {
+                                        "type": "integer"
+                                    },
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "date": {
+                                        "type": "string"
+                                    },
+                                    "note": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Response Successfull",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "/api/v1/wineRecordType": {
+            "get": {
+                "tags": [
+                    "WineRecordType"
+                ],
+                "summary": "Show WineRecordTypes",
+                "description": "Show all WineRecordTypes",
+                "operationId": "showWineRecordType",
+                "responses": {
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "WineRecordType"
+                ],
+                "summary": "Create WineRecordType",
+                "description": "Create WineRecordType",
+                "operationId": "createWineRecordType",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "title"
+                                ],
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "color": {
+                                        "type": "string"
+                                    },
+                                    "note": {
+                                        "type": "string"
                                     }
                                 },
                                 "type": "object"

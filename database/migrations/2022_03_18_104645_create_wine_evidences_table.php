@@ -5,7 +5,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateWineEvidenceTable extends Migration
+class CreateWineEvidencesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class CreateWineEvidenceTable extends Migration
      */
     public function up()
     {
-        Schema::create('wine_evidence', function (Blueprint $table) {
+        Schema::create('wine_evidences', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger(WineEvidence::PROJECT_ID);
             $table->unsignedBigInteger(WineEvidence::WINE_ID);
@@ -40,6 +40,6 @@ class CreateWineEvidenceTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('wine_evidence');
+        Schema::dropIfExists('wine_evidences');
     }
 }

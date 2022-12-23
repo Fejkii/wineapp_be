@@ -5,9 +5,13 @@ use App\Http\Controllers\v1\ProjectController;
 use App\Http\Controllers\v1\UserController;
 use App\Http\Controllers\v1\UserProjectController;
 use App\Http\Controllers\v1\VineyardController;
+use App\Http\Controllers\v1\VineyardRecordController;
+use App\Http\Controllers\v1\VineyardRecordTypeController;
 use App\Http\Controllers\v1\VineyardWineController;
 use App\Http\Controllers\v1\WineController;
 use App\Http\Controllers\v1\WineEvidenceController;
+use App\Http\Controllers\v1\WineRecordController;
+use App\Http\Controllers\v1\WineRecordTypeController;
 use Illuminate\Support\Facades\Route;
 
 /**
@@ -44,6 +48,13 @@ Route::post('/register', [AuthenticationController::class, 'register']);
     Route::post('/wineEvidence', [WineEvidenceController::class, 'create']);
     Route::put('/wineEvidence/{wineEvidenceId}', [WineEvidenceController::class, 'update']);
 
+    Route::get("/wineRecord/{wineRecordId}", [WineRecordController::class, "show"]);
+    Route::post("/wineRecord", [WineRecordController::class, "create"]);
+    Route::put("/wineRecord/{wineRecordId}", [WineRecordController::class, 'update']);
+
+    Route::get("/wineRecordType", [WineRecordTypeController::class, "index"]);
+    Route::post("/wineRecordType", [WineRecordTypeController::class, "create"]);
+
     Route::get("/vineyard/{vineyardId}", [VineyardController::class, 'show']);
     Route::get("/vineyardList/{projectId}", [VineyardController::class, 'showByProject']);
     Route::post("/vineyard", [VineyardController::class, 'create']);
@@ -52,6 +63,13 @@ Route::post('/register', [AuthenticationController::class, 'register']);
     Route::get("/vineyardWine/{vineyardWineId}", [VineyardWineController::class, "show"]);
     Route::post("/vineyardWine", [VineyardWineController::class, "create"]);
     Route::put("/vineyardWine/{vineyardWineId}", [VineyardWineController::class, "update"]);
+
+    Route::get("/vineyardRecord/{vineyardRecordId}", [VineyardRecordController::class, "show"]);
+    Route::post("/vineyardRecord", [VineyardRecordController::class, "create"]);
+    Route::put("/vineyardRecord/{vineyardRecordId}", [VineyardRecordController::class, 'update']);
+
+    Route::get("/vineyardRecordType", [VineyardRecordTypeController::class, "index"]);
+    Route::post("/vineyardRecordType", [VineyardRecordTypeController::class, "create"]);
 
     // User
     Route::get('/user', [UserController::class, 'show']);

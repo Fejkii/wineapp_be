@@ -25,7 +25,9 @@ class DatabaseSeeder extends Seeder
             WineVarietySeeder::class,
             WineClassificationSeeder::class,
             WineSeeder::class,
+            WineRecordTypeSeeder::class,
             WineEvidenceSeeder::class,
+            VineyardRecordTypeSeeder::class,
         ]);
     }
 }
