@@ -298,9 +298,9 @@ class UserProjectController extends Controller
     {
         $userProjects = UserProject::whereUserId($request->user()->id)->paginate();
 
-        UserProjectResource::collection($userProjects);
+        $result = UserProjectResource::collection($userProjects);
 
-        return $this->sendResponse($userProjects, "Show projects for logged user");
+        return $this->sendResponse($result, "Show projects for logged user");
     }
 
     /**
