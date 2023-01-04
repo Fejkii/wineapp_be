@@ -22,7 +22,7 @@ Route::post('/login', [AuthenticationController::class, 'login']);
 Route::post('/register', [AuthenticationController::class, 'register']);
 
 // TODO - uncomment after finish API
-//Route::middleware('auth:sanctum')->group(function () {
+Route::middleware('auth:sanctum')->group(function () {
     Route::get('/logout', [AuthenticationController::class, 'logout']);
 
     // Project
@@ -73,4 +73,4 @@ Route::post('/register', [AuthenticationController::class, 'register']);
 
     // User
     Route::get('/user', [UserController::class, 'show']);
-//});
+});
