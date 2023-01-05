@@ -55,6 +55,7 @@ class AuthenticationController extends Controller
     public function register(Request $request): JsonResponse
     {
         $validator = Validator::make($request->all(), [
+            User::NAME => 'required|string|max:100',
             User::EMAIL => 'required|string|email|max:255|unique:users',
             User::PASSWORD => 'required|string|min:6',
         ]);
