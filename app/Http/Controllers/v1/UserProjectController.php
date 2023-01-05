@@ -54,6 +54,9 @@ class UserProjectController extends Controller
         }
 
         $user = User::whereEmail($input[User::EMAIL])->first();
+        if ($user == null) {
+            return  $this->sendError('User must be register first');
+        }
 
         // check the user if already has this project
         $userProject = UserProject::whereUserId($user->id)->where(UserProject::PROJECT_ID, "=", $input[UserProject::PROJECT_ID])->first();
@@ -296,9 +299,9 @@ class UserProjectController extends Controller
      */
     public function showUserProjects(Request $request): JsonResponse
     {
-        $userProjects = UserProject::whereUserId($request->user()->id)->paginate();
-
-        $result = UserProjectResource::collection($userProjects);
+        $userProjects = UserProject::select();
+        $userProjects->where(UserProject::USER_ID, "=", $request->user()->id);
+        $result = UserProjectResource::collection($userProjects->get());
 
         return $this->sendResponse($result, "Show projects for logged user");
     }
