@@ -16,8 +16,11 @@ class CreateWineVarietiesTable extends Migration
     {
         Schema::create('wine_varieties', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger(WineVariety::PROJECT_ID);
             $table->string(WineVariety::TITLE);
             $table->string(WineVariety::CODE);
+
+            $table->foreign(WineVariety::PROJECT_ID)->references('id')->on('projects');
         });
     }
 

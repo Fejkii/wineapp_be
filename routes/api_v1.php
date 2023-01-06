@@ -12,6 +12,7 @@ use App\Http\Controllers\v1\WineController;
 use App\Http\Controllers\v1\WineEvidenceController;
 use App\Http\Controllers\v1\WineRecordController;
 use App\Http\Controllers\v1\WineRecordTypeController;
+use App\Http\Controllers\v1\WineVarietyController;
 use Illuminate\Support\Facades\Route;
 
 /**
@@ -40,8 +41,13 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/wine', [WineController::class, 'index']);
     Route::get('/wine/{wineId}', [WineController::class, 'show']);
+    Route::get('/wineByProject/{projectId}', [WineController::class, 'showByProject']);
     Route::post('/wine', [WineController::class, 'create']);
     Route::put('/wine/{wineId}', [WineController::class, 'update']);
+
+    Route::get('/wineVarietyByProject/{projectId}', [WineVarietyController::class, 'showByProject']);
+    Route::post('/wineVariety', [WineVarietyController::class, 'create']);
+    Route::put('/wineVariety/{wineVarietyId}', [WineVarietyController::class, 'update']);
 
     Route::get('/wineEvidence', [WineEvidenceController::class, 'index']);
     Route::get('/wineEvidence/{wineEvidenceId}', [WineEvidenceController::class, 'show']);

@@ -22,11 +22,14 @@ use Illuminate\Database\Eloquent\Model;
  * @method static Builder|WineVariety whereId($value)
  * @method static Builder|WineVariety whereTitle($value)
  * @mixin Eloquent
+ * @property int $project_id
+ * @method static Builder|WineVariety whereProjectId($value)
  */
 class WineVariety extends Model
 {
     use HasFactory;
 
+    public const PROJECT_ID = "project_id";
     public const TITLE = "title";
     public const CODE = "code";
 }
