@@ -163,4 +163,35 @@ class WineController extends Controller
 
         return $this->sendResponse($result, "Show detail");
     }
+
+    /**
+     * @OA\Get(
+     * path="/api/v1/wineByProject/{projectId}",
+     * operationId="showWineByProjectId",
+     * tags={"Wine"},
+     * summary="Show Wines by Project id",
+     * description="Show Wines by Project id",
+     *     @OA\Parameter(
+     *         name="projectId",
+     *         in="path",
+     *         description="Project ID",
+     *         required=true,
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Response Successfull",
+     *          @OA\JsonContent()
+     *       ),
+     *      @OA\Response(response=404, description="Resource Not Found"),
+     * )
+     * @param int $projectId
+     * @return JsonResponse
+     */
+    public function showByProject(int $projectId): JsonResponse
+    {
+        $wines = Wine::whereProjectId($projectId);
+        $result = WineResource::collection($wines->get());
+
+        return $this->sendResponse($result, "Show Wines by Project id");
+    }
 }
