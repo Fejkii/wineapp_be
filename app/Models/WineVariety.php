@@ -32,4 +32,10 @@ class WineVariety extends Model
     public const PROJECT_ID = "project_id";
     public const TITLE = "title";
     public const CODE = "code";
+
+    protected $fillable = [
+        self::PROJECT_ID,
+        self::TITLE,
+        self::CODE,
+    ];
 }
