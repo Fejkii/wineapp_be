@@ -19,7 +19,7 @@ use Laravel\Sanctum\PersonalAccessToken;
  * App\Models\User
  *
  * @property int $id
- * @property string|null $name
+ * @property string $name
  * @property string $email
  * @property Carbon|null $email_verified_at
  * @property string $password
