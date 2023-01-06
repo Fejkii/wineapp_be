@@ -29,6 +29,8 @@ class WineClassification extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
     public const TITLE = "title";
     public const CODE = "code";
     public const PARAMS = "params";

@@ -29,6 +29,8 @@ class WineVariety extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
     public const PROJECT_ID = "project_id";
     public const TITLE = "title";
     public const CODE = "code";

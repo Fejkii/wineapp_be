@@ -29,6 +29,8 @@ class WineRecordType extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
     public const TITLE = "title";
     public const COLOR = "color";
     public const NOTE = "note";
