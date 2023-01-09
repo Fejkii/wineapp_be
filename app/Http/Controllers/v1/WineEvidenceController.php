@@ -170,4 +170,35 @@ class WineEvidenceController extends Controller
 
         return $this->sendResponse($result, "Show detail");
     }
+
+    /**
+     * @OA\Get(
+     * path="/api/v1/wineEvidenceByProject/{projectId}",
+     * operationId="showWineEvidencesByProjectId",
+     * tags={"WineEvidence"},
+     * summary="Show WineEvidences by ProjectId",
+     * description="Show WineEvidences by ProjectId",
+     *     @OA\Parameter(
+     *         name="projectId",
+     *         in="path",
+     *         description="Project ID",
+     *         required=true,
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Response Successfull",
+     *          @OA\JsonContent()
+     *       ),
+     *      @OA\Response(response=404, description="Resource Not Found"),
+     * )
+     * @param int $projectId
+     * @return JsonResponse
+     */
+    public function showByProject(int $projectId): JsonResponse
+    {
+        $wineEvidence = WineEvidence::whereProjectId($projectId);
+        $result = WineEvidenceResource::collection($wineEvidence);
+
+        return $this->sendResponse($result, "Show WineEvidences by ProjectId");
+    }
 }

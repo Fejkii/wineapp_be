@@ -40,7 +40,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/userProjects', [UserProjectController::class, 'showUserProjects']);
     Route::get('/projectUsers/{projectId}', [UserProjectController::class, 'showProjectUsers']);
 
-    Route::get('/wine', [WineController::class, 'index']);
     Route::get('/wine/{wineId}', [WineController::class, 'show']);
     Route::get('/wineByProject/{projectId}', [WineController::class, 'showByProject']);
     Route::post('/wine', [WineController::class, 'create']);
@@ -52,8 +51,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/wineClassification', [WineClassificationController::class, 'index']);
 
-    Route::get('/wineEvidence', [WineEvidenceController::class, 'index']);
     Route::get('/wineEvidence/{wineEvidenceId}', [WineEvidenceController::class, 'show']);
+    Route::get('/wineEvidenceByProject/{projectId}', [WineEvidenceController::class, 'showByProject']);
     Route::post('/wineEvidence', [WineEvidenceController::class, 'create']);
     Route::put('/wineEvidence/{wineEvidenceId}', [WineEvidenceController::class, 'update']);
 

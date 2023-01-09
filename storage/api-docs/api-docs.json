@@ -828,7 +828,7 @@
                 "tags": [
                     "VineyardRecordType"
                 ],
-                "summary": "Show VineyardRecordTypes",
+                "summary": "Show all VineyardRecordTypes",
                 "description": "Show all VineyardRecordTypes",
                 "operationId": "showVineyardRecordType",
                 "responses": {
@@ -1357,6 +1357,37 @@
                         }
                     }
                 },
+                "responses": {
+                    "200": {
+                        "description": "Response Successfull",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "/api/v1/wineEvidenceByProject/{projectId}": {
+            "get": {
+                "tags": [
+                    "WineEvidence"
+                ],
+                "summary": "Show WineEvidences by ProjectId",
+                "description": "Show WineEvidences by ProjectId",
+                "operationId": "showWineEvidencesByProjectId",
+                "parameters": [
+                    {
+                        "name": "projectId",
+                        "in": "path",
+                        "description": "Project ID",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Response Successfull",
