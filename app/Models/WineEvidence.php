@@ -46,6 +46,8 @@ class WineEvidence extends Model
 {
     use HasFactory;
 
+    public $table = "wine_evidences";
+
     public const ID = "id";
     public const PROJECT_ID = "project_id";
     public const WINE_ID = "wine_id";

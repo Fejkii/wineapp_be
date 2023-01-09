@@ -17,7 +17,7 @@ class WineEvidenceResource extends JsonResource
     {
         return [
             WineEvidence::ID => $this->id,
-            'project' => ProjectResource::make(Project::findOrFail($this->project_id)),
+            WineEvidence::PROJECT_ID => $this->project_id,
             'wine' => WineResource::make(Wine::findOrFail($this->wine_id)),
             'wine_classification' => WineClassification::findOrFail($this->wine_classification_id),
             WineEvidence::TITLE => $this->title,
