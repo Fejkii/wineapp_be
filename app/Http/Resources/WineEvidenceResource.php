@@ -18,7 +18,7 @@ class WineEvidenceResource extends JsonResource
         return [
             WineEvidence::ID => $this->id,
             WineEvidence::PROJECT_ID => $this->project_id,
-            'wine' => WineResource::make(Wine::findOrFail($this->wine_id)),
+            'wine' => Wine::findOrFail($this->wine_id),
             'wine_classification' => WineClassification::findOrFail($this->wine_classification_id),
             WineEvidence::TITLE => $this->title,
             WineEvidence::VOLUME => $this->volume,
@@ -26,6 +26,8 @@ class WineEvidenceResource extends JsonResource
             WineEvidence::ALCOHOL => $this->alcohol,
             WineEvidence::ACID => $this->acid,
             WineEvidence::SUGAR => $this->sugar,
+            WineEvidence::CREATED_AT => $this->created_at,
+            WineEvidence::UPDATED_AT => $this->updated_at,
         ];
     }
 }

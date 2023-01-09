@@ -197,7 +197,7 @@ class WineEvidenceController extends Controller
     public function showByProject(int $projectId): JsonResponse
     {
         $wineEvidence = WineEvidence::whereProjectId($projectId);
-        $result = WineEvidenceResource::collection($wineEvidence);
+        $result = WineEvidenceResource::collection($wineEvidence->get());
 
         return $this->sendResponse($result, "Show WineEvidences by ProjectId");
     }
