@@ -25,6 +25,10 @@ Route::post('/register', [AuthenticationController::class, 'register']);
 
 // TODO - uncomment after finish API
 Route::middleware('auth:sanctum')->group(function () {
+    Route::get('migrate', function() {
+        \Illuminate\Support\Facades\Artisan::call('migrate:fresh -—seed');
+    });
+
     Route::get('/logout', [AuthenticationController::class, 'logout']);
 
     // Project
