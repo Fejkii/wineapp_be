@@ -7,7 +7,6 @@ use App\Models\WineEvidence;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use OpenApi\Annotations as OA;
 use Throwable;
 
 /**
@@ -15,24 +14,6 @@ use Throwable;
  */
 class WineEvidenceController extends Controller
 {
-    /**
-     * @OA\Get (
-     * path="/api/v1/wineEvidence",
-     * operationId="showWineEvidence",
-     * tags={"WineEvidence"},
-     * summary="Show WineEvidences",
-     * description="Show all WineEvidences",
-     *      @OA\Response(response=404, description="Resource Not Found"),
-     * )
-     * @return JsonResponse
-     */
-    public function index(): JsonResponse
-    {
-        $result = WineEvidenceResource::collection(WineEvidence::all());
-
-        return $this->sendResponse($result, "Show all wine evidences");
-    }
-
     /**
      * @OA\Post (
      * path="/api/v1/wineEvidence",

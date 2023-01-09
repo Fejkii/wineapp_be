@@ -7,31 +7,12 @@ use App\Models\Wine;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use OpenApi\Annotations as OA;
 
 /**
  * @author Petr Šťastný <petrstastny09@gmail.com>
  */
 class WineController extends Controller
 {
-    /**
-     * @OA\Get (
-     * path="/api/v1/wine",
-     * operationId="showWine",
-     * tags={"Wine"},
-     * summary="Show Wines",
-     * description="Show all Wines",
-     *      @OA\Response(response=404, description="Resource Not Found"),
-     * )
-     * @return JsonResponse
-     */
-    public function index(): JsonResponse
-    {
-        $result = WineResource::collection(Wine::all());
-
-        return $this->sendResponse($result, "Show all wines");
-    }
-
     /**
      * @OA\Post (
      * path="/api/v1/wine",

@@ -16,7 +16,7 @@ class WineRecordTypeController extends Controller
      * path="/api/v1/wineRecordType",
      * operationId="showWineRecordType",
      * tags={"WineRecordType"},
-     * summary="Show WineRecordTypes",
+     * summary="Show all WineRecordTypes",
      * description="Show all WineRecordTypes",
      *      @OA\Response(response=404, description="Resource Not Found"),
      * )

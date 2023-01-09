@@ -15,7 +15,7 @@ class VineyardRecordTypeController extends Controller
      * path="/api/v1/vineyardRecordType",
      * operationId="showVineyardRecordType",
      * tags={"VineyardRecordType"},
-     * summary="Show VineyardRecordTypes",
+     * summary="Show all VineyardRecordTypes",
      * description="Show all VineyardRecordTypes",
      *      @OA\Response(response=404, description="Resource Not Found"),
      * )

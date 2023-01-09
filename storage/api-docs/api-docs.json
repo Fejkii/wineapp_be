@@ -1024,20 +1024,22 @@
                 }
             }
         },
-        "/api/v1/wine": {
+        "/api/v1/wineClassification": {
             "get": {
                 "tags": [
-                    "Wine"
+                    "WineClassification"
                 ],
-                "summary": "Show Wines",
-                "description": "Show all Wines",
-                "operationId": "showWine",
+                "summary": "Show all WineClassifications",
+                "description": "Show all WineClassifications",
+                "operationId": "showWineClassification",
                 "responses": {
                     "404": {
                         "description": "Resource Not Found"
                     }
                 }
-            },
+            }
+        },
+        "/api/v1/wine": {
             "post": {
                 "tags": [
                     "Wine"
@@ -1166,20 +1168,38 @@
                 }
             }
         },
-        "/api/v1/wineEvidence": {
+        "/api/v1/wineByProject/{projectId}": {
             "get": {
                 "tags": [
-                    "WineEvidence"
+                    "Wine"
                 ],
-                "summary": "Show WineEvidences",
-                "description": "Show all WineEvidences",
-                "operationId": "showWineEvidence",
+                "summary": "Show Wines by Project id",
+                "description": "Show Wines by Project id",
+                "operationId": "showWineByProjectId",
+                "parameters": [
+                    {
+                        "name": "projectId",
+                        "in": "path",
+                        "description": "Project ID",
+                        "required": true
+                    }
+                ],
                 "responses": {
+                    "200": {
+                        "description": "Response Successfull",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
                     "404": {
                         "description": "Resource Not Found"
                     }
                 }
-            },
+            }
+        },
+        "/api/v1/wineEvidence": {
             "post": {
                 "tags": [
                     "WineEvidence"
@@ -1499,7 +1519,7 @@
                 "tags": [
                     "WineRecordType"
                 ],
-                "summary": "Show WineRecordTypes",
+                "summary": "Show all WineRecordTypes",
                 "description": "Show all WineRecordTypes",
                 "operationId": "showWineRecordType",
                 "responses": {
@@ -1538,6 +1558,128 @@
                         }
                     }
                 },
+                "responses": {
+                    "200": {
+                        "description": "Response Successfull",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "/api/v1/wineVariety": {
+            "post": {
+                "tags": [
+                    "WineVariety"
+                ],
+                "summary": "Create WineVariety",
+                "description": "Create WineVariety in project",
+                "operationId": "createWineVariety",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "project_id",
+                                    "title",
+                                    "code"
+                                ],
+                                "properties": {
+                                    "project_id": {
+                                        "type": "integer"
+                                    },
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "code": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Response Successfull",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "/api/v1/wineVariety/{wineVarietyId}": {
+            "put": {
+                "tags": [
+                    "WineVariety"
+                ],
+                "summary": "Update WineVariety",
+                "description": "Update WineVariety in project",
+                "operationId": "updateWineVariety",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "wine_variety_id"
+                                ],
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "code": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Response Successfull",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "/api/v1/wineVarietyByProject/{projectId}": {
+            "get": {
+                "tags": [
+                    "WineVariety"
+                ],
+                "summary": "Get WineVariety By Project id",
+                "description": "Get WineVariety in project",
+                "operationId": "getWineVarietyByProject",
+                "parameters": [
+                    {
+                        "name": "projectId",
+                        "in": "path",
+                        "description": "Project ID",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Response Successfull",

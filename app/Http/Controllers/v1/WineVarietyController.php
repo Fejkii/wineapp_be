@@ -134,6 +134,6 @@ class WineVarietyController extends Controller
         /** @property WineVariety $wineVariety */
         $wineVariety = WineVariety::whereProjectId($projectId);
 
-        return $this->sendResponse($wineVariety->get(), "WineVariety updated");
+        return $this->sendResponse($wineVariety->get(), "show WineVariety list by ProjectId");
     }
 }

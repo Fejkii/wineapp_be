@@ -8,6 +8,7 @@ use App\Http\Controllers\v1\VineyardController;
 use App\Http\Controllers\v1\VineyardRecordController;
 use App\Http\Controllers\v1\VineyardRecordTypeController;
 use App\Http\Controllers\v1\VineyardWineController;
+use App\Http\Controllers\v1\WineClassificationController;
 use App\Http\Controllers\v1\WineController;
 use App\Http\Controllers\v1\WineEvidenceController;
 use App\Http\Controllers\v1\WineRecordController;
@@ -48,6 +49,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/wineVarietyByProject/{projectId}', [WineVarietyController::class, 'showByProject']);
     Route::post('/wineVariety', [WineVarietyController::class, 'create']);
     Route::put('/wineVariety/{wineVarietyId}', [WineVarietyController::class, 'update']);
+
+    Route::get('/wineClassification', [WineClassificationController::class, 'index']);
 
     Route::get('/wineEvidence', [WineEvidenceController::class, 'index']);
     Route::get('/wineEvidence/{wineEvidenceId}', [WineEvidenceController::class, 'show']);
