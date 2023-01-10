@@ -58,6 +58,7 @@ class WineEvidence extends Model
     public const ALCOHOL = "alcohol"; // procent alkoholu
     public const ACID = "acid"; // kyseliny
     public const SUGAR = "sugar"; // cukernatost
+    public const NOTE = "note";
 
     protected $fillable = [
         self::PROJECT_ID,
@@ -69,5 +70,6 @@ class WineEvidence extends Model
         self::ALCOHOL,
         self::ACID,
         self::SUGAR,
+        self::NOTE,
     ];
 }

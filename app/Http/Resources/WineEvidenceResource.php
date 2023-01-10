@@ -26,6 +26,7 @@ class WineEvidenceResource extends JsonResource
             WineEvidence::ALCOHOL => $this->alcohol,
             WineEvidence::ACID => $this->acid,
             WineEvidence::SUGAR => $this->sugar,
+            WineEvidence::NOTE => $this->note,
             WineEvidence::CREATED_AT => $this->created_at,
             WineEvidence::UPDATED_AT => $this->updated_at,
         ];

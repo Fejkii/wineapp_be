@@ -1214,7 +1214,6 @@
                                 "required": [
                                     "project_id",
                                     "wine_id",
-                                    "wine_classification_id",
                                     "title",
                                     "volume",
                                     "year"
@@ -1234,22 +1233,25 @@
                                     },
                                     "volume": {
                                         "type": "number",
-                                        "format": "float"
+                                        "format": "double"
                                     },
                                     "year": {
                                         "type": "integer"
                                     },
                                     "alcohol": {
                                         "type": "number",
-                                        "format": "float"
+                                        "format": "double"
                                     },
                                     "acid": {
                                         "type": "number",
-                                        "format": "float"
+                                        "format": "double"
                                     },
                                     "sugar": {
                                         "type": "number",
-                                        "format": "float"
+                                        "format": "double"
+                                    },
+                                    "note": {
+                                        "type": "string"
                                     }
                                 },
                                 "type": "object"
@@ -1334,22 +1336,25 @@
                                     },
                                     "volume": {
                                         "type": "number",
-                                        "format": "float"
+                                        "format": "double"
                                     },
                                     "year": {
                                         "type": "integer"
                                     },
                                     "alcohol": {
                                         "type": "number",
-                                        "format": "float"
+                                        "format": "double"
                                     },
                                     "acid": {
                                         "type": "number",
-                                        "format": "float"
+                                        "format": "double"
                                     },
                                     "sugar": {
                                         "type": "number",
-                                        "format": "float"
+                                        "format": "double"
+                                    },
+                                    "note": {
+                                        "type": "string"
                                     }
                                 },
                                 "type": "object"

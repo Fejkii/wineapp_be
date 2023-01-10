@@ -18,13 +18,14 @@ class CreateWineEvidencesTable extends Migration
             $table->id();
             $table->unsignedBigInteger(WineEvidence::PROJECT_ID);
             $table->unsignedBigInteger(WineEvidence::WINE_ID);
-            $table->unsignedBigInteger(WineEvidence::WINE_CLASSIFICATION_ID);
             $table->string(WineEvidence::TITLE);
-            $table->float(WineEvidence::VOLUME);
+            $table->double(WineEvidence::VOLUME);
             $table->integer(WineEvidence::YEAR);
-            $table->float(WineEvidence::ALCOHOL)->nullable();
-            $table->float(WineEvidence::ACID)->nullable();
-            $table->float(WineEvidence::SUGAR)->nullable();
+            $table->unsignedBigInteger(WineEvidence::WINE_CLASSIFICATION_ID)->nullable();
+            $table->double(WineEvidence::ALCOHOL)->nullable();
+            $table->double(WineEvidence::ACID)->nullable();
+            $table->double(WineEvidence::SUGAR)->nullable();
+            $table->string(WineEvidence::NOTE)->nullable();
             $table->timestamps();
 
             $table->foreign(WineEvidence::PROJECT_ID)->references('id')->on('projects');

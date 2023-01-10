@@ -24,16 +24,17 @@ class WineEvidenceController extends Controller
      *     @OA\RequestBody(
      *         @OA\JsonContent(
      *             type="object",
-     *             required={"project_id", "wine_id", "wine_classification_id", "title", "volume", "year"},
+     *             required={"project_id", "wine_id", "title", "volume", "year"},
      *             @OA\Property(property="project_id", type="integer"),
      *             @OA\Property(property="wine_id", type="integer"),
      *             @OA\Property(property="wine_classification_id", type="integer"),
      *             @OA\Property(property="title", type="string"),
-     *             @OA\Property(property="volume", type="float"),
+     *             @OA\Property(property="volume", type="double"),
      *             @OA\Property(property="year", type="integer"),
-     *             @OA\Property(property="alcohol", type="float"),
-     *             @OA\Property(property="acid", type="float"),
-     *             @OA\Property(property="sugar", type="float"),
+     *             @OA\Property(property="alcohol", type="double"),
+     *             @OA\Property(property="acid", type="double"),
+     *             @OA\Property(property="sugar", type="double"),
+     *             @OA\Property(property="note", type="string"),
      *        ),
      *    ),
      *      @OA\Response(
@@ -53,13 +54,14 @@ class WineEvidenceController extends Controller
         $validator = Validator::make($input, [
             WineEvidence::PROJECT_ID => 'required|exists:App\Models\Project,id',
             WineEvidence::WINE_ID => 'required|exists:App\Models\Wine,id',
-            WineEvidence::WINE_CLASSIFICATION_ID => 'required|exists:App\Models\WineClassification,id',
+            WineEvidence::WINE_CLASSIFICATION_ID => 'nullable|exists:App\Models\WineClassification,id',
             WineEvidence::TITLE => 'required|string',
             WineEvidence::VOLUME => 'required|numeric',
             WineEvidence::YEAR => 'required|numeric',
             WineEvidence::ALCOHOL => 'numeric|nullable',
             WineEvidence::ACID => 'numeric|nullable',
             WineEvidence::SUGAR => 'numeric|nullable',
+            WineEvidence::NOTE => 'string|nullable',
         ]);
 
         if($validator->fails()){
@@ -92,11 +94,12 @@ class WineEvidenceController extends Controller
      *             @OA\Property(property="wine_id", type="integer"),
      *             @OA\Property(property="wine_classification_id", type="integer"),
      *             @OA\Property(property="title", type="string"),
-     *             @OA\Property(property="volume", type="float"),
+     *             @OA\Property(property="volume", type="double"),
      *             @OA\Property(property="year", type="integer"),
-     *             @OA\Property(property="alcohol", type="float"),
-     *             @OA\Property(property="acid", type="float"),
-     *             @OA\Property(property="sugar", type="float"),
+     *             @OA\Property(property="alcohol", type="double"),
+     *             @OA\Property(property="acid", type="double"),
+     *             @OA\Property(property="sugar", type="double"),
+     *             @OA\Property(property="note", type="string"),
      *        ),
      *    ),
      *      @OA\Response(
@@ -116,7 +119,7 @@ class WineEvidenceController extends Controller
         $input = $request->all();
         $validator = Validator::make($input, [
             WineEvidence::WINE_ID => 'exists:App\Models\Wine,id',
-            WineEvidence::WINE_CLASSIFICATION_ID => 'exists:App\Models\WineClassification,id',
+            WineEvidence::WINE_CLASSIFICATION_ID => 'exists:App\Models\WineClassification,id|nullable',
             WineEvidence::TITLE => 'string',
             WineEvidence::VOLUME => 'numeric',
             WineEvidence::YEAR => 'numeric',
