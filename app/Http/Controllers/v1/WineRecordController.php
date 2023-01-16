@@ -158,7 +158,7 @@ class WineRecordController extends Controller
      * @OA\Get(
      * path="/api/v1/wineRecordList/{wineEvidenceId}",
      * operationId="showWineRecordByWineEvidenceId",
-     * tags={"WineRecordList"},
+     * tags={"WineRecord"},
      * summary="Show wineRecord list by wineEvidenceId",
      * description="Show wineRecord list by wineEvidenceId",
      *     @OA\Parameter(
