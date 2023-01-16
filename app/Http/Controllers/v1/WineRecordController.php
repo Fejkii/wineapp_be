@@ -153,4 +153,35 @@ class WineRecordController extends Controller
 
         return $this->sendResponse($result, "Show detail");
     }
+
+    /**
+     * @OA\Get(
+     * path="/api/v1/wineRecordList/{wineEvidenceId}",
+     * operationId="showWineRecordByWineEvidenceId",
+     * tags={"WineRecordList"},
+     * summary="Show wineRecord list by wineEvidenceId",
+     * description="Show wineRecord list by wineEvidenceId",
+     *     @OA\Parameter(
+     *         name="wineEvidenceId",
+     *         in="path",
+     *         description="WineEvidence ID",
+     *         required=true,
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Response Successfull",
+     *          @OA\JsonContent()
+     *       ),
+     *      @OA\Response(response=404, description="Resource Not Found"),
+     * )
+     * @param int $wineEvidenceId
+     * @return JsonResponse
+     */
+    public function showList(int $wineEvidenceId): JsonResponse
+    {
+        $wineRecord = WineRecord::whereWineEvidenceId($wineEvidenceId);
+        $result = WineRecordResource::collection($wineRecord->get());
+
+        return $this->sendResponse($result, "Show WineRecord List for wineEvidence");
+    }
 }

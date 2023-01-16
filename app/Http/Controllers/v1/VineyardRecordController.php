@@ -64,7 +64,7 @@ class VineyardRecordController extends Controller
 
     /**
      * @OA\Put (
-     * path="/api/v1/wineRecord/{vineyardRecordId}",
+     * path="/api/v1/vineyardRecord/{vineyardRecordId}",
      * operationId="updateVineyardRecord",
      * tags={"VineyardRecord"},
      * summary="Update VineyardRecord",

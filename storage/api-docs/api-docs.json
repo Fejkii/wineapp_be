@@ -734,7 +734,36 @@
                 }
             }
         },
-        "/api/v1/wineRecord/{vineyardRecordId}": {
+        "/api/v1/vineyardRecord/{vineyardRecordId}": {
+            "get": {
+                "tags": [
+                    "VineyardRecord"
+                ],
+                "summary": "Show VineyardRecord by vineyardRecordId",
+                "description": "Show VineyardRecord by vineyardRecordId",
+                "operationId": "showVineyardRecordById",
+                "parameters": [
+                    {
+                        "name": "vineyardRecordId",
+                        "in": "path",
+                        "description": "VineyardRecord ID",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Response Successfull",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            },
             "put": {
                 "tags": [
                     "VineyardRecord"
@@ -777,37 +806,6 @@
                         }
                     }
                 },
-                "responses": {
-                    "200": {
-                        "description": "Response Successfull",
-                        "content": {
-                            "application/json": {
-                                "schema": {}
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "Resource Not Found"
-                    }
-                }
-            }
-        },
-        "/api/v1/vineyardRecord/{vineyardRecordId}": {
-            "get": {
-                "tags": [
-                    "VineyardRecord"
-                ],
-                "summary": "Show VineyardRecord by vineyardRecordId",
-                "description": "Show VineyardRecord by vineyardRecordId",
-                "operationId": "showVineyardRecordById",
-                "parameters": [
-                    {
-                        "name": "vineyardRecordId",
-                        "in": "path",
-                        "description": "VineyardRecord ID",
-                        "required": true
-                    }
-                ],
                 "responses": {
                     "200": {
                         "description": "Response Successfull",
@@ -1535,6 +1533,37 @@
                         }
                     }
                 },
+                "responses": {
+                    "200": {
+                        "description": "Response Successfull",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "/api/v1/wineRecordList/{wineEvidenceId}": {
+            "get": {
+                "tags": [
+                    "WineRecordList"
+                ],
+                "summary": "Show wineRecord list by wineEvidenceId",
+                "description": "Show wineRecord list by wineEvidenceId",
+                "operationId": "showWineRecordByWineEvidenceId",
+                "parameters": [
+                    {
+                        "name": "wineEvidenceId",
+                        "in": "path",
+                        "description": "WineEvidence ID",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Response Successfull",
