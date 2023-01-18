@@ -59,16 +59,16 @@ class WineRecordTypeController extends Controller
     {
         $input = $request->all();
         $validator = Validator::make($input, [
-            VineyardRecordType::TITLE => 'required|string',
-            VineyardRecordType::COLOR => 'string',
-            VineyardRecordType::NOTE => 'string',
+            WineRecordType::TITLE => 'required|string',
+            WineRecordType::COLOR => 'string',
+            WineRecordType::NOTE => 'string',
         ]);
 
         if($validator->fails()){
             return $this->sendError('Inputs are not valid.', 422);
         }
 
-        $vineyard = VineyardRecordType::create($input);
+        $vineyard = WineRecordType::create($input);
         $result = VineyardRecordTypeResource::make($vineyard);
 
         return $this->sendResponse($result, "VineyardRecordType created");

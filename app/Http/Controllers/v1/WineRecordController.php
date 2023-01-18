@@ -45,10 +45,10 @@ class WineRecordController extends Controller
 
         $validator = Validator::make($input, [
             WineRecord::WINE_EVIDENCE_ID => 'required|exists:App\Models\WineEvidence,id',
-            WineRecord::WINE_RECORD_TYPE_ID => 'required|exists:App\Models\Wine,id',
+            WineRecord::WINE_RECORD_TYPE_ID => 'required|exists:App\Models\WineRecordType,id',
             WineRecord::TITLE => 'required|string',
             WineRecord::DATE => 'required|date',
-            WineRecord::NOTE => 'nullable|numeric',
+            WineRecord::NOTE => 'nullable|string',
         ]);
 
         if($validator->fails()){
@@ -102,10 +102,10 @@ class WineRecordController extends Controller
         $input = $request->all();
         $validator = Validator::make($input, [
             WineRecord::WINE_EVIDENCE_ID => 'exists:App\Models\WineEvidence,id',
-            WineRecord::WINE_RECORD_TYPE_ID => 'exists:App\Models\Wine,id',
+            WineRecord::WINE_RECORD_TYPE_ID => 'exists:App\Models\WineRecordType,id',
             WineRecord::TITLE => 'required|string',
             WineRecord::DATE => 'required|date',
-            WineRecord::NOTE => 'nullable|numeric',
+            WineRecord::NOTE => 'nullable|string',
         ]);
 
         if($validator->fails()){

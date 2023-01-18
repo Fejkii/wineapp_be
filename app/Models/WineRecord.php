@@ -48,7 +48,7 @@ class WineRecord extends Model
 
     protected $fillable = [
         self::WINE_EVIDENCE_ID,
-        self::WINE_RECORD_TYPE,
+        self::WINE_RECORD_TYPE_ID,
         self::TITLE,
         self::DATE,
         self::NOTE,
