@@ -25,7 +25,7 @@ class WineRecordController extends Controller
      *             @OA\Property(property="wine_evidence_id", type="integer"),
      *             @OA\Property(property="wine_record_type_id", type="integer"),
      *             @OA\Property(property="title", type="string"),
-     *             @OA\Property(property="date", type="string"),
+     *             @OA\Property(property="date", type="date"),
      *             @OA\Property(property="note", type="string"),
      *        ),
      *    ),
@@ -47,7 +47,7 @@ class WineRecordController extends Controller
             WineRecord::WINE_EVIDENCE_ID => 'required|exists:App\Models\WineEvidence,id',
             WineRecord::WINE_RECORD_TYPE_ID => 'required|exists:App\Models\Wine,id',
             WineRecord::TITLE => 'required|string',
-            WineRecord::DATE => 'required|numeric',
+            WineRecord::DATE => 'required|date',
             WineRecord::NOTE => 'nullable|numeric',
         ]);
 
@@ -81,7 +81,7 @@ class WineRecordController extends Controller
      *             @OA\Property(property="wine_evidence_id", type="integer"),
      *             @OA\Property(property="wine_record_type_id", type="integer"),
      *             @OA\Property(property="title", type="string"),
-     *             @OA\Property(property="date", type="string"),
+     *             @OA\Property(property="date", type="date"),
      *             @OA\Property(property="note", type="string"),
      *        ),
      *    ),
@@ -103,8 +103,8 @@ class WineRecordController extends Controller
         $validator = Validator::make($input, [
             WineRecord::WINE_EVIDENCE_ID => 'exists:App\Models\WineEvidence,id',
             WineRecord::WINE_RECORD_TYPE_ID => 'exists:App\Models\Wine,id',
-            WineRecord::TITLE => 'string',
-            WineRecord::DATE => 'numeric',
+            WineRecord::TITLE => 'required|string',
+            WineRecord::DATE => 'required|date',
             WineRecord::NOTE => 'nullable|numeric',
         ]);
 

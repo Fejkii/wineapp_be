@@ -25,7 +25,7 @@ class VineyardRecordController extends Controller
      *             @OA\Property(property="wine_evidence_id", type="integer"),
      *             @OA\Property(property="wine_record_type_id", type="integer"),
      *             @OA\Property(property="title", type="string"),
-     *             @OA\Property(property="date", type="string"),
+     *             @OA\Property(property="date", type="date"),
      *             @OA\Property(property="note", type="string"),
      *        ),
      *    ),
@@ -46,7 +46,7 @@ class VineyardRecordController extends Controller
         $validator = Validator::make($input, [
             VineyardRecord::VINEYARD_RECORD_TYPE_ID => 'required|exists:App\Models\VineyardRecordType,id',
             VineyardRecord::TITLE => 'required|string',
-            VineyardRecord::DATE => 'required|string',
+            VineyardRecord::DATE => 'required|date',
             VineyardRecord::VINEYARD_ID => 'nullable|exists:App\Models\Vineyard,id',
             VineyardRecord::VINEYARD_WINE_ID => 'nullable|exists:App\Models\VineyardWine,id',
             VineyardRecord::NOTE => 'nullable|string',
@@ -82,7 +82,7 @@ class VineyardRecordController extends Controller
      *             @OA\Property(property="wine_evidence_id", type="integer"),
      *             @OA\Property(property="wine_record_type_id", type="integer"),
      *             @OA\Property(property="title", type="string"),
-     *             @OA\Property(property="date", type="string"),
+     *             @OA\Property(property="date", type="date"),
      *             @OA\Property(property="note", type="string"),
      *        ),
      *    ),
@@ -103,8 +103,8 @@ class VineyardRecordController extends Controller
         $input = $request->all();
         $validator = Validator::make($input, [
             VineyardRecord::VINEYARD_RECORD_TYPE_ID => 'exists:App\Models\VineyardRecordType,id',
-            VineyardRecord::TITLE => 'string',
-            VineyardRecord::DATE => 'string',
+            VineyardRecord::TITLE => 'required|string',
+            VineyardRecord::DATE => 'required|date',
             VineyardRecord::VINEYARD_ID => 'nullable|exists:App\Models\Vineyard,id',
             VineyardRecord::VINEYARD_WINE_ID => 'nullable|exists:App\Models\VineyardWine,id',
             VineyardRecord::NOTE => 'nullable|string',
