@@ -38,15 +38,17 @@ class WineRecord extends Model
 {
     use HasFactory;
 
+    public const ID = "id";
     public const WINE_EVIDENCE_ID = "wine_evidence_id";
     public const WINE_RECORD_TYPE_ID = "wine_record_type_id";
+    public const WINE_RECORD_TYPE = "wine_record_type";
     public const TITLE = "title";
     public const DATE = "date";
     public const NOTE = "note";
 
     protected $fillable = [
         self::WINE_EVIDENCE_ID,
-        self::WINE_RECORD_TYPE_ID,
+        self::WINE_RECORD_TYPE,
         self::TITLE,
         self::DATE,
         self::NOTE,
