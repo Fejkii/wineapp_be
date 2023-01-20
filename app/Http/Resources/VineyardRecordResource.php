@@ -2,7 +2,10 @@
 
 namespace App\Http\Resources;
 
+use App\Models\VineyardRecord;
+use App\Models\VineyardRecordType;
 use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use JsonSerializable;
@@ -17,6 +20,15 @@ class VineyardRecordResource extends JsonResource
      */
     public function toArray($request): array|JsonSerializable|Arrayable
     {
-        return parent::toArray($request);
+        return [
+            VineyardRecord::ID => $this->id,
+            VineyardRecord::VINEYARD_WINE_ID => $this->wine_evidence_id,
+            VineyardRecord::VINEYARD_RECORD_TYPE => VineyardRecordType::findOrFail($this->vineyard_record_type_id),
+            VineyardRecord::TITLE => $this->title,
+            VineyardRecord::DATE => $this->date,
+            VineyardRecord::NOTE => $this->note,
+            Model::CREATED_AT => $this->created_at,
+            Model::UPDATED_AT => $this->updated_at,
+        ];
     }
 }

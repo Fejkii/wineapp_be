@@ -56,8 +56,8 @@ class VineyardRecordController extends Controller
             return $this->sendError('Inputs are not valid.', 422);
         }
 
-        $wineEvidence = VineyardRecord::create($input);
-        $result = VineyardRecordResource::make($wineEvidence);
+        $vineyardRecord = VineyardRecord::create($input);
+        $result = VineyardRecordResource::make($vineyardRecord);
 
         return $this->sendResponse($result, "VineyardRecord created");
     }
@@ -150,8 +150,8 @@ class VineyardRecordController extends Controller
      */
     public function show(int $vineyardRecordId): JsonResponse
     {
-        $wineRecord = VineyardRecord::findOrFail($vineyardRecordId);
-        $result = VineyardRecordResource::make($wineRecord);
+        $vineyardRecord = VineyardRecord::findOrFail($vineyardRecordId);
+        $result = VineyardRecordResource::make($vineyardRecord);
 
         return $this->sendResponse($result, "Show detail");
     }
@@ -190,7 +190,7 @@ class VineyardRecordController extends Controller
         }
 
         $wineRecord = VineyardRecord::whereVineyardId($vineyardId)->get();
-        $result = VineyardRecordResource::make($wineRecord);
+        $result = VineyardRecordResource::collection($wineRecord);
 
         return $this->sendResponse($result, "Show VineyardWines by VineyardId");
     }

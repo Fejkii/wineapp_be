@@ -40,9 +40,11 @@ class VineyardRecord extends Model
 {
     use HasFactory;
 
+    public const ID = "id";
     public const VINEYARD_ID = "vineyard_id";
     public const VINEYARD_WINE_ID = "vineyard_wine_id";
     public const VINEYARD_RECORD_TYPE_ID = "vineyard_record_type_id";
+    public const VINEYARD_RECORD_TYPE = "vineyard_record_type";
     public const TITLE = "title";
     public const DATE = "date";
     public const NOTE = "note";
