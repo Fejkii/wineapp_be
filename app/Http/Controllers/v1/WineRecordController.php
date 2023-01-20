@@ -156,7 +156,7 @@ class WineRecordController extends Controller
 
     /**
      * @OA\Get(
-     * path="/api/v1/wineRecordList/{wineEvidenceId}",
+     * path="/api/v1/wineRecord/wineEvidence/{wineEvidenceId}",
      * operationId="showWineRecordByWineEvidenceId",
      * tags={"WineRecord"},
      * summary="Show wineRecord list by wineEvidenceId",
@@ -177,7 +177,7 @@ class WineRecordController extends Controller
      * @param int $wineEvidenceId
      * @return JsonResponse
      */
-    public function showList(int $wineEvidenceId): JsonResponse
+    public function showByWineEvidence(int $wineEvidenceId): JsonResponse
     {
         $wineRecord = WineRecord::whereWineEvidenceId($wineEvidenceId);
         $result = WineRecordResource::collection($wineRecord->get());

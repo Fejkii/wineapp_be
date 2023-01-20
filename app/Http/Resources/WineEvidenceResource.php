@@ -6,6 +6,7 @@ use App\Models\Project;
 use App\Models\Wine;
 use App\Models\WineClassification;
 use App\Models\WineEvidence;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
@@ -27,8 +28,8 @@ class WineEvidenceResource extends JsonResource
             WineEvidence::ACID => $this->acid,
             WineEvidence::SUGAR => $this->sugar,
             WineEvidence::NOTE => $this->note,
-            WineEvidence::CREATED_AT => $this->created_at,
-            WineEvidence::UPDATED_AT => $this->updated_at,
+            Model::CREATED_AT => $this->created_at,
+            Model::UPDATED_AT => $this->updated_at,
         ];
     }
 }

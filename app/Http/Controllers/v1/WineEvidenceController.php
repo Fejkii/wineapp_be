@@ -176,7 +176,7 @@ class WineEvidenceController extends Controller
 
     /**
      * @OA\Get(
-     * path="/api/v1/wineEvidenceByProject/{projectId}",
+     * path="/api/v1/wineEvidence/project/{projectId}",
      * operationId="showWineEvidencesByProjectId",
      * tags={"WineEvidence"},
      * summary="Show WineEvidences by ProjectId",

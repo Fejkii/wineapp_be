@@ -147,7 +147,7 @@ class WineController extends Controller
 
     /**
      * @OA\Get(
-     * path="/api/v1/wineByProject/{projectId}",
+     * path="/api/v1/wine/project/{projectId}",
      * operationId="showWineByProjectId",
      * tags={"Wine"},
      * summary="Show Wines by Project id",
@@ -170,8 +170,16 @@ class WineController extends Controller
      */
     public function showByProject(int $projectId): JsonResponse
     {
-        $wines = Wine::whereProjectId($projectId);
-        $result = WineResource::collection($wines->get());
+        $validator = Validator::make([$projectId], [
+            $projectId => 'required|exists:App\Models\Project,id',
+        ]);
+
+        if($validator->fails()){
+            return $this->sendError('Inputs are not valid.', 422);
+        }
+
+        $wines = Wine::whereProjectId($projectId)->get();
+        $result = WineResource::collection($wines);
 
         return $this->sendResponse($result, "Show Wines by Project id");
     }

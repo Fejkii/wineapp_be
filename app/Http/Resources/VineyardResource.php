@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use App\Models\Project;
 use App\Models\Vineyard;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
@@ -17,8 +18,8 @@ class VineyardResource extends JsonResource
             Vineyard::ID => $this->id,
             'project' => Project::findOrFail($this->project_id),
             Vineyard::TITLE => $this->title,
-            Vineyard::CREATED_AT => $this->created_at,
-            Vineyard::UPDATED_AT => $this->updated_at,
+            Model::CREATED_AT => $this->created_at,
+            Model::UPDATED_AT => $this->updated_at,
         ];
     }
 }

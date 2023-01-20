@@ -106,7 +106,7 @@ class WineVarietyController extends Controller
 
     /**
      * @OA\Get  (
-     * path="/api/v1/wineVarietyByProject/{projectId}",
+     * path="/api/v1/wineVariety/project/{projectId}",
      * operationId="getWineVarietyByProject",
      * tags={"WineVariety"},
      * summary="Get WineVariety By Project id",

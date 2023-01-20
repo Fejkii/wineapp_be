@@ -27,7 +27,6 @@ Route::get('migrate', function() {
     \Illuminate\Support\Facades\Artisan::call('migrate:fresh --seed');
 });
 
-// TODO - uncomment after finish API
 Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/logout', [AuthenticationController::class, 'logout']);
@@ -46,23 +45,23 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/projectUsers/{projectId}', [UserProjectController::class, 'showProjectUsers']);
 
     Route::get('/wine/{wineId}', [WineController::class, 'show']);
-    Route::get('/wineByProject/{projectId}', [WineController::class, 'showByProject']);
+    Route::get('/wine/project/{projectId}', [WineController::class, 'showByProject']);
     Route::post('/wine', [WineController::class, 'create']);
     Route::put('/wine/{wineId}', [WineController::class, 'update']);
 
-    Route::get('/wineVarietyByProject/{projectId}', [WineVarietyController::class, 'showByProject']);
+    Route::get('/wineVariety/project/{projectId}', [WineVarietyController::class, 'showByProject']);
     Route::post('/wineVariety', [WineVarietyController::class, 'create']);
     Route::put('/wineVariety/{wineVarietyId}', [WineVarietyController::class, 'update']);
 
     Route::get('/wineClassification', [WineClassificationController::class, 'index']);
 
     Route::get('/wineEvidence/{wineEvidenceId}', [WineEvidenceController::class, 'show']);
-    Route::get('/wineEvidenceByProject/{projectId}', [WineEvidenceController::class, 'showByProject']);
+    Route::get('/wineEvidence/project/{projectId}', [WineEvidenceController::class, 'showByProject']);
     Route::post('/wineEvidence', [WineEvidenceController::class, 'create']);
     Route::put('/wineEvidence/{wineEvidenceId}', [WineEvidenceController::class, 'update']);
 
     Route::get("/wineRecord/{wineRecordId}", [WineRecordController::class, "show"]);
-    Route::get("/wineRecordList/{wineEvidenceId}", [WineRecordController::class, "showList"]);
+    Route::get("/wineRecord/wineEvidence/{wineEvidenceId}", [WineRecordController::class, "showByWineEvidence"]);
     Route::post("/wineRecord", [WineRecordController::class, "create"]);
     Route::put("/wineRecord/{wineRecordId}", [WineRecordController::class, 'update']);
 
@@ -70,17 +69,20 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post("/wineRecordType", [WineRecordTypeController::class, "create"]);
 
     Route::get("/vineyard/{vineyardId}", [VineyardController::class, 'show']);
-    Route::get("/vineyardList/{projectId}", [VineyardController::class, 'showByProject']);
     Route::post("/vineyard", [VineyardController::class, 'create']);
-    Route::put("/vineyard/{projectId}", [VineyardController::class, 'update']);
+    Route::put("/vineyard/{vineyardId}", [VineyardController::class, 'update']);
+    Route::get("/vineyard/project/{projectId}", [VineyardController::class, 'showByProject']);
 
     Route::get("/vineyardWine/{vineyardWineId}", [VineyardWineController::class, "show"]);
     Route::post("/vineyardWine", [VineyardWineController::class, "create"]);
     Route::put("/vineyardWine/{vineyardWineId}", [VineyardWineController::class, "update"]);
+    Route::get("/vineyardWine/vineyard/{vineyardId}", [VineyardWineController::class, "showByVineyard"]);
 
     Route::get("/vineyardRecord/{vineyardRecordId}", [VineyardRecordController::class, "show"]);
     Route::post("/vineyardRecord", [VineyardRecordController::class, "create"]);
     Route::put("/vineyardRecord/{vineyardRecordId}", [VineyardRecordController::class, 'update']);
+    Route::get("/vineyardRecord/vineyard/{vineyardId}", [VineyardRecordController::class, "showByVineyard"]);
+    Route::get("/vineyardRecord/vineyardWine/{vineyardWineId}", [VineyardRecordController::class, "showByVineyardWine"]);
 
     Route::get("/vineyardRecordType", [VineyardRecordTypeController::class, "index"]);
     Route::post("/vineyardRecordType", [VineyardRecordTypeController::class, "create"]);

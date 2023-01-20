@@ -106,7 +106,7 @@ class VineyardWineController extends Controller
      *     @OA\Parameter(
      *         name="vineyardWineId",
      *         in="path",
-     *         description="Vineyard ID",
+     *         description="VineyardWine ID",
      *         required=true,
      *      ),
      *      @OA\RequestBody(
@@ -153,5 +153,44 @@ class VineyardWineController extends Controller
         $result = VineyardWineResource::make($vineyardWine);
 
         return $this->sendResponse($result, "Vineyard updated");
+    }
+
+    /**
+     * @OA\Get(
+     * path="/api/v1/vineyardWine/vineyard/{vineyardId}",
+     * operationId="showVineyardWinesByVineyardId",
+     * tags={"VineyardWine"},
+     * summary="Show vineyardWines by vineyardId",
+     * description="Show vineyardWines by vineyardId",
+     *     @OA\Parameter(
+     *         name="vineyardId",
+     *         in="path",
+     *         description="Vineyard ID",
+     *         required=true,
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Response Successfull",
+     *          @OA\JsonContent()
+     *       ),
+     *      @OA\Response(response=404, description="Resource Not Found"),
+     * )
+     * @param int $vineyardId
+     * @return JsonResponse
+     */
+    public function showByVineyard(int $vineyardId): JsonResponse
+    {
+        $validator = Validator::make([$vineyardId], [
+            $vineyardId => 'required|exists:App\Models\Vineyard,id',
+        ]);
+
+        if($validator->fails()){
+            return $this->sendError('Inputs are not valid.', 422);
+        }
+
+        $vineyards = VineyardWine::whereVineyardId($vineyardId)->get();
+        $result = VineyardWineResource::collection($vineyards);
+
+        return $this->sendResponse($result, "Show VineyardWines by VineyardId");
     }
 }

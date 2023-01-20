@@ -6,6 +6,7 @@ use App\Models\Project;
 use App\Models\User;
 use App\Models\UserProject;
 use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use JsonSerializable;
@@ -25,8 +26,8 @@ class UserProjectResource extends JsonResource
             'project' => Project::findOrFail($this->project_id),
             'user' => User::findOrFail($this->user_id),
             UserProject::IS_DEFAULT => $this->is_default,
-            UserProject::CREATED_AT => $this->created_at,
-            UserProject::UPDATED_AT => $this->updated_at,
+            Model::CREATED_AT => $this->created_at,
+            Model::UPDATED_AT => $this->updated_at,
         ];
     }
 }

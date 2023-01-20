@@ -57,7 +57,7 @@ class VineyardController extends Controller
 
     /**
      * @OA\Get(
-     * path="/api/v1/vineyardList/{projectId}",
+     * path="/api/v1/vineyard/project/{projectId}",
      * operationId="showVineyardsByProjectId",
      * tags={"Vineyard"},
      * summary="Show vineyards by projectId",
@@ -89,7 +89,6 @@ class VineyardController extends Controller
         }
 
         $vineyards = Vineyard::whereProjectId($projectId)->get();
-
         $result = VineyardResource::collection($vineyards);
 
         return $this->sendResponse($result, "Show all Vineyards");

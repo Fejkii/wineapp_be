@@ -604,7 +604,7 @@
                 }
             }
         },
-        "/api/v1/vineyardList/{projectId}": {
+        "/api/v1/vineyard/project/{projectId}": {
             "get": {
                 "tags": [
                     "Vineyard"
@@ -708,7 +708,8 @@
                                         "type": "string"
                                     },
                                     "date": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "format": "date"
                                     },
                                     "note": {
                                         "type": "string"
@@ -795,7 +796,8 @@
                                         "type": "string"
                                     },
                                     "date": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "format": "date"
                                     },
                                     "note": {
                                         "type": "string"
@@ -806,6 +808,68 @@
                         }
                     }
                 },
+                "responses": {
+                    "200": {
+                        "description": "Response Successfull",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "/api/v1/vineyardRecord/vineyard/{vineyardId}": {
+            "get": {
+                "tags": [
+                    "VineyardRecord"
+                ],
+                "summary": "Show VineyardRecords by vineyardId",
+                "description": "Show VineyardRecords by vineyardId",
+                "operationId": "showVineyardRecordByVineyardId",
+                "parameters": [
+                    {
+                        "name": "VineyardId",
+                        "in": "path",
+                        "description": "VineyardId ID",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Response Successfull",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "/api/v1/vineyardRecord/vineyardWine/{vineyardWineId}": {
+            "get": {
+                "tags": [
+                    "VineyardRecord"
+                ],
+                "summary": "Show VineyardRecords by vineyardWineId",
+                "description": "Show VineyardRecords by vineyardWineId",
+                "operationId": "showVineyardRecordByVineyardWineId",
+                "parameters": [
+                    {
+                        "name": "vineyardWineId",
+                        "in": "path",
+                        "description": "VineyardId ID",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Response Successfull",
@@ -921,7 +985,7 @@
                     {
                         "name": "vineyardWineId",
                         "in": "path",
-                        "description": "Vineyard ID",
+                        "description": "VineyardWine ID",
                         "required": true
                     }
                 ],
@@ -1007,6 +1071,37 @@
                         }
                     }
                 },
+                "responses": {
+                    "200": {
+                        "description": "Response Successfull",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "/api/v1/vineyardWine/vineyard/{vineyardId}": {
+            "get": {
+                "tags": [
+                    "VineyardWine"
+                ],
+                "summary": "Show vineyardWines by vineyardId",
+                "description": "Show vineyardWines by vineyardId",
+                "operationId": "showVineyardWinesByVineyardId",
+                "parameters": [
+                    {
+                        "name": "vineyardId",
+                        "in": "path",
+                        "description": "Vineyard ID",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Response Successfull",
@@ -1166,7 +1261,7 @@
                 }
             }
         },
-        "/api/v1/wineByProject/{projectId}": {
+        "/api/v1/wine/project/{projectId}": {
             "get": {
                 "tags": [
                     "Wine"
@@ -1375,7 +1470,7 @@
                 }
             }
         },
-        "/api/v1/wineEvidenceByProject/{projectId}": {
+        "/api/v1/wineEvidence/project/{projectId}": {
             "get": {
                 "tags": [
                     "WineEvidence"
@@ -1435,7 +1530,8 @@
                                         "type": "string"
                                     },
                                     "date": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "format": "date"
                                     },
                                     "note": {
                                         "type": "string"
@@ -1522,7 +1618,8 @@
                                         "type": "string"
                                     },
                                     "date": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "format": "date"
                                     },
                                     "note": {
                                         "type": "string"
@@ -1548,7 +1645,7 @@
                 }
             }
         },
-        "/api/v1/wineRecordList/{wineEvidenceId}": {
+        "/api/v1/wineRecord/wineEvidence/{wineEvidenceId}": {
             "get": {
                 "tags": [
                     "WineRecord"
@@ -1729,7 +1826,7 @@
                 }
             }
         },
-        "/api/v1/wineVarietyByProject/{projectId}": {
+        "/api/v1/wineVariety/project/{projectId}": {
             "get": {
                 "tags": [
                     "WineVariety"
