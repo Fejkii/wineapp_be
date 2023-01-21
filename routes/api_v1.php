@@ -43,6 +43,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/userProject/list', [UserProjectController::class, 'showListByParams']);
     Route::get('/userProject/user', [UserProjectController::class, 'showByLoggedUser']);
     Route::get('/userProject/project/{projectId}', [UserProjectController::class, 'showByProject']);
+    Route::delete('/userProject/{userProjectId}', [UserProjectController::class, 'delete']);
 
     Route::get('/wine/{wineId}', [WineController::class, 'show']);
     Route::get('/wine/project/{projectId}', [WineController::class, 'showByProject']);

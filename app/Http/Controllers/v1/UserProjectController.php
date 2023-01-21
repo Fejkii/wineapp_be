@@ -345,4 +345,41 @@ class UserProjectController extends Controller
 
         return $this->sendResponse($result, "Show users for selected project");
     }
+
+    /**
+     * @OA\Delete(
+     * path="/api/v1/userProject/{userProjectId}",
+     * operationId="deleteUserProject",
+     * tags={"UserProject"},
+     * summary="Delete UserProject by userProjectId",
+     * description="Delete UserProject by userProjectId",
+     *     @OA\Parameter(
+     *         name="userProjectId",
+     *         in="path",
+     *         description="UserProject ID",
+     *         required=true,
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Response Successfull",
+     *          @OA\JsonContent()
+     *       ),
+     *      @OA\Response(response=404, description="Resource Not Found"),
+     * )
+     * @param int $userProjectId
+     * @return JsonResponse
+     */
+    public function delete(int $userProjectId): JsonResponse
+    {
+        $validator = Validator::make([$userProjectId], [
+            $userProjectId => 'required|exists:App\Models\UserProject,id',
+        ]);
+        if($validator->fails()){
+            return $this->sendError('Value is not valid.', 422);
+        }
+        $userProject = UserProject::findOrFail($userProjectId);
+        $userProject->delete();
+
+        return $this->sendResponse($userProject, "UserProject successfully deleted.");
+    }
 }
