@@ -206,7 +206,7 @@ class UserProjectController extends Controller
 
     /**
      * @OA\Get (
-     * path="/api/v1/userProjectList",
+     * path="/api/v1/userProject/list",
      * operationId="showListByParams",
      * tags={"UserProject"},
      * summary="Show UserProject list by parameters",
@@ -282,10 +282,10 @@ class UserProjectController extends Controller
 
     /**
      * @OA\Get(
-     * path="/api/v1/userProjects",
-     * operationId="userProjects",
+     * path="/api/v1/userProject/user",
+     * operationId="userProjectsByUser",
      * tags={"UserProject"},
-     * summary="Show user projects",
+     * summary="Show UserProjects by logged user",
      * description="Show projects for logged in user",
      *      @OA\Response(
      *          response=200,
@@ -297,7 +297,7 @@ class UserProjectController extends Controller
      * @param Request $request
      * @return JsonResponse
      */
-    public function showUserProjects(Request $request): JsonResponse
+    public function showByLoggedUser(Request $request): JsonResponse
     {
         $userProjects = UserProject::select();
         $userProjects->where(UserProject::USER_ID, "=", $request->user()->id);
@@ -308,10 +308,10 @@ class UserProjectController extends Controller
 
     /**
      * @OA\Get(
-     * path="/api/v1/projectUsers/{projectId}",
+     * path="/api/v1/userProject/project/{projectId}",
      * operationId="projectUsers",
      * tags={"UserProject"},
-     * summary="Show project users",
+     * summary="Collection of UserProject by project",
      * description="Show users for selected project by projectId",
      *     @OA\Parameter(
      *         name="projectId",
@@ -329,7 +329,7 @@ class UserProjectController extends Controller
      * @param int $projectId
      * @return JsonResponse
      */
-    public function showProjectUsers(int $projectId): JsonResponse
+    public function showByProject(int $projectId): JsonResponse
     {
         $validator = Validator::make([$projectId], [
             $projectId => 'required|integer|exists:projects,id',

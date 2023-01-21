@@ -426,7 +426,7 @@
                 }
             }
         },
-        "/api/v1/userProjectList": {
+        "/api/v1/userProject/list": {
             "get": {
                 "tags": [
                     "UserProject"
@@ -475,14 +475,14 @@
                 }
             }
         },
-        "/api/v1/userProjects": {
+        "/api/v1/userProject/user": {
             "get": {
                 "tags": [
                     "UserProject"
                 ],
-                "summary": "Show user projects",
+                "summary": "Show UserProjects by logged user",
                 "description": "Show projects for logged in user",
-                "operationId": "userProjects",
+                "operationId": "userProjectsByUser",
                 "responses": {
                     "200": {
                         "description": "Response Successfull",
@@ -498,12 +498,12 @@
                 }
             }
         },
-        "/api/v1/projectUsers/{projectId}": {
+        "/api/v1/userProject/project/{projectId}": {
             "get": {
                 "tags": [
                     "UserProject"
                 ],
-                "summary": "Show project users",
+                "summary": "Collection of UserProject by project",
                 "description": "Show users for selected project by projectId",
                 "operationId": "projectUsers",
                 "parameters": [

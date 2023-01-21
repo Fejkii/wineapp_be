@@ -40,9 +40,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/userProject', [UserProjectController::class, 'create']);
     Route::get('/userProject/{userProjectId}', [UserProjectController::class, 'show']);
     Route::get('/userProject', [UserProjectController::class, 'showByParams']);
-    Route::get('/userProjectList', [UserProjectController::class, 'showListByParams']);
-    Route::get('/userProjects', [UserProjectController::class, 'showUserProjects']);
-    Route::get('/projectUsers/{projectId}', [UserProjectController::class, 'showProjectUsers']);
+    Route::get('/userProject/list', [UserProjectController::class, 'showListByParams']);
+    Route::get('/userProject/user', [UserProjectController::class, 'showByLoggedUser']);
+    Route::get('/userProject/project/{projectId}', [UserProjectController::class, 'showByProject']);
 
     Route::get('/wine/{wineId}', [WineController::class, 'show']);
     Route::get('/wine/project/{projectId}', [WineController::class, 'showByProject']);
