@@ -18,6 +18,8 @@ use Illuminate\Support\Carbon;
  * @property int $is_default
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
+ * @property-read Project $project
+ * @property-read User $user
  * @method static UserProjectFactory factory(...$parameters)
  * @method static Builder|UserProject newModelQuery()
  * @method static Builder|UserProject newQuery()
@@ -29,8 +31,8 @@ use Illuminate\Support\Carbon;
  * @method static Builder|UserProject whereUpdatedAt($value)
  * @method static Builder|UserProject whereUserId($value)
  * @mixin Eloquent
- * @property-read Project $project
- * @property-read User $user
+ * @property int $is_owner
+ * @method static Builder|UserProject whereIsOwner($value)
  */
 class UserProject extends Model
 {
@@ -40,6 +42,7 @@ class UserProject extends Model
     public const PROJECT_ID = "project_id";
     public const USER_ID = "user_id";
     public const IS_DEFAULT = "is_default";
+    public const IS_OWNER = "is_owner";
 
     protected $fillable = [
         self::PROJECT_ID,

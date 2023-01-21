@@ -9,6 +9,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use OpenApi\Annotations as OA;
+use Throwable;
 
 /**
  * @author Petr Šťastný <petrstastny09@gmail.com>
@@ -378,8 +379,63 @@ class UserProjectController extends Controller
             return $this->sendError('Value is not valid.', 422);
         }
         $userProject = UserProject::findOrFail($userProjectId);
+
+        if ($userProject->is_owner) {
+            return $this->sendError("You can't remove the project owner", 422);
+        }
         $userProject->delete();
 
         return $this->sendResponse($userProject, "UserProject successfully deleted.");
+    }
+
+    /**
+     * @OA\Put (
+     * path="/api/v1/userProject/{userProjectId}",
+     * operationId="updateUserProject",
+     * tags={"UserProject"},
+     * summary="Update UserProject",
+     * description="Update UserProject by userProjectId",
+     *     @OA\Parameter(
+     *         name="userProjectId",
+     *         in="path",
+     *         description="UserProject ID",
+     *         required=true,
+     *      ),
+     *      @OA\RequestBody(
+     *         @OA\JsonContent(
+     *             type="object",
+     *             required={"is_default"},
+     *             @OA\Property(property="is_default", type="boolean"),
+     *        ),
+     *    ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Response Successfull",
+     *          @OA\JsonContent()
+     *       ),
+     *      @OA\Response(response=404, description="Resource Not Found"),
+     * )
+     * @param Request $request
+     * @param int $userProjectId
+     * @return JsonResponse
+     * @throws Throwable
+     */
+    public function update(Request $request, int $userProjectId): JsonResponse
+    {
+        $input = $request->all();
+        $validator = Validator::make($input, [
+            UserProject::IS_DEFAULT => 'required|boolean',
+        ]);
+
+        if($validator->fails()){
+            return $this->sendError('Inputs are not valid.', 422);
+        }
+
+        $userProject = UserProject::findOrFail($userProjectId);
+
+        $userProject->updateOrFail($input);
+        $result = UserProject::make($userProject);
+
+        return $this->sendResponse($result, "UserProject updated");
     }
 }

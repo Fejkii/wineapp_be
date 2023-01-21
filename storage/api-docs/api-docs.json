@@ -2,7 +2,7 @@
     "openapi": "3.0.0",
     "info": {
         "title": "Application API for project WineApp",
-        "version": "0.1.0"
+        "version": "v1"
     },
     "paths": {
         "/api/v1/register": {
@@ -411,6 +411,52 @@
                         "required": true
                     }
                 ],
+                "responses": {
+                    "200": {
+                        "description": "Response Successfull",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "UserProject"
+                ],
+                "summary": "Update UserProject",
+                "description": "Update UserProject by userProjectId",
+                "operationId": "updateUserProject",
+                "parameters": [
+                    {
+                        "name": "userProjectId",
+                        "in": "path",
+                        "description": "UserProject ID",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "is_default"
+                                ],
+                                "properties": {
+                                    "is_default": {
+                                        "type": "boolean"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
                 "responses": {
                     "200": {
                         "description": "Response Successfull",

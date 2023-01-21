@@ -80,6 +80,7 @@ class ProjectController extends Controller
                 UserProject::USER_ID => $userId,
                 UserProject::PROJECT_ID => $project->id,
                 UserProject::IS_DEFAULT => $input[UserProject::IS_DEFAULT],
+                UserProject::IS_OWNER => true,
             ]);
 
             $result = UserProjectResource::make($userProject);

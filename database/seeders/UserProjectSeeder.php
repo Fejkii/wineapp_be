@@ -21,12 +21,14 @@ class UserProjectSeeder extends Seeder
                 UserProject::USER_ID => 1,
                 UserProject::PROJECT_ID => 1,
                 UserProject::IS_DEFAULT => true,
+                UserProject::IS_OWNER => true,
                 Model::CREATED_AT => now(),
             ),
             array(
                 UserProject::USER_ID => 1,
                 UserProject::PROJECT_ID => 2,
                 UserProject::IS_DEFAULT => false,
+                UserProject::IS_OWNER => true,
                 Model::CREATED_AT => now(),
             ),
         ));

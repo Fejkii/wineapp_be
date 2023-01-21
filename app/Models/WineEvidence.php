@@ -41,6 +41,8 @@ use Illuminate\Support\Carbon;
  * @method static Builder|WineEvidence whereWineId($value)
  * @method static Builder|WineEvidence whereYear($value)
  * @mixin Eloquent
+ * @property string|null $note
+ * @method static Builder|WineEvidence whereNote($value)
  */
 class WineEvidence extends Model
 {

@@ -26,6 +26,7 @@ class UserProjectResource extends JsonResource
             'project' => Project::findOrFail($this->project_id),
             'user' => User::findOrFail($this->user_id),
             UserProject::IS_DEFAULT => $this->is_default,
+            UserProject::IS_OWNER => $this->is_owner,
             Model::CREATED_AT => $this->created_at,
             Model::UPDATED_AT => $this->updated_at,
         ];
