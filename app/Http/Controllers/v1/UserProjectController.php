@@ -5,6 +5,7 @@ namespace App\Http\Controllers\v1;
 use App\Http\Resources\UserProjectResource;
 use App\Models\User;
 use App\Models\UserProject;
+use Auth;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -206,18 +207,12 @@ class UserProjectController extends Controller
     }
 
     /**
-     * @OA\Get (
+     * @OA\Post (
      * path="/api/v1/userProject/list",
      * operationId="showListByParams",
      * tags={"UserProject"},
      * summary="Show UserProject list by parameters",
      * description="Show UserProject list",
-     *     @OA\Parameter(
-     *         name="id",
-     *         in="query",
-     *         description="UserProject ID",
-     *         required=false,
-     *      ),
      *     @OA\Parameter(
      *         name="user_id",
      *         in="query",
@@ -251,9 +246,8 @@ class UserProjectController extends Controller
         $input = $request->all();
 
         $validator = Validator::make($input, [
-            UserProject::ID => 'nullable|integer|exists:user_projects,id',
-            UserProject::USER_ID => 'nullable|integer|exists:users,id',
-            UserProject::PROJECT_ID => 'nullable|integer|exists:projects,id',
+            UserProject::USER_ID => 'nullable|integer|exists:App\Models\User,id',
+            UserProject::PROJECT_ID => 'nullable|integer|exists:App\Models\Project,id',
             UserProject::IS_DEFAULT => 'nullable|boolean',
         ]);
 
@@ -263,9 +257,6 @@ class UserProjectController extends Controller
 
         $userProjects = UserProject::select();
 
-        if ($request->filled(UserProject::ID)) {
-            $userProjects->where(UserProject::ID, "=", $request->id);
-        }
         if ($request->filled(UserProject::USER_ID)) {
             $userProjects->where(UserProject::USER_ID, "=", $request->user_id);
         }
@@ -279,32 +270,6 @@ class UserProjectController extends Controller
         $result = UserProjectResource::collection($userProjects->orderBy(UserProject::IS_DEFAULT, "desc")->get());
 
         return $this->sendResponse($result, "Show UserProject list");
-    }
-
-    /**
-     * @OA\Get(
-     * path="/api/v1/userProject/user",
-     * operationId="userProjectsByUser",
-     * tags={"UserProject"},
-     * summary="Show UserProjects by logged user",
-     * description="Show projects for logged in user",
-     *      @OA\Response(
-     *          response=200,
-     *          description="Response Successfull",
-     *          @OA\JsonContent()
-     *       ),
-     *      @OA\Response(response=404, description="Resource Not Found"),
-     * )
-     * @param Request $request
-     * @return JsonResponse
-     */
-    public function showByLoggedUser(Request $request): JsonResponse
-    {
-        $userProjects = UserProject::select();
-        $userProjects->where(UserProject::USER_ID, "=", $request->user()->id);
-        $result = UserProjectResource::collection($userProjects->get());
-
-        return $this->sendResponse($result, "Show projects for logged user");
     }
 
     /**
@@ -333,7 +298,7 @@ class UserProjectController extends Controller
     public function showByProject(int $projectId): JsonResponse
     {
         $validator = Validator::make([$projectId], [
-            $projectId => 'required|integer|exists:projects,id',
+            $projectId => 'required|integer|exists:App\Models\Project,id',
         ]);
 
         if($validator->fails()){
@@ -431,11 +396,28 @@ class UserProjectController extends Controller
             return $this->sendError('Inputs are not valid.', 422);
         }
 
+        $userId = Auth::user()->id;
+        $userProjects = UserProject::whereUserId($userId)->get();
+
+        if ($input[UserProject::IS_DEFAULT] == true) {
+            if ($userProjects->isNotEmpty()) {
+                foreach ($userProjects as $userProject) {
+                    $userProject->is_default = false;
+                    $userProject->save();
+                }
+            }
+        } else {
+            if ($userProjects->isEmpty()) {
+                $input[UserProject::IS_DEFAULT] = true;
+            }
+        }
+
         $userProject = UserProject::findOrFail($userProjectId);
 
         $userProject->updateOrFail($input);
-        $result = UserProject::make($userProject);
+        $userProject->save();
+        $result = UserProjectResource::make($userProject);
 
-        return $this->sendResponse($result, "UserProject updated");
+        return $this->sendResponse($result, "UserProject set as default");
     }
 }

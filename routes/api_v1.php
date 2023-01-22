@@ -40,8 +40,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/userProject', [UserProjectController::class, 'create']);
     Route::get('/userProject/{userProjectId}', [UserProjectController::class, 'show']);
     Route::get('/userProject', [UserProjectController::class, 'showByParams']);
-    Route::get('/userProject/list', [UserProjectController::class, 'showListByParams']);
-    Route::get('/userProject/user', [UserProjectController::class, 'showByLoggedUser']);
+    Route::post('/userProject/list', [UserProjectController::class, 'showListByParams']);
     Route::get('/userProject/project/{projectId}', [UserProjectController::class, 'showByProject']);
     Route::delete('/userProject/{userProjectId}', [UserProjectController::class, 'delete']);
     Route::put('/userProject/{userProjectId}', [UserProjectController::class, 'update']);

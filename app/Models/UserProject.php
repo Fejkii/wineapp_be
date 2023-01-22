@@ -48,6 +48,7 @@ class UserProject extends Model
         self::PROJECT_ID,
         self::USER_ID,
         self::IS_DEFAULT,
+        self::IS_OWNER,
     ];
 
     public function user()

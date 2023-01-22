@@ -50,7 +50,7 @@ class ProjectController extends Controller
 
             $validator = Validator::make($input, [
                 Project::TITLE => 'required|string',
-                UserProject::IS_DEFAULT => 'boolean',
+                UserProject::IS_DEFAULT => 'required|boolean',
             ]);
 
             if($validator->fails()){
