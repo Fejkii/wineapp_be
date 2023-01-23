@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\v1;
 
+use App\Http\Resources\UserProjectResource;
 use App\Models\Project;
 use App\Models\User;
 use App\Models\UserProject;
@@ -146,20 +147,18 @@ class AuthenticationController extends Controller
             $user->remember_token = $token;
             $user->save();
 
-            $userProject = UserProject::where(UserProject::USER_ID, "=", $user->id)
+            $userProject = UserProject::whereUserId($user->id)
                 ->where(UserProject::IS_DEFAULT, "=", true)
                 ->first();
 
-            // If the user is logged in for the first time and has no project attached
-            $project = null;
             if ($userProject !== null) {
-                $project = Project::whereId($userProject->project_id)->first();
+                $userProject = UserProjectResource::make($userProject);
             }
 
             $result = [
                 User::REMEMBER_TOKEN => $token,
                 "user" => $user,
-                "project" => $project,
+                "user_project" => $userProject,
             ];
 
             return $this->sendResponse($result, 'User login successfully.');

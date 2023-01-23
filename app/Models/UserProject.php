@@ -51,6 +51,11 @@ class UserProject extends Model
         self::IS_OWNER,
     ];
 
+    protected $casts = [
+        self::IS_DEFAULT => 'boolean',
+        self::IS_OWNER => 'boolean',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
