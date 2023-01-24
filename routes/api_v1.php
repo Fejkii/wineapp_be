@@ -90,4 +90,5 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // User
     Route::get('/user', [UserController::class, 'show']);
+    Route::put('/user/{userId}', [UserController::class, 'update']);
 });

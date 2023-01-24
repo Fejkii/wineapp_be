@@ -16,7 +16,7 @@ use Throwable;
 /**
  * @OA\Info(
  *    title="Application API for project WineApp",
- *    version="0.1.0",
+ *    version="v1",
  * )
  *
  * @author Petr Šťastný <petrstastny09@gmail.com>
