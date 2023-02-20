@@ -39,6 +39,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::put('/projectSettings/{projectSettingsId}', [ProjectSettingsController::class, 'update']);
     Route::get('/projectSettings/{projectSettingsId}', [ProjectSettingsController::class, 'show']);
+    Route::get('/projectSettings/project/{projectId}', [ProjectSettingsController::class, 'showByProject']);
 
     // UserProject
     Route::post('/userProject', [UserProjectController::class, 'create']);

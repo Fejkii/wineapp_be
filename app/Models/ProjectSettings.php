@@ -24,6 +24,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static Builder|ProjectSettings whereDefaultLiquidSulfur($value)
  * @method static Builder|ProjectSettings whereId($value)
  * @method static Builder|ProjectSettings whereProjectId($value)
+ * @property int $project_id
+ * @property float $default_free_sulfur
+ * @property float $default_liquid_sulfur
  * @mixin Eloquent
  */
 class ProjectSettings extends Model
@@ -34,9 +37,9 @@ class ProjectSettings extends Model
     public $timestamps = false;
 
     public const ID = "id";
-    public const PROJECT_ID = "projectId";
-    public const DEFAULT_FREE_SULFUR = "defaultFreeSulfur"; // Výchozí hodnota, na kterou se mají vína sířit v mg / l
-    public const DEFAULT_LIQUID_SULFUR = "defaultLiquidSulfur"; // Výchozí hodnota pro dávkování tekuté síry v %
+    public const PROJECT_ID = "project_id";
+    public const DEFAULT_FREE_SULFUR = "default_free_sulfur"; // Výchozí hodnota, na kterou se mají vína sířit v mg / l
+    public const DEFAULT_LIQUID_SULFUR = "default_liquid_sulfur"; // Výchozí hodnota pro dávkování tekuté síry v %
 
     protected $fillable = [
         self::PROJECT_ID,

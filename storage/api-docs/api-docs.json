@@ -351,6 +351,37 @@
                 }
             }
         },
+        "/api/v1/projectSettings/projekt/{projectId}": {
+            "get": {
+                "tags": [
+                    "ProjectSettings"
+                ],
+                "summary": "Show ProjectSettings by ProjectId",
+                "description": "Show ProjectSettings by ProjectId",
+                "operationId": "showProjectSettingsByProject",
+                "parameters": [
+                    {
+                        "name": "projectId",
+                        "in": "path",
+                        "description": "Project ID",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Response Successfull",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
         "/api/v1/user": {
             "get": {
                 "tags": [

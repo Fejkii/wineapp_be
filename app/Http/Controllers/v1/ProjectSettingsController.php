@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\v1;
 
 use App\Exceptions\TransactionException;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\v1\Controller;
+use App\Http\Resources\ProjectSettingsResource;
 use App\Models\ProjectSettings;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -45,8 +46,8 @@ class ProjectSettingsController extends Controller
             $input = $request->all();
 
             $validator = Validator::make($input, [
-                ProjectSettings::DEFAULT_FREE_SULFUR => 'nullable|double',
-                ProjectSettings::DEFAULT_LIQUID_SULFUR => 'nullable|double',
+                ProjectSettings::DEFAULT_FREE_SULFUR => 'nullable|numeric',
+                ProjectSettings::DEFAULT_LIQUID_SULFUR => 'nullable|numeric',
             ]);
 
             if($validator->fails()){
@@ -80,13 +81,44 @@ class ProjectSettingsController extends Controller
      *       ),
      *      @OA\Response(response=404, description="Resource Not Found"),
      * )
+     * @param int $projectSettingsId
+     * @return JsonResponse
+     */
+    public function show(int $projectSettingsId): JsonResponse
+    {
+        $projectSettings = ProjectSettings::findOrFail($projectSettingsId);
+
+        return $this->sendResponse($projectSettings, "Show detail of ProjectSettings");
+    }
+
+    /**
+     * @OA\Get (
+     * path="/api/v1/projectSettings/projekt/{projectId}",
+     * operationId="showProjectSettingsByProject",
+     * tags={"ProjectSettings"},
+     * summary="Show ProjectSettings by ProjectId",
+     * description="Show ProjectSettings by ProjectId",
+     *     @OA\Parameter(
+     *         name="projectId",
+     *         in="path",
+     *         description="Project ID",
+     *         required=true,
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Response Successfull",
+     *          @OA\JsonContent()
+     *       ),
+     *      @OA\Response(response=404, description="Resource Not Found"),
+     * )
      * @param int $projectId
      * @return JsonResponse
      */
-    public function show(int $projectId): JsonResponse
+    public function showByProject(int $projectId): JsonResponse
     {
-        $project = ProjectSettings::findOrFail($projectId);
+        $projectSettings = ProjectSettings::whereProjectId($projectId)->first();
+        $result = ProjectSettingsResource::make($projectSettings);
 
-        return $this->sendResponse($project, "Show detail of ProjectSettings");
+        return $this->sendResponse($result, "Show detail of ProjectSettings");
     }
 }
