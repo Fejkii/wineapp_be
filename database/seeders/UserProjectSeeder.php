@@ -23,6 +23,7 @@ class UserProjectSeeder extends Seeder
                 UserProject::IS_DEFAULT => true,
                 UserProject::IS_OWNER => true,
                 Model::CREATED_AT => now(),
+                Model::UPDATED_AT => now(),
             ),
             array(
                 UserProject::USER_ID => 1,
@@ -30,6 +31,7 @@ class UserProjectSeeder extends Seeder
                 UserProject::IS_DEFAULT => false,
                 UserProject::IS_OWNER => true,
                 Model::CREATED_AT => now(),
+                Model::UPDATED_AT => now(),
             ),
         ));
     }

@@ -20,10 +20,12 @@ class ProjectSeeder extends Seeder
             array(
                 Project::TITLE => 'Happy wine',
                 Model::CREATED_AT => now(),
+                Model::UPDATED_AT => now(),
             ),
             array(
                 Project::TITLE => 'Second project',
                 Model::CREATED_AT => now(),
+                Model::UPDATED_AT => now(),
             ),
         ));
     }
