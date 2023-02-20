@@ -5,6 +5,7 @@ namespace App\Http\Controllers\v1;
 use App\Exceptions\TransactionException;
 use App\Http\Resources\UserProjectResource;
 use App\Models\Project;
+use App\Models\ProjectSettings;
 use App\Models\UserProject;
 use Auth;
 use Illuminate\Http\JsonResponse;
@@ -58,6 +59,10 @@ class ProjectController extends Controller
             }
 
             $project = Project::create($input);
+
+            $projectSettings = ProjectSettings::create([
+                ProjectSettings::PROJECT_ID => $project->id,
+            ]);
 
             $userId = Auth::user()->id;
 

@@ -279,6 +279,78 @@
                 }
             }
         },
+        "/api/v1/projectSettings/{projectSettingsId}": {
+            "get": {
+                "tags": [
+                    "ProjectSettings"
+                ],
+                "summary": "Show ProjectSettings",
+                "description": "Show ProjectSettings",
+                "operationId": "showProjectSettings",
+                "parameters": [
+                    {
+                        "name": "projectSettingsId",
+                        "in": "path",
+                        "description": "ProjectSettings ID",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Response Successfull",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "ProjectSettings"
+                ],
+                "summary": "Update ProjectSettings",
+                "description": "Update ProjectSettings",
+                "operationId": "updateProjectSettings",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [],
+                                "properties": {
+                                    "defaultFreeSulfur": {
+                                        "type": "number",
+                                        "format": "double"
+                                    },
+                                    "defaultLiquidSulfur": {
+                                        "type": "number",
+                                        "format": "double"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Response Successfull",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
         "/api/v1/user": {
             "get": {
                 "tags": [

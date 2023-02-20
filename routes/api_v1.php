@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\v1\AuthenticationController;
 use App\Http\Controllers\v1\ProjectController;
+use App\Http\Controllers\v1\ProjectSettingsController;
 use App\Http\Controllers\v1\UserController;
 use App\Http\Controllers\v1\UserProjectController;
 use App\Http\Controllers\v1\VineyardController;
@@ -35,6 +36,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/project', [ProjectController::class, 'create']);
     Route::put('/project/{projectId}', [ProjectController::class, 'update']);
     Route::get('/project/{projectId}', [ProjectController::class, 'show']);
+
+    Route::put('/projectSettings/{projectSettingsId}', [ProjectSettingsController::class, 'update']);
+    Route::get('/projectSettings/{projectSettingsId}', [ProjectSettingsController::class, 'show']);
 
     // UserProject
     Route::post('/userProject', [UserProjectController::class, 'create']);
