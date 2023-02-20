@@ -15,7 +15,6 @@ use Illuminate\Database\Eloquent\Model;
  * @method static Builder|WineRecordType newModelQuery()
  * @method static Builder|WineRecordType newQuery()
  * @method static Builder|WineRecordType query()
- * @mixin Eloquent
  * @property int $id
  * @property string $title
  * @property string|null $color
@@ -24,6 +23,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static Builder|WineRecordType whereId($value)
  * @method static Builder|WineRecordType whereNote($value)
  * @method static Builder|WineRecordType whereTitle($value)
+ * @mixin Eloquent
  */
 class WineRecordType extends Model
 {

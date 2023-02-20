@@ -45,8 +45,8 @@ use Illuminate\Support\Carbon;
  * @method static Builder|AccountingDocument whereUpdatedAt($value)
  * @method static Builder|AccountingDocument whereUserId($value)
  * @method static Builder|AccountingDocument whereVariableSymbol($value)
- * @mixin Eloquent
  * @method static Builder|AccountingDocument whereProjectId($value)
+ * @mixin Eloquent
  */
 class AccountingDocument extends Model
 {

@@ -21,9 +21,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static Builder|WineVariety whereCode($value)
  * @method static Builder|WineVariety whereId($value)
  * @method static Builder|WineVariety whereTitle($value)
- * @mixin Eloquent
  * @property int $project_id
  * @method static Builder|WineVariety whereProjectId($value)
+ * @mixin Eloquent
  */
 class WineVariety extends Model
 {

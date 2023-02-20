@@ -28,13 +28,13 @@ use Illuminate\Support\Carbon;
  * @method static Builder|VineyardRecord whereTitle($value)
  * @method static Builder|VineyardRecord whereUpdatedAt($value)
  * @method static Builder|VineyardRecord whereVineyardId($value)
- * @mixin Eloquent
  * @property string $date
  * @method static Builder|VineyardRecord whereDate($value)
  * @property int|null $vineyard_wine_id
  * @property int|null $vineyard_record_type_id
  * @method static Builder|VineyardRecord whereVineyardRecordTypeId($value)
  * @method static Builder|VineyardRecord whereVineyardWineId($value)
+ * @mixin Eloquent
  */
 class VineyardRecord extends Model
 {

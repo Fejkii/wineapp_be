@@ -39,8 +39,8 @@ use Illuminate\Support\Carbon;
  * @method static Builder|AccountingCompany whereTitle($value)
  * @method static Builder|AccountingCompany whereUpdatedAt($value)
  * @method static Builder|AccountingCompany whereVat($value)
- * @mixin Eloquent
  * @method static Builder|AccountingCompany whereProjectId($value)
+ * @mixin Eloquent
  */
 class AccountingCompany extends Model
 {

@@ -17,7 +17,6 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Project newModelQuery()
  * @method static Builder|Project newQuery()
  * @method static Builder|Project query()
- * @mixin Eloquent
  * @property int $id
  * @property string $title
  * @property Carbon|null $created_at
@@ -28,6 +27,7 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Project whereUpdatedAt($value)
  * @method static Builder|Project whereUsers($value)
  * @property-read UserProject|null $userProject
+ * @mixin Eloquent
  */
 class Project extends Model
 {

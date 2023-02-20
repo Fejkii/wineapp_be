@@ -30,9 +30,9 @@ use Illuminate\Support\Carbon;
  * @method static Builder|UserProject whereProjectId($value)
  * @method static Builder|UserProject whereUpdatedAt($value)
  * @method static Builder|UserProject whereUserId($value)
- * @mixin Eloquent
  * @property int $is_owner
  * @method static Builder|UserProject whereIsOwner($value)
+ * @mixin Eloquent
  */
 class UserProject extends Model
 {
