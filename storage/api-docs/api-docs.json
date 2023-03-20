@@ -1717,7 +1717,6 @@
                                 "required": [
                                     "wine_evidence_id",
                                     "wine_record_type_id",
-                                    "title",
                                     "date"
                                 ],
                                 "properties": {
@@ -1727,15 +1726,16 @@
                                     "wine_record_type_id": {
                                         "type": "integer"
                                     },
-                                    "title": {
-                                        "type": "string"
-                                    },
                                     "date": {
                                         "type": "string",
                                         "format": "date"
                                     },
                                     "note": {
                                         "type": "string"
+                                    },
+                                    "free_sulfure": {
+                                        "type": "number",
+                                        "format": "double"
                                     }
                                 },
                                 "type": "object"
@@ -1807,7 +1807,11 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "required": [],
+                                "required": [
+                                    "wine_evidence_id",
+                                    "wine_record_type_id",
+                                    "date"
+                                ],
                                 "properties": {
                                     "wine_evidence_id": {
                                         "type": "integer"
@@ -1815,15 +1819,16 @@
                                     "wine_record_type_id": {
                                         "type": "integer"
                                     },
-                                    "title": {
-                                        "type": "string"
-                                    },
                                     "date": {
                                         "type": "string",
                                         "format": "date"
                                     },
                                     "note": {
                                         "type": "string"
+                                    },
+                                    "free_sulfure": {
+                                        "type": "number",
+                                        "format": "double"
                                     }
                                 },
                                 "type": "object"
