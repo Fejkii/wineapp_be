@@ -47,7 +47,7 @@ class WineRecordController extends Controller
             WineRecord::WINE_EVIDENCE_ID => 'required|exists:App\Models\WineEvidence,id',
             WineRecord::WINE_RECORD_TYPE_ID => 'required|exists:App\Models\WineRecordType,id',
             WineRecord::DATE => 'required|date',
-            WineRecord::FREE_SULFURE => 'number',
+            WineRecord::FREE_SULFURE => 'numeric',
             WineRecord::NOTE => 'nullable|string',
         ]);
 
@@ -104,7 +104,7 @@ class WineRecordController extends Controller
             WineRecord::WINE_EVIDENCE_ID => 'exists:App\Models\WineEvidence,id',
             WineRecord::WINE_RECORD_TYPE_ID => 'exists:App\Models\WineRecordType,id',
             WineRecord::DATE => 'required|date',
-            WineRecord::FREE_SULFURE => 'number',
+            WineRecord::FREE_SULFURE => 'numeric',
             WineRecord::NOTE => 'nullable|string',
         ]);
 
