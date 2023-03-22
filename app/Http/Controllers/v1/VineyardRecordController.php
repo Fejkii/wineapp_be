@@ -189,10 +189,10 @@ class VineyardRecordController extends Controller
             return $this->sendError('Inputs are not valid.', 422);
         }
 
-        $wineRecord = VineyardRecord::whereVineyardId($vineyardId)->get();
-        $result = VineyardRecordResource::collection($wineRecord);
+        $wineRecord = VineyardRecord::whereVineyardId($vineyardId);
+        $result = VineyardRecordResource::collection($wineRecord->get()->sortByDesc(VineyardRecord::DATE));
 
-        return $this->sendResponse($result, "Show VineyardWines by VineyardId");
+        return $this->sendResponse($result, "Show VineyardRecords by VineyardId");
     }
 
     /**
@@ -228,9 +228,9 @@ class VineyardRecordController extends Controller
             return $this->sendError('Inputs are not valid.', 422);
         }
 
-        $wineRecord = VineyardRecord::whereVineyardWineId($vineyardWineId)->get();
-        $result = VineyardRecordResource::make($wineRecord);
+        $wineRecord = VineyardRecord::whereVineyardWineId($vineyardWineId);
+        $result = VineyardRecordResource::make($wineRecord->get()->sortByDesc(VineyardRecord::DATE));
 
-        return $this->sendResponse($result, "Show VineyardWines by VineyardWineId");
+        return $this->sendResponse($result, "Show VineyardRecords by VineyardWineId");
     }
 }

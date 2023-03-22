@@ -180,7 +180,7 @@ class WineRecordController extends Controller
     public function showByWineEvidence(int $wineEvidenceId): JsonResponse
     {
         $wineRecord = WineRecord::whereWineEvidenceId($wineEvidenceId);
-        $result = WineRecordResource::collection($wineRecord->get());
+        $result = WineRecordResource::collection($wineRecord->get()->sortByDesc(WineRecord::DATE));
 
         return $this->sendResponse($result, "Show WineRecord List for wineEvidence");
     }
