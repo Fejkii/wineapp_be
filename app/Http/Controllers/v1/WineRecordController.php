@@ -25,8 +25,9 @@ class WineRecordController extends Controller
      *             @OA\Property(property="wine_evidence_id", type="integer"),
      *             @OA\Property(property="wine_record_type_id", type="integer"),
      *             @OA\Property(property="date", type="date"),
+     *             @OA\Property(property="title", type="string"),
+     *             @OA\Property(property="data", type="string"),
      *             @OA\Property(property="note", type="string"),
-     *             @OA\Property(property="free_sulfure", type="double"),
      *        ),
      *    ),
      *      @OA\Response(
@@ -47,7 +48,8 @@ class WineRecordController extends Controller
             WineRecord::WINE_EVIDENCE_ID => 'required|exists:App\Models\WineEvidence,id',
             WineRecord::WINE_RECORD_TYPE_ID => 'required|exists:App\Models\WineRecordType,id',
             WineRecord::DATE => 'required|date',
-            WineRecord::FREE_SULFURE => 'nullable|numeric',
+            WineRecord::TITLE => 'nullable|string',
+            WineRecord::DATA => 'nullable|string',
             WineRecord::NOTE => 'nullable|string',
         ]);
 
@@ -81,8 +83,9 @@ class WineRecordController extends Controller
      *             @OA\Property(property="wine_evidence_id", type="integer"),
      *             @OA\Property(property="wine_record_type_id", type="integer"),
      *             @OA\Property(property="date", type="date"),
+     *             @OA\Property(property="title", type="string"),
+     *             @OA\Property(property="data", type="string"),
      *             @OA\Property(property="note", type="string"),
-     *             @OA\Property(property="free_sulfure", type="double"),
      *        ),
      *    ),
      *      @OA\Response(
@@ -104,7 +107,8 @@ class WineRecordController extends Controller
             WineRecord::WINE_EVIDENCE_ID => 'exists:App\Models\WineEvidence,id',
             WineRecord::WINE_RECORD_TYPE_ID => 'exists:App\Models\WineRecordType,id',
             WineRecord::DATE => 'required|date',
-            WineRecord::FREE_SULFURE => 'nullable|numeric',
+            WineRecord::TITLE => 'nullable|string',
+            WineRecord::DATA => 'nullable|string',
             WineRecord::NOTE => 'nullable|string',
         ]);
 

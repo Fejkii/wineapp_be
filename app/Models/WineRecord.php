@@ -32,8 +32,8 @@ use Illuminate\Support\Carbon;
  * @method static Builder|WineRecord whereUpdatedAt($value)
  * @method static Builder|WineRecord whereWineEvidenceId($value)
  * @method static Builder|WineRecord whereWineRecordTypeId($value)
- * @property float|null $free_sulfure
- * @method static Builder|WineRecord whereFreeSulfure($value)
+ * @property string|null $data
+ * @method static Builder|WineRecord whereData($value)
  * @mixin Eloquent
  */
 class WineRecord extends Model
@@ -44,14 +44,16 @@ class WineRecord extends Model
     public const WINE_EVIDENCE_ID = "wine_evidence_id";
     public const WINE_RECORD_TYPE_ID = "wine_record_type_id";
     public const WINE_RECORD_TYPE = "wine_record_type";
-    public const FREE_SULFURE = "free_sulfure";
+    public const TITLE = "title";
+    public const DATA = "data";
     public const DATE = "date";
     public const NOTE = "note";
 
     protected $fillable = [
         self::WINE_EVIDENCE_ID,
         self::WINE_RECORD_TYPE_ID,
-        self::FREE_SULFURE,
+        self::TITLE,
+        self::DATA,
         self::DATE,
         self::NOTE,
     ];

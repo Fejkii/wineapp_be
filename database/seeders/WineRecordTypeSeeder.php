@@ -35,7 +35,7 @@ class WineRecordTypeSeeder extends Seeder
                 WineRecordType::TITLE => 'Stahování',
             ),
             array(
-                WineRecordType::TITLE => 'Sirka - Kupzit',
+                WineRecordType::TITLE => 'Ostatní',
             ),
         ));
     }

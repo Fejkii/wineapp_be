@@ -1730,12 +1730,14 @@
                                         "type": "string",
                                         "format": "date"
                                     },
-                                    "note": {
+                                    "title": {
                                         "type": "string"
                                     },
-                                    "free_sulfure": {
-                                        "type": "number",
-                                        "format": "double"
+                                    "data": {
+                                        "type": "string"
+                                    },
+                                    "note": {
+                                        "type": "string"
                                     }
                                 },
                                 "type": "object"
@@ -1823,12 +1825,14 @@
                                         "type": "string",
                                         "format": "date"
                                     },
-                                    "note": {
+                                    "title": {
                                         "type": "string"
                                     },
-                                    "free_sulfure": {
-                                        "type": "number",
-                                        "format": "double"
+                                    "data": {
+                                        "type": "string"
+                                    },
+                                    "note": {
+                                        "type": "string"
                                     }
                                 },
                                 "type": "object"
