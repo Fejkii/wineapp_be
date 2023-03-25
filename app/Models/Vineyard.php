@@ -26,6 +26,8 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Vineyard whereProjectId($value)
  * @method static Builder|Vineyard whereTitle($value)
  * @method static Builder|Vineyard whereUpdatedAt($value)
+ * @property float|null $area
+ * @method static Builder|Vineyard whereArea($value)
  * @mixin Eloquent
  */
 class Vineyard extends Model
@@ -35,9 +37,11 @@ class Vineyard extends Model
     public const ID = "id";
     public const PROJECT_ID = "project_id";
     public const TITLE = "title";
+    public const AREA = "area";
 
     protected $fillable = [
         self::PROJECT_ID,
         self::TITLE,
+        self::AREA,
     ];
 }

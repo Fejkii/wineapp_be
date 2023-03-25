@@ -34,6 +34,8 @@ use Illuminate\Support\Carbon;
  * @property int|null $vineyard_record_type_id
  * @method static Builder|VineyardRecord whereVineyardRecordTypeId($value)
  * @method static Builder|VineyardRecord whereVineyardWineId($value)
+ * @property string|null $data
+ * @method static Builder|VineyardRecord whereData($value)
  * @mixin Eloquent
  */
 class VineyardRecord extends Model
@@ -46,6 +48,7 @@ class VineyardRecord extends Model
     public const VINEYARD_RECORD_TYPE_ID = "vineyard_record_type_id";
     public const VINEYARD_RECORD_TYPE = "vineyard_record_type";
     public const TITLE = "title";
+    public const DATA = "data";
     public const DATE = "date";
     public const NOTE = "note";
 
@@ -54,6 +57,7 @@ class VineyardRecord extends Model
         self::VINEYARD_WINE_ID,
         self::VINEYARD_RECORD_TYPE_ID,
         self::TITLE,
+        self::DATA,
         self::DATE,
         self::NOTE,
     ];

@@ -25,6 +25,7 @@ class VineyardRecordResource extends JsonResource
             VineyardRecord::VINEYARD_WINE_ID => $this->wine_evidence_id,
             VineyardRecord::VINEYARD_RECORD_TYPE => VineyardRecordType::findOrFail($this->vineyard_record_type_id),
             VineyardRecord::TITLE => $this->title,
+            VineyardRecord::DATA => $this->data,
             VineyardRecord::DATE => $this->date,
             VineyardRecord::NOTE => $this->note,
             Model::CREATED_AT => $this->created_at,

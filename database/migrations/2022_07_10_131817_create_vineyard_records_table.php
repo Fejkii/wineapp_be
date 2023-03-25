@@ -17,8 +17,9 @@ class CreateVineyardRecordsTable extends Migration
         Schema::create('vineyard_records', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger(VineyardRecord::VINEYARD_RECORD_TYPE_ID);
-            $table->string(VineyardRecord::TITLE);
             $table->timestamp(VineyardRecord::DATE);
+            $table->string(VineyardRecord::TITLE)->nullable();
+            $table->string(VineyardRecord::DATA)->nullable();
             $table->unsignedBigInteger(VineyardRecord::VINEYARD_ID)->nullable();
             $table->unsignedBigInteger(VineyardRecord::VINEYARD_WINE_ID)->nullable();
             $table->string(VineyardRecord::NOTE)->nullable();

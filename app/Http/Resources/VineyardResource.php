@@ -26,6 +26,7 @@ class VineyardResource extends JsonResource
             Vineyard::ID => $this->id,
             'project' => Project::findOrFail($this->project_id),
             Vineyard::TITLE => $this->title,
+            Vineyard::AREA => $this->area,
             Model::CREATED_AT => $this->created_at,
             Model::UPDATED_AT => $this->updated_at,
         ];

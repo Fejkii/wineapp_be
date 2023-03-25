@@ -779,10 +779,16 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "required": [],
+                                "required": [
+                                    "title"
+                                ],
                                 "properties": {
                                     "title": {
                                         "type": "string"
+                                    },
+                                    "area": {
+                                        "type": "number",
+                                        "format": "double"
                                     }
                                 },
                                 "type": "object"
@@ -858,6 +864,10 @@
                                     },
                                     "title": {
                                         "type": "string"
+                                    },
+                                    "area": {
+                                        "type": "number",
+                                        "format": "double"
                                     }
                                 },
                                 "type": "object"
@@ -893,19 +903,20 @@
                         "application/json": {
                             "schema": {
                                 "required": [
-                                    "wine_evidence_id",
-                                    "wine_record_type_id",
-                                    "title",
+                                    "vineyard_record_type_id",
                                     "date"
                                 ],
                                 "properties": {
-                                    "wine_evidence_id": {
+                                    "vineyard_id": {
                                         "type": "integer"
                                     },
-                                    "wine_record_type_id": {
+                                    "vineyard_wine_id": {
                                         "type": "integer"
                                     },
                                     "title": {
+                                        "type": "string"
+                                    },
+                                    "data": {
                                         "type": "string"
                                     },
                                     "date": {
@@ -985,15 +996,21 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "required": [],
+                                "required": [
+                                    "vineyard_record_type_id",
+                                    "date"
+                                ],
                                 "properties": {
-                                    "wine_evidence_id": {
+                                    "vineyard_id": {
                                         "type": "integer"
                                     },
-                                    "wine_record_type_id": {
+                                    "vineyard_wine_id": {
                                         "type": "integer"
                                     },
                                     "title": {
+                                        "type": "string"
+                                    },
+                                    "data": {
                                         "type": "string"
                                     },
                                     "date": {

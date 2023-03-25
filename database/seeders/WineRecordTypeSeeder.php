@@ -26,13 +26,19 @@ class WineRecordTypeSeeder extends Seeder
                 WineRecordType::TITLE => 'Měření bílkovin',
             ),
             array(
-                WineRecordType::TITLE => 'Bentonit',
+                WineRecordType::TITLE => 'Odstranění bílkovin',
             ),
             array(
                 WineRecordType::TITLE => 'Filtrování',
             ),
             array(
                 WineRecordType::TITLE => 'Stahování',
+            ),
+            array(
+                WineRecordType::TITLE => 'Kvašení',
+            ),
+            array(
+                WineRecordType::TITLE => 'Lisování',
             ),
             array(
                 WineRecordType::TITLE => 'Ostatní',

@@ -18,6 +18,7 @@ class CreateVineyardsTable extends Migration
             $table->id();
             $table->unsignedBigInteger(Vineyard::PROJECT_ID);
             $table->string(Vineyard::TITLE);
+            $table->double(Vineyard::AREA)->nullable();
             $table->timestamps();
 
             $table->foreign(Vineyard::PROJECT_ID)->references('id')->on('projects');

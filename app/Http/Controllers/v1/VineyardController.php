@@ -107,6 +107,7 @@ class VineyardController extends Controller
      *             required={"project_id", "title"},
      *             @OA\Property(property="project_id", type="integer"),
      *             @OA\Property(property="title", type="string"),
+     *             @OA\Property(property="area", type="double"),
      *        ),
      *    ),
      *      @OA\Response(
@@ -125,6 +126,7 @@ class VineyardController extends Controller
         $validator = Validator::make($input, [
             Vineyard::PROJECT_ID => 'required|exists:App\Models\Project,id',
             Vineyard::TITLE => 'required|string',
+            Vineyard::AREA => 'nullable|numeric',
         ]);
 
         if($validator->fails()){
@@ -153,8 +155,9 @@ class VineyardController extends Controller
      *      @OA\RequestBody(
      *         @OA\JsonContent(
      *             type="object",
-     *             required={},
+     *             required={"title"},
      *             @OA\Property(property="title", type="string"),
+     *             @OA\Property(property="area", type="double"),
      *        ),
      *    ),
      *      @OA\Response(
@@ -174,6 +177,7 @@ class VineyardController extends Controller
         $input = $request->all();
         $validator = Validator::make($input, [
             Vineyard::TITLE => 'required|string',
+            Vineyard::AREA => 'nullable|numeric',
         ]);
 
         if($validator->fails()){
