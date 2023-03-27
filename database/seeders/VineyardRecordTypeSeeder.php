@@ -17,22 +17,16 @@ class VineyardRecordTypeSeeder extends Seeder
     {
         DB::table('vineyard_record_types')->insert(array(
             array(
-                VineyardRecordType::TITLE => 'Orání',
+                VineyardRecordType::TITLE => 'Stříkání',
             ),
             array(
                 VineyardRecordType::TITLE => 'Plečkování',
             ),
             array(
-                VineyardRecordType::TITLE => 'Přiorání',
-            ),
-            array(
-                VineyardRecordType::TITLE => 'Odorání',
-            ),
-            array(
                 VineyardRecordType::TITLE => 'Zalamování',
             ),
             array(
-                VineyardRecordType::TITLE => 'Stříkání',
+                VineyardRecordType::TITLE => 'Orání',
             ),
             array(
                 VineyardRecordType::TITLE => 'Sběr hroznů',
@@ -42,6 +36,9 @@ class VineyardRecordTypeSeeder extends Seeder
             ),
             array(
                 VineyardRecordType::TITLE => 'Vázání',
+            ),
+            array(
+                VineyardRecordType::TITLE => 'Ostatní',
             ),
         ));
     }

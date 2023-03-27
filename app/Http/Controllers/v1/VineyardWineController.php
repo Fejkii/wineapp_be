@@ -7,7 +7,6 @@ use App\Models\VineyardWine;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use OpenApi\Annotations as OA;
 use Throwable;
 
 /**
@@ -93,7 +92,7 @@ class VineyardWineController extends Controller
         $vineyardWine = VineyardWine::create($input);
         $result = VineyardWineResource::make($vineyardWine);
 
-        return $this->sendResponse($result, "Vineyard created");
+        return $this->sendResponse($result, "VineyardWine created");
     }
 
     /**
@@ -152,7 +151,7 @@ class VineyardWineController extends Controller
         $vineyardWine->updateOrFail($input);
         $result = VineyardWineResource::make($vineyardWine);
 
-        return $this->sendResponse($result, "Vineyard updated");
+        return $this->sendResponse($result, "VineyardWine updated");
     }
 
     /**
@@ -188,8 +187,14 @@ class VineyardWineController extends Controller
             return $this->sendError('Inputs are not valid.', 422);
         }
 
-        $vineyards = VineyardWine::whereVineyardId($vineyardId)->get();
-        $result = VineyardWineResource::collection($vineyards);
+        $vineyards = VineyardWine::whereVineyardId($vineyardId);
+        $count = $vineyards->count('wine_id');
+        $sum = (int)$vineyards->sum('quantity');
+        $result = [
+            "data" => VineyardWineResource::collection($vineyards->get()),
+            "count" => $count,
+            "sum" => $sum,
+        ];
 
         return $this->sendResponse($result, "Show VineyardWines by VineyardId");
     }
