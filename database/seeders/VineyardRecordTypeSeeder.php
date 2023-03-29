@@ -38,6 +38,9 @@ class VineyardRecordTypeSeeder extends Seeder
                 VineyardRecordType::TITLE => 'Vázání',
             ),
             array(
+                VineyardRecordType::TITLE => 'Hnojení',
+            ),
+            array(
                 VineyardRecordType::TITLE => 'Ostatní',
             ),
         ));

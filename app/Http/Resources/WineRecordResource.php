@@ -25,6 +25,8 @@ class WineRecordResource extends JsonResource
             WineRecord::WINE_EVIDENCE_ID => $this->wine_evidence_id,
             WineRecord::WINE_RECORD_TYPE => WineRecordType::findOrFail($this->wine_record_type_id),
             WineRecord::DATE => $this->date,
+            WineRecord::IS_IN_PROGRESS => $this->is_in_progress,
+            WineRecord::DATE_TO => $this->date_to,
             WineRecord::TITLE => $this->title,
             WineRecord::DATA => $this->data,
             WineRecord::NOTE => $this->note,

@@ -27,6 +27,8 @@ class VineyardRecordResource extends JsonResource
             VineyardRecord::TITLE => $this->title,
             VineyardRecord::DATA => $this->data,
             VineyardRecord::DATE => $this->date,
+            VineyardRecord::IS_IN_PROGRESS => $this->is_in_progress,
+            VineyardRecord::DATE_TO => $this->date,
             VineyardRecord::NOTE => $this->note,
             Model::CREATED_AT => $this->created_at,
             Model::UPDATED_AT => $this->updated_at,

@@ -34,6 +34,10 @@ use Illuminate\Support\Carbon;
  * @method static Builder|WineRecord whereWineRecordTypeId($value)
  * @property string|null $data
  * @method static Builder|WineRecord whereData($value)
+ * @property bool|null $is_in_progress
+ * @property string|null $date_to
+ * @method static Builder|WineRecord whereDateTo($value)
+ * @method static Builder|WineRecord whereIsInProgress($value)
  * @mixin Eloquent
  */
 class WineRecord extends Model
@@ -46,7 +50,9 @@ class WineRecord extends Model
     public const WINE_RECORD_TYPE = "wine_record_type";
     public const TITLE = "title";
     public const DATA = "data";
+    public const IS_IN_PROGRESS = "is_in_progress";
     public const DATE = "date";
+    public const DATE_TO = "date_to";
     public const NOTE = "note";
 
     protected $fillable = [
@@ -54,7 +60,13 @@ class WineRecord extends Model
         self::WINE_RECORD_TYPE_ID,
         self::TITLE,
         self::DATA,
+        self::IS_IN_PROGRESS,
         self::DATE,
+        self::DATE_TO,
         self::NOTE,
+    ];
+
+    protected $casts = [
+        self::IS_IN_PROGRESS => 'boolean',
     ];
 }

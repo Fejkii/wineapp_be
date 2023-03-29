@@ -19,6 +19,8 @@ class CreateWineRecordsTable extends Migration
             $table->unsignedBigInteger(WineRecord::WINE_EVIDENCE_ID);
             $table->unsignedBigInteger(WineRecord::WINE_RECORD_TYPE_ID);
             $table->timestamp(WineRecord::DATE);
+            $table->boolean(WineRecord::IS_IN_PROGRESS)->nullable();
+            $table->timestamp(WineRecord::DATE_TO)->nullable();
             $table->string(WineRecord::TITLE)->nullable();
             $table->string(WineRecord::DATA)->nullable();
             $table->string(WineRecord::NOTE)->nullable();

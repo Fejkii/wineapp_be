@@ -36,6 +36,10 @@ use Illuminate\Support\Carbon;
  * @method static Builder|VineyardRecord whereVineyardWineId($value)
  * @property string|null $data
  * @method static Builder|VineyardRecord whereData($value)
+ * @property bool|null $is_in_progress
+ * @property string|null $date_to
+ * @method static Builder|VineyardRecord whereDateTo($value)
+ * @method static Builder|VineyardRecord whereIsInProgress($value)
  * @mixin Eloquent
  */
 class VineyardRecord extends Model
@@ -49,7 +53,9 @@ class VineyardRecord extends Model
     public const VINEYARD_RECORD_TYPE = "vineyard_record_type";
     public const TITLE = "title";
     public const DATA = "data";
+    public const IS_IN_PROGRESS = "is_in_progress";
     public const DATE = "date";
+    public const DATE_TO = "date_to";
     public const NOTE = "note";
 
     protected $fillable = [
@@ -58,7 +64,13 @@ class VineyardRecord extends Model
         self::VINEYARD_RECORD_TYPE_ID,
         self::TITLE,
         self::DATA,
+        self::IS_IN_PROGRESS,
         self::DATE,
+        self::DATE_TO,
         self::NOTE,
+    ];
+
+    protected $casts = [
+        self::IS_IN_PROGRESS => 'boolean',
     ];
 }

@@ -923,6 +923,13 @@
                                         "type": "string",
                                         "format": "date"
                                     },
+                                    "is_in_progress": {
+                                        "type": "boolean"
+                                    },
+                                    "date_to": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
                                     "note": {
                                         "type": "string"
                                     }
@@ -1014,6 +1021,13 @@
                                         "type": "string"
                                     },
                                     "date": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "is_in_progress": {
+                                        "type": "boolean"
+                                    },
+                                    "date_to": {
                                         "type": "string",
                                         "format": "date"
                                     },
@@ -1747,6 +1761,13 @@
                                         "type": "string",
                                         "format": "date"
                                     },
+                                    "is_in_progress": {
+                                        "type": "boolean"
+                                    },
+                                    "date_to": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
                                     "title": {
                                         "type": "string"
                                     },
@@ -1839,6 +1860,13 @@
                                         "type": "integer"
                                     },
                                     "date": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "is_in_progress": {
+                                        "type": "boolean"
+                                    },
+                                    "date_to": {
                                         "type": "string",
                                         "format": "date"
                                     },

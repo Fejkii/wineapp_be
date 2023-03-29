@@ -18,6 +18,8 @@ class CreateVineyardRecordsTable extends Migration
             $table->id();
             $table->unsignedBigInteger(VineyardRecord::VINEYARD_RECORD_TYPE_ID);
             $table->timestamp(VineyardRecord::DATE);
+            $table->boolean(VineyardRecord::IS_IN_PROGRESS)->nullable();
+            $table->timestamp(VineyardRecord::DATE_TO)->nullable();
             $table->string(VineyardRecord::TITLE)->nullable();
             $table->string(VineyardRecord::DATA)->nullable();
             $table->unsignedBigInteger(VineyardRecord::VINEYARD_ID)->nullable();
