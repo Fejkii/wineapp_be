@@ -20,7 +20,7 @@ class WineEvidenceResource extends JsonResource
             WineEvidence::ID => $this->id,
             WineEvidence::PROJECT_ID => $this->project_id,
             'wine' => Wine::findOrFail($this->wine_id),
-            'wine_classification' => WineClassification::findOrFail($this->wine_classification_id),
+            'wine_classification' => WineClassification::find($this->wine_classification_id),
             WineEvidence::TITLE => $this->title,
             WineEvidence::VOLUME => $this->volume,
             WineEvidence::YEAR => $this->year,

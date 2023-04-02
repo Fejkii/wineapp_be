@@ -58,10 +58,10 @@ class WineEvidenceController extends Controller
             WineEvidence::TITLE => 'required|string',
             WineEvidence::VOLUME => 'required|numeric',
             WineEvidence::YEAR => 'required|numeric',
-            WineEvidence::ALCOHOL => 'numeric|nullable',
-            WineEvidence::ACID => 'numeric|nullable',
-            WineEvidence::SUGAR => 'numeric|nullable',
-            WineEvidence::NOTE => 'string|nullable',
+            WineEvidence::ALCOHOL => 'nullable|numeric',
+            WineEvidence::ACID => 'nullable|numeric',
+            WineEvidence::SUGAR => 'nullable|numeric',
+            WineEvidence::NOTE => 'nullable|string',
         ]);
 
         if($validator->fails()){
@@ -118,14 +118,14 @@ class WineEvidenceController extends Controller
     {
         $input = $request->all();
         $validator = Validator::make($input, [
-            WineEvidence::WINE_ID => 'exists:App\Models\Wine,id',
-            WineEvidence::WINE_CLASSIFICATION_ID => 'exists:App\Models\WineClassification,id|nullable',
-            WineEvidence::TITLE => 'string',
-            WineEvidence::VOLUME => 'numeric',
-            WineEvidence::YEAR => 'numeric',
-            WineEvidence::ALCOHOL => 'numeric|nullable',
-            WineEvidence::ACID => 'numeric|nullable',
-            WineEvidence::SUGAR => 'numeric|nullable',
+            WineEvidence::WINE_ID => 'required|exists:App\Models\Wine,id',
+            WineEvidence::WINE_CLASSIFICATION_ID => 'nullable|exists:App\Models\WineClassification,id',
+            WineEvidence::TITLE => 'required|string',
+            WineEvidence::VOLUME => 'required|numeric',
+            WineEvidence::YEAR => 'required|numeric',
+            WineEvidence::ALCOHOL => 'nullable|numeric',
+            WineEvidence::ACID => 'nullable|numeric',
+            WineEvidence::SUGAR => 'nullable|numeric',
         ]);
 
         if($validator->fails()){
