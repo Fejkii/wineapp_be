@@ -1648,7 +1648,12 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "required": [],
+                                "required": [
+                                    "wine_id",
+                                    "title",
+                                    "volume",
+                                    "year"
+                                ],
                                 "properties": {
                                     "wine_id": {
                                         "type": "integer"
@@ -1680,6 +1685,55 @@
                                     },
                                     "note": {
                                         "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Response Successfull",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                }
+            }
+        },
+        "/api/v1/wineEvidence/volume/{wineEvidenceId}": {
+            "put": {
+                "tags": [
+                    "WineEvidence"
+                ],
+                "summary": "Update WineEvidence volume",
+                "description": "Update WineEvidence volume by selected wineEvidenceId",
+                "operationId": "updateWineEvidenceVolume",
+                "parameters": [
+                    {
+                        "name": "wineEvidenceId",
+                        "in": "path",
+                        "description": "WineEvidence ID",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "volume"
+                                ],
+                                "properties": {
+                                    "volume": {
+                                        "type": "number",
+                                        "format": "double"
                                     }
                                 },
                                 "type": "object"

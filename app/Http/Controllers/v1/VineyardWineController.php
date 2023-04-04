@@ -86,7 +86,7 @@ class VineyardWineController extends Controller
         ]);
 
         if($validator->fails()){
-            return $this->sendError('Inputs are not valid.', 422);
+            return $this->sendError('Validation error: ' . $validator->errors(), 422);
         }
 
         $vineyardWine = VineyardWine::create($input);
@@ -143,7 +143,7 @@ class VineyardWineController extends Controller
         ]);
 
         if($validator->fails()){
-            return $this->sendError('Inputs are not valid.', 422);
+            return $this->sendError('Validation error: ' . $validator->errors(), 422);
         }
 
         $vineyardWine = VineyardWine::findOrFail($vineyardWineId);
@@ -184,7 +184,7 @@ class VineyardWineController extends Controller
         ]);
 
         if($validator->fails()){
-            return $this->sendError('Inputs are not valid.', 422);
+            return $this->sendError('Validation error: ' . $validator->errors(), 422);
         }
 
         $vineyards = VineyardWine::whereVineyardId($vineyardId);

@@ -48,7 +48,7 @@ class WineController extends Controller
         ]);
 
         if($validator->fails()){
-            return $this->sendError('Inputs are not valid.', 422);
+            return $this->sendError('Validation error: ' . $validator->errors(), 422);
         }
 
         $input = $request->all();
@@ -99,7 +99,7 @@ class WineController extends Controller
         ]);
 
         if($validator->fails()){
-            return $this->sendError('Inputs are not valid.', 422);
+            return $this->sendError('Validation error: ' . $validator->errors(), 422);
         }
 
         /** @property Wine $wine */
@@ -175,7 +175,7 @@ class WineController extends Controller
         ]);
 
         if($validator->fails()){
-            return $this->sendError('Inputs are not valid.', 422);
+            return $this->sendError('Validation error: ' . $validator->errors(), 422);
         }
 
         $wines = Wine::whereProjectId($projectId)->get();

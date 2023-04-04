@@ -11,7 +11,6 @@ use Auth;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use OpenApi\Annotations as OA;
 
 /**
  * @author Petr Šťastný <petrstastny09@gmail.com>
@@ -55,8 +54,8 @@ class ProjectController extends Controller
             ]);
 
             if($validator->fails()){
-                return $this->sendError('Inputs are not valid.', 422);
-            }
+            return $this->sendError('Validation error: ' . $validator->errors(), 422);
+        }
 
             $project = Project::create($input);
 
@@ -130,8 +129,8 @@ class ProjectController extends Controller
             ]);
 
             if($validator->fails()){
-                return $this->sendError('Inputs are not valid.', 422);
-            }
+            return $this->sendError('Validation error: ' . $validator->errors(), 422);
+        }
 
             $project = Project::find($projectId);
 

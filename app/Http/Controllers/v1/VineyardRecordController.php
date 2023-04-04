@@ -59,7 +59,7 @@ class VineyardRecordController extends Controller
         ]);
 
         if($validator->fails()){
-            return $this->sendError('Inputs are not valid.', 422);
+            return $this->sendError('Validation error: ' . $validator->errors(), 422);
         }
 
         $vineyardRecord = VineyardRecord::create($input);
@@ -123,7 +123,7 @@ class VineyardRecordController extends Controller
         ]);
 
         if($validator->fails()){
-            return $this->sendError('Inputs are not valid.', 422);
+            return $this->sendError('Validation error: ' . $validator->errors(), 422);
         }
 
         /** @property VineyardRecord $vineyardRecord */
@@ -198,7 +198,7 @@ class VineyardRecordController extends Controller
         ]);
 
         if($validator->fails()){
-            return $this->sendError('Inputs are not valid.', 422);
+            return $this->sendError('Validation error: ' . $validator->errors(), 422);
         }
 
         $wineRecord = VineyardRecord::whereVineyardId($vineyardId);
@@ -237,7 +237,7 @@ class VineyardRecordController extends Controller
         ]);
 
         if($validator->fails()){
-            return $this->sendError('Inputs are not valid.', 422);
+            return $this->sendError('Validation error: ' . $validator->errors(), 422);
         }
 
         $wineRecord = VineyardRecord::whereVineyardWineId($vineyardWineId);

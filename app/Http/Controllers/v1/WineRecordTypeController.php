@@ -65,7 +65,7 @@ class WineRecordTypeController extends Controller
         ]);
 
         if($validator->fails()){
-            return $this->sendError('Inputs are not valid.', 422);
+            return $this->sendError('Validation error: ' . $validator->errors(), 422);
         }
 
         $vineyard = WineRecordType::create($input);

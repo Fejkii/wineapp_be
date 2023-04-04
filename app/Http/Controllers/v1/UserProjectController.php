@@ -52,7 +52,7 @@ class UserProjectController extends Controller
         ]);
 
         if($validator->fails()){
-            return $this->sendError('Email or Project is not valid.', 422);
+            return $this->sendError('Validation error: ' . $validator->errors(), 422);
         }
 
         $user = User::whereEmail($input[User::EMAIL])->first();
@@ -115,7 +115,7 @@ class UserProjectController extends Controller
         ]);
 
         if($validator->fails()){
-            return $this->sendError('Inputs are not valid.', 422);
+            return $this->sendError('Validation error: ' . $validator->errors(), 422);
         }
 
         $userProject = UserProject::findOrFail($userProjectId);
@@ -178,7 +178,7 @@ class UserProjectController extends Controller
         ]);
 
         if($validator->fails()){
-            return $this->sendError('Inputs are not valid.', 422);
+            return $this->sendError('Validation error: ' . $validator->errors(), 422);
         }
 
         $userProject = UserProject::select();
@@ -252,7 +252,7 @@ class UserProjectController extends Controller
         ]);
 
         if($validator->fails()){
-            return $this->sendError('Inputs are not valid.', 422);
+            return $this->sendError('Validation error: ' . $validator->errors(), 422);
         }
 
         $userProjects = UserProject::select();
@@ -302,7 +302,7 @@ class UserProjectController extends Controller
         ]);
 
         if($validator->fails()){
-            return $this->sendError('Project is not valid.', 422);
+            return $this->sendError('Validation error: ' . $validator->errors(), 422);
         }
 
         $userProjects = UserProject::whereProjectId($projectId)->get();
@@ -340,9 +340,11 @@ class UserProjectController extends Controller
         $validator = Validator::make([$userProjectId], [
             $userProjectId => 'required|exists:App\Models\UserProject,id',
         ]);
+
         if($validator->fails()){
-            return $this->sendError('Value is not valid.', 422);
+            return $this->sendError('Validation error: ' . $validator->errors(), 422);
         }
+
         $userProject = UserProject::findOrFail($userProjectId);
 
         if ($userProject->is_owner) {
@@ -393,7 +395,7 @@ class UserProjectController extends Controller
         ]);
 
         if($validator->fails()){
-            return $this->sendError('Inputs are not valid.', 422);
+            return $this->sendError('Validation error: ' . $validator->errors(), 422);
         }
 
         $userId = Auth::user()->id;

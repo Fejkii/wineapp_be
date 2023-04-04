@@ -62,7 +62,7 @@ class AuthenticationController extends Controller
         ]);
 
         if($validator->fails()){
-            return $this->sendError('Email or password is not valid.', 422);
+            return $this->sendError('Validation error: ' . $validator->errors(), 422);
         }
 
         $input = $request->all();
@@ -134,7 +134,7 @@ class AuthenticationController extends Controller
         ]);
 
         if($validator->fails()){
-            return $this->sendError('Email or password is not valid.', 422);
+            return $this->sendError('Validation error: ' . $validator->errors(), 422);
         }
 
         if ($request->device_name !== null) {

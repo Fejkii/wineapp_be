@@ -65,7 +65,7 @@ class WineEvidenceController extends Controller
         ]);
 
         if($validator->fails()){
-            return $this->sendError('Inputs are not valid.', 422);
+            return $this->sendError('Validation error: ' . $validator->errors(), 422);
         }
 
         $wineEvidence = WineEvidence::create($input);
@@ -90,7 +90,7 @@ class WineEvidenceController extends Controller
      *      @OA\RequestBody(
      *         @OA\JsonContent(
      *             type="object",
-     *             required={},
+     *             required={"wine_id", "title", "volume", "year"},
      *             @OA\Property(property="wine_id", type="integer"),
      *             @OA\Property(property="wine_classification_id", type="integer"),
      *             @OA\Property(property="title", type="string"),
@@ -129,7 +129,60 @@ class WineEvidenceController extends Controller
         ]);
 
         if($validator->fails()){
-            return $this->sendError('Inputs are not valid.', 422);
+            return $this->sendError('Validation error: ' . $validator->errors(), 422);
+        }
+
+        /** @property WineEvidence $wineEvidence */
+        $wineEvidence = WineEvidence::findOrFail($wineEvidenceId);
+
+        $wineEvidence->updateOrFail($input);
+
+        $wineEvidence->save();
+        $result = WineEvidenceResource::make($wineEvidence);
+
+        return $this->sendResponse($result, "Wine evidence updated");
+    }
+    /**
+     * @OA\Put (
+     * path="/api/v1/wineEvidence/volume/{wineEvidenceId}",
+     * operationId="updateWineEvidenceVolume",
+     * tags={"WineEvidence"},
+     * summary="Update WineEvidence volume",
+     * description="Update WineEvidence volume by selected wineEvidenceId",
+     *     @OA\Parameter(
+     *         name="wineEvidenceId",
+     *         in="path",
+     *         description="WineEvidence ID",
+     *         required=true,
+     *      ),
+     *      @OA\RequestBody(
+     *         @OA\JsonContent(
+     *             type="object",
+     *             required={"volume"},
+     *             @OA\Property(property="volume", type="double"),
+     *        ),
+     *    ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Response Successfull",
+     *          @OA\JsonContent()
+     *       ),
+     *      @OA\Response(response=404, description="Resource Not Found"),
+     * )
+     * @param Request $request
+     * @param int $wineEvidenceId
+     * @return JsonResponse
+     * @throws Throwable
+     */
+    public function updateVolume(Request $request, int $wineEvidenceId): JsonResponse
+    {
+        $input = $request->all();
+        $validator = Validator::make($input, [
+            WineEvidence::VOLUME => 'required|numeric',
+        ]);
+
+        if($validator->fails()){
+            return $this->sendError('Validation error: ' . $validator->errors(), 422);
         }
 
         /** @property WineEvidence $wineEvidence */

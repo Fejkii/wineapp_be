@@ -47,7 +47,7 @@ class WineVarietyController extends Controller
         ]);
 
         if($validator->fails()){
-            return $this->sendError('Inputs are not valid.', 422);
+            return $this->sendError('Validation error: ' . $validator->errors(), 422);
         }
 
         $wineVariety = WineVariety::create($input);
@@ -91,7 +91,7 @@ class WineVarietyController extends Controller
         ]);
 
         if($validator->fails()){
-            return $this->sendError('Inputs are not valid.', 422);
+            return $this->sendError('Validation error: ' . $validator->errors(), 422);
         }
 
         /** @property WineVariety $wineVariety */

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\v1;
 
 use App\Exceptions\TransactionException;
-use App\Http\Controllers\v1\Controller;
 use App\Http\Resources\ProjectSettingsResource;
 use App\Models\ProjectSettings;
 use Illuminate\Http\JsonResponse;
@@ -51,8 +50,8 @@ class ProjectSettingsController extends Controller
             ]);
 
             if($validator->fails()){
-                return $this->sendError('Inputs are not valid.', 422);
-            }
+            return $this->sendError('Validation error: ' . $validator->errors(), 422);
+        }
 
             $projectSettings->updateOrFail($input);
             $projectSettings->save();

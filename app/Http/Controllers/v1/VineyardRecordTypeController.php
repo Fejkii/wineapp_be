@@ -64,7 +64,7 @@ class VineyardRecordTypeController extends Controller
         ]);
 
         if($validator->fails()){
-            return $this->sendError('Inputs are not valid.', 422);
+            return $this->sendError('Validation error: ' . $validator->errors(), 422);
         }
 
         $vineyard = VineyardRecordType::create($input);

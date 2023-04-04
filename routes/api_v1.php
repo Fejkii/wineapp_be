@@ -65,6 +65,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/wineEvidence/project/{projectId}', [WineEvidenceController::class, 'showByProject']);
     Route::post('/wineEvidence', [WineEvidenceController::class, 'create']);
     Route::put('/wineEvidence/{wineEvidenceId}', [WineEvidenceController::class, 'update']);
+    Route::put('/wineEvidence/volume/{wineEvidenceId}', [WineEvidenceController::class, 'updateVolume']);
 
     Route::get("/wineRecord/{wineRecordId}", [WineRecordController::class, "show"]);
     Route::get("/wineRecord/wineEvidence/{wineEvidenceId}", [WineRecordController::class, "showByWineEvidence"]);
