@@ -4,6 +4,7 @@ namespace App\Http\Controllers\v1;
 
 use App\Http\Resources\WineEvidenceResource;
 use App\Models\WineEvidence;
+use App\Models\WineEvidenceWine;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -24,9 +25,9 @@ class WineEvidenceController extends Controller
      *     @OA\RequestBody(
      *         @OA\JsonContent(
      *             type="object",
-     *             required={"project_id", "wine_id", "title", "volume", "year"},
+     *             required={"project_id", "wines", "title", "volume", "year"},
      *             @OA\Property(property="project_id", type="integer"),
-     *             @OA\Property(property="wine_id", type="integer"),
+     *             @OA\Property(property="wines", type="array", @OA\Items(type="integer")),
      *             @OA\Property(property="wine_classification_id", type="integer"),
      *             @OA\Property(property="title", type="string"),
      *             @OA\Property(property="volume", type="double"),
@@ -53,7 +54,7 @@ class WineEvidenceController extends Controller
 
         $validator = Validator::make($input, [
             WineEvidence::PROJECT_ID => 'required|exists:App\Models\Project,id',
-            WineEvidence::WINE_ID => 'required|exists:App\Models\Wine,id',
+            WineEvidence::WINES => 'required|array',
             WineEvidence::WINE_CLASSIFICATION_ID => 'nullable|exists:App\Models\WineClassification,id',
             WineEvidence::TITLE => 'required|string',
             WineEvidence::VOLUME => 'required|numeric',
@@ -64,11 +65,28 @@ class WineEvidenceController extends Controller
             WineEvidence::NOTE => 'nullable|string',
         ]);
 
-        if($validator->fails()){
-            return $this->sendError('Validation error: ' . $validator->errors(), 422);
+        if ($validator->fails()) {
+            return $this->sendError('Inputs are not valid.' . $validator->messages(), 422);
         }
 
-        $wineEvidence = WineEvidence::create($input);
+        $wineEvidence = WineEvidence::create([
+            WineEvidence::PROJECT_ID => $request[WineEvidence::PROJECT_ID],
+            WineEvidence::WINE_CLASSIFICATION_ID => $request[WineEvidence::WINE_CLASSIFICATION_ID],
+            WineEvidence::TITLE => $request[WineEvidence::TITLE],
+            WineEvidence::VOLUME => $request[WineEvidence::VOLUME],
+            WineEvidence::YEAR => $request[WineEvidence::YEAR],
+            WineEvidence::ALCOHOL => $request[WineEvidence::ALCOHOL],
+        ]);
+
+        $wineEvidence->save();
+
+        foreach ($input[WineEvidence::WINES] as $wineId) {
+            WineEvidenceWine::create([
+                WineEvidenceWine::WINE_EVIDENCE_ID => $wineEvidence->id,
+                WineEvidenceWine::WINE_ID => $wineId,
+            ]);
+        }
+
         $result = WineEvidenceResource::make($wineEvidence);
 
         return $this->sendResponse($result, "Wine evidence created");
@@ -90,8 +108,8 @@ class WineEvidenceController extends Controller
      *      @OA\RequestBody(
      *         @OA\JsonContent(
      *             type="object",
-     *             required={"wine_id", "title", "volume", "year"},
-     *             @OA\Property(property="wine_id", type="integer"),
+     *             required={"wines", "title", "volume", "year"},
+     *             @OA\Property(property="wines", type="array", @OA\Items(type="integer")),
      *             @OA\Property(property="wine_classification_id", type="integer"),
      *             @OA\Property(property="title", type="string"),
      *             @OA\Property(property="volume", type="double"),
@@ -110,7 +128,7 @@ class WineEvidenceController extends Controller
      *      @OA\Response(response=404, description="Resource Not Found"),
      * )
      * @param Request $request
-     * @param int $wineEvidenceId
+     * @param int $wine+EvidenceId
      * @return JsonResponse
      * @throws Throwable
      */
@@ -118,7 +136,7 @@ class WineEvidenceController extends Controller
     {
         $input = $request->all();
         $validator = Validator::make($input, [
-            WineEvidence::WINE_ID => 'required|exists:App\Models\Wine,id',
+            WineEvidence::WINES => 'required|array',
             WineEvidence::WINE_CLASSIFICATION_ID => 'nullable|exists:App\Models\WineClassification,id',
             WineEvidence::TITLE => 'required|string',
             WineEvidence::VOLUME => 'required|numeric',
@@ -128,7 +146,7 @@ class WineEvidenceController extends Controller
             WineEvidence::SUGAR => 'nullable|numeric',
         ]);
 
-        if($validator->fails()){
+        if ($validator->fails()) {
             return $this->sendError('Validation error: ' . $validator->errors(), 422);
         }
 
@@ -181,7 +199,7 @@ class WineEvidenceController extends Controller
             WineEvidence::VOLUME => 'required|numeric',
         ]);
 
-        if($validator->fails()){
+        if ($validator->fails()) {
             return $this->sendError('Validation error: ' . $validator->errors(), 422);
         }
 

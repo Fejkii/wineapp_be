@@ -17,7 +17,6 @@ class CreateWineEvidencesTable extends Migration
         Schema::create('wine_evidences', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger(WineEvidence::PROJECT_ID);
-            $table->unsignedBigInteger(WineEvidence::WINE_ID);
             $table->string(WineEvidence::TITLE);
             $table->double(WineEvidence::VOLUME);
             $table->integer(WineEvidence::YEAR);
@@ -29,7 +28,6 @@ class CreateWineEvidencesTable extends Migration
             $table->timestamps();
 
             $table->foreign(WineEvidence::PROJECT_ID)->references('id')->on('projects');
-            $table->foreign(WineEvidence::WINE_ID)->references('id')->on('wines');
             $table->foreign(WineEvidence::WINE_CLASSIFICATION_ID)->references('id')->on('wine_classifications');
         });
     }

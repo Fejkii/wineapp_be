@@ -1538,7 +1538,7 @@
                             "schema": {
                                 "required": [
                                     "project_id",
-                                    "wine_id",
+                                    "wines",
                                     "title",
                                     "volume",
                                     "year"
@@ -1547,8 +1547,11 @@
                                     "project_id": {
                                         "type": "integer"
                                     },
-                                    "wine_id": {
-                                        "type": "integer"
+                                    "wines": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "integer"
+                                        }
                                     },
                                     "wine_classification_id": {
                                         "type": "integer"
@@ -1649,14 +1652,17 @@
                         "application/json": {
                             "schema": {
                                 "required": [
-                                    "wine_id",
+                                    "wines",
                                     "title",
                                     "volume",
                                     "year"
                                 ],
                                 "properties": {
-                                    "wine_id": {
-                                        "type": "integer"
+                                    "wines": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "integer"
+                                        }
                                     },
                                     "wine_classification_id": {
                                         "type": "integer"

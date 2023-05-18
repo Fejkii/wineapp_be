@@ -19,7 +19,6 @@ class WineEvidenceSeeder extends Seeder
         DB::table('wine_evidences')->insert(array(
             array(
                 WineEvidence::PROJECT_ID => 1,
-                WineEvidence::WINE_ID => 1,
                 WineEvidence::WINE_CLASSIFICATION_ID => 3,
                 WineEvidence::TITLE => "Tramín 2022",
                 WineEvidence::VOLUME => 100,
@@ -31,7 +30,6 @@ class WineEvidenceSeeder extends Seeder
             ),
             array(
                 WineEvidence::PROJECT_ID => 1,
-                WineEvidence::WINE_ID => 3,
                 WineEvidence::WINE_CLASSIFICATION_ID => 3,
                 WineEvidence::TITLE => "Frankovka 2020",
                 WineEvidence::VOLUME => 150,

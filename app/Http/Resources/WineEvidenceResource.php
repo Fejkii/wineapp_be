@@ -1,11 +1,12 @@
-<?php declare(strict_types = 1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Http\Resources;
 
-use App\Models\Project;
-use App\Models\Wine;
 use App\Models\WineClassification;
 use App\Models\WineEvidence;
+use App\Models\WineEvidenceWine;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -19,7 +20,7 @@ class WineEvidenceResource extends JsonResource
         return [
             WineEvidence::ID => $this->id,
             WineEvidence::PROJECT_ID => $this->project_id,
-            'wine' => Wine::findOrFail($this->wine_id),
+            WineEvidence::WINES => WineEvidenceWineResource::collection(WineEvidenceWine::whereWineEvidenceId($this->id)->get()),
             'wine_classification' => WineClassification::find($this->wine_classification_id),
             WineEvidence::TITLE => $this->title,
             WineEvidence::VOLUME => $this->volume,

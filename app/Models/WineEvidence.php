@@ -52,7 +52,7 @@ class WineEvidence extends Model
 
     public const ID = "id";
     public const PROJECT_ID = "project_id";
-    public const WINE_ID = "wine_id";
+    public const WINES = "wines";
     public const WINE_CLASSIFICATION_ID = "wine_classification_id";
     public const TITLE = "title";
     public const VOLUME = "volume"; // objem / množství
@@ -64,7 +64,7 @@ class WineEvidence extends Model
 
     protected $fillable = [
         self::PROJECT_ID,
-        self::WINE_ID,
+        self::WINES,
         self::WINE_CLASSIFICATION_ID,
         self::TITLE,
         self::VOLUME,
