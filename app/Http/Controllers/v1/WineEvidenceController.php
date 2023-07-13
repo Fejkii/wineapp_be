@@ -153,9 +153,25 @@ class WineEvidenceController extends Controller
         /** @property WineEvidence $wineEvidence */
         $wineEvidence = WineEvidence::findOrFail($wineEvidenceId);
 
-        $wineEvidence->updateOrFail($input);
+        $wineEvidence->updateOrFail([
+            WineEvidence::WINE_CLASSIFICATION_ID => $request[WineEvidence::WINE_CLASSIFICATION_ID],
+            WineEvidence::TITLE => $request[WineEvidence::TITLE],
+            WineEvidence::VOLUME => $request[WineEvidence::VOLUME],
+            WineEvidence::YEAR => $request[WineEvidence::YEAR],
+            WineEvidence::ALCOHOL => $request[WineEvidence::ALCOHOL],
+        ]);
 
         $wineEvidence->save();
+
+        WineEvidenceWine::whereWineEvidenceId($wineEvidenceId)->delete();
+
+        foreach ($input[WineEvidence::WINES] as $wineId) {
+            WineEvidenceWine::create([
+                WineEvidenceWine::WINE_EVIDENCE_ID => $wineEvidence->id,
+                WineEvidenceWine::WINE_ID => $wineId,
+            ]);
+        }
+
         $result = WineEvidenceResource::make($wineEvidence);
 
         return $this->sendResponse($result, "Wine evidence updated");
